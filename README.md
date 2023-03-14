@@ -26,7 +26,7 @@ To run on the cdaql3:
 1) cd /data1/cdaq/eel108/"name"/nps_replay
 2) source setup.csh ( this will use the defualt hcana)
 3) hcana
-   hcana [0] .x SCRIPTS/NPS/eel108_replay.C(707,1000)
+3a) hcana [0] .x SCRIPTS/NPS/eel108_replay.C(707,1000)
 4) Root file will be in the ROOTfiles directory
 
 Suggest that one makes a separate subdirectory under
