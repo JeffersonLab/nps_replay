@@ -1,4 +1,4 @@
-void eel108_replay(Int_t RunNumber=7, Int_t MaxEvent=100)
+void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -17,7 +17,7 @@ void eel108_replay(Int_t RunNumber=7, Int_t MaxEvent=100)
   }
 
   // Create file name patterns.
-  const char* RunFileNamePattern="vme2_%d.evio.0";
+  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
@@ -34,7 +34,6 @@ void eel108_replay(Int_t RunNumber=7, Int_t MaxEvent=100)
   gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
 
   //Load param file to include (or not) raw fADC data in ROOTfile 
-  gHcParms->Load("PARAM/NPS/GEN/nps_fadc_debug.param");
    
   // Load the Hall C style detector map 
   gHcDetectorMap = new THcDetectorMap();
@@ -81,6 +80,8 @@ void eel108_replay(Int_t RunNumber=7, Int_t MaxEvent=100)
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def");  
   
   analyzer->Process(run);     // start the actual analysis
-
+  // Create report file from template.
+  analyzer->PrintReport("TEMPLATES/NPS/NPS.template",
+			Form("REPORT_OUTPUT/NPS/eel108/eel108_report_%d_%d.report", RunNumber, MaxEvent));
   
 }
