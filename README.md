@@ -15,7 +15,10 @@ Starting on the cdaql3 machines:
 6) cd nps_replay
 7) mkdir /data1/cdaq/eel108/output/ROOTfiles/"name"
 8) ln -sf /data1/cdaq/eel108/output/ROOTfiles/"name" ROOTfiles
-9) ln -sf /data1/cdaq/eel108/output/REPORT_OUTPUT .
+9) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"
+9a) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"/NPS
+9b) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"/NPS/eel108
+9c) ln -sf /data1/cdaq/eel108/output/REPORT_OUTPUT REPORT_OUTPUT/"name"
 10) ln -sf /data1/cdaq/NPS/ cache  ( do not have access to cache disk)
 11) ln -sf /data1/cdaq/NPS/ raw
 
