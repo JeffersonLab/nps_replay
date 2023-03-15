@@ -18,7 +18,7 @@ Starting on the cdaql3 machines:
 9) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"
 10) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"/NPS
 11) mkdir /data1/cdaq/eel108/output/REPORT_OUTPUT/"name"/NPS/eel108
-12) ln -sf /data1/cdaq/eel108/output/REPORT_OUTPUT REPORT_OUTPUT/"name"
+12) ln -sf /data1/cdaq/eel108/output/REPORT_OUTPUT/"name" REPORT_OUTPUT
 13) ln -sf /data1/cdaq/NPS/ cache  ( do not have access to cache disk)
 14) ln -sf /data1/cdaq/NPS/ raw
 
