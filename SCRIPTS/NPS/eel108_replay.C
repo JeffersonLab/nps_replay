@@ -17,7 +17,8 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   }
 
   // Create file name patterns.
-  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
+  //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
+  const char* RunFileNamePattern="NPS_VTP_3crate_%d.evio.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
