@@ -5,7 +5,7 @@
 
     # for hcana                                                                                                                                                                                    
                
-    setenv HCANA /data1/cdaq/eel108/hcana
+    setenv HCANA /home/cdaq/nps-2023/hcana
     echo " Setting hcana from: "
     echo $HCANA
     echo " Edit this file if you want to use different hcana"
