@@ -1,0 +1,9 @@
+Batch job submissions
+
+Example sbatch scripts:
+submit.sh: single job submission script. Take three inputs: run number, nevt, jobname.
+submit_jobs.py: this script will create a sbatch submission script for each run and submit the jobs. Different options can be set from the command line. See the help page.
+run.sh: executable
+
+Alternatively, one can swif2 to submit batch jobs.
+One of the easy ways to start is from https://github.com/JeffersonLab/hcswif
