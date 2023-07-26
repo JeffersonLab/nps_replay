@@ -13,8 +13,8 @@ nps_cal_layer_names = "fly"
 nps_cal_replicate = 0
 
 ;set number of rows and columns for NPS tests (using 4x quadrants translation / reflection maps), as well as "nps_cal_replicate>0" option
-nps_cal_arr_nrows = 32
-nps_cal_arr_ncolumns = 28
+nps_cal_arr_nrows = 36
+nps_cal_arr_ncolumns = 30
 
 ;set number of rows and columns for standard SHMS fly's eye tests (make sure to set nps_cal_replicate = 0, for this geometry)
 ;nps_cal_arr_nrows = 16
@@ -41,7 +41,7 @@ nps_cal_slop = 7.5
 
 ;
 ;nps_cal_arr_SampNSA = 16
-nps_cal_arr_SampNSA = 30
+nps_cal_arr_SampNSA = 12
 ;nps_cal_arr_SampNSB = 3
 nps_cal_arr_SampNSB = 5
 ;nps_cal_arr_SampNSB = 4
