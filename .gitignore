@@ -11,9 +11,11 @@
 .nfs*
 *.root
 
+
 # Directories
 RAID
 REPORT_OUTPUT
+NPS_OUTPUT
 HISTOGRAMS
 MON_OUTPUT
 ROOTfiles
@@ -25,3 +27,7 @@ scratch
 
 # Symbolic links
 hcana
+deut
+xem
+raw2
+*zh*
