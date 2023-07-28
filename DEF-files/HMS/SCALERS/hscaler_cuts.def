@@ -3,8 +3,8 @@
 Block: RawDecode
 
 Pedestal_event     g.evtyp == 99
-HMS_event          g.evtyp == 2
-SHMS_event         g.evtyp == 1
+HMS_event          g.evtyp == 1
+SHMS_event         g.evtyp == 2
 COIN_event         g.evtyp == 4
 
 RawDecode_master  1
