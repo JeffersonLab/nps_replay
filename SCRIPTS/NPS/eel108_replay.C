@@ -25,7 +25,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/wassim/nps_eel108_all_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
