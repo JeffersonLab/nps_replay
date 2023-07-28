@@ -17,15 +17,15 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   }
 
   // Create file name patterns.
-  //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="NPS_VTP_3crate_%d.evio.0";
+  // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
+  const char* RunFileNamePattern="nps_%d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
-
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_eel108_%d.root";
+  pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
+  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -76,7 +76,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
                               // 2 = counter is event number
    
   analyzer->SetOutFile(ROOTFileName.Data());
-  analyzer->SetCrateMapFileName("MAPS/NPS/db_cratemap.dat");
+  analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_eel108.dat");
   analyzer->SetOdefFile("DEF-files/NPS/NPS.def");      
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def");  
   
