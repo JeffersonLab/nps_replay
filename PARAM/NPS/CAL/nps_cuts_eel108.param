@@ -20,7 +20,8 @@ nps_cal_arr_ADCmode = 1
 
 ; this offset (in ns) is applied to adcPulseTime variable to move away from negative values
 ;(this may need to be modified for actual NPS data, as an offset may not be neede anymore)
-nps_cal_arr_adc_tdc_offset = 0.0
+; needs to be an array of 1079 elements
+;nps_cal_arr_adc_tdc_offset = 0.0
 
 ; Threshold on selecting good adc is dynamic pedestal+nps_cal_arr_AdcThreshold
 ; this threhsold is in units of channels (Im not sure why we need to add this to an existing threshold)
