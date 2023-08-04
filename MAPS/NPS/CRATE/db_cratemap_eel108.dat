@@ -1,4 +1,4 @@
-==== Crate 1 type vme Bank Decoding
+==== Crate 10 type vme Bank Decoding
 # slot  model   bank
   3      250     3
   4      250     3
@@ -16,7 +16,7 @@
   18     250     3
   19     250     3
 
-==== Crate 2 type vme Bank Decoding
+==== Crate 11 type vme Bank Decoding
 # slot  model   bank
   3      250     3
   4      250     3
@@ -34,7 +34,25 @@
   18     250     3
   19     250     3
 
-==== Crate 3 type vme Bank Decoding
+==== Crate 12 type vme Bank Decoding
+# slot  model   bank
+  3      250     3
+  4      250     3
+  5      250     3
+  6      250     3
+  7      250     3
+  8      250     3
+  9      250     3
+  10     250     3
+  13     250     3
+  14     250     3  
+  15     250     3
+  16     250     3
+  17     250     3
+  18     250     3
+  19     250     3
+  20     250     3
+==== Crate 13 type vme Bank Decoding
 # slot  model   bank
   3      250     3
   4      250     3
@@ -52,14 +70,35 @@
   18     250     3
   19     250     3
 
-==== Crate 6 type vme Bank Decoding
+==== Crate 14 type vme Bank Decoding
+# slot  model   bank
+  3      250     3
+  4      250     3
+  5      250     3
+  6      250     3
+  7      250     3
+  8      250     3
+  9      250     3
+  10     250     3
+
+
+==== Crate 15 type vme Bank Decoding
 # slot  model   bank
   11     514     86
 
-==== Crate 7 type vme Bank Decoding
+==== Crate 16 type vme Bank Decoding
 # slot  model   bank
   11     514     86
 
-==== Crate 8 type vme Bank Decoding
+==== Crate 17 type vme Bank Decoding
 # slot  model   bank
   11     514     86
+
+==== Crate 18 type vme Bank Decoding
+# slot  model   bank
+  11     514     86
+
+==== Crate 19 type vme Bank Decoding
+# slot  model   bank
+  11     514     86
+
