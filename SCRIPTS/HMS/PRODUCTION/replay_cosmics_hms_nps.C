@@ -6,17 +6,30 @@
 void replay_cosmics_hms_nps(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Get RunNumber and MaxEvent if not provided.
-  if(RunNumber == 0) { cout << "Enter a Run Number (-1 to exit): ";
-    cin >> RunNumber; if( RunNumber<=0 ) {
-      cerr << "...Invalid RunNumber entry\n";exit;}}
-  if(MaxEvent == 0) {cout << "\nNumber of Events to analyze: ";
-    cin >> MaxEvent; if(MaxEvent == 0) {
-      cerr << "...Invalid MaxEvent entry\n";exit;}}
-  vector<TString> pathList =paths_to_data();
-
+  if(RunNumber == 0) {
+    cout << "Enter a Run Number (-1 to exit): ";
+    cin >> RunNumber;
+    if( RunNumber<=0 ) return;
+  }
+  if(MaxEvent == 0) {
+    cout << "\nNumber of Events to analyze: ";
+    cin >> MaxEvent;
+    if(MaxEvent == 0) {
+      cerr << "...Invalid entry\n";
+      exit;
+    }
+  }
+  
   // Create file name patterns.
   //  const char* RunFileNamePattern = "hms_tests_%03d.dat.0";  //Raw data file name pattern
-  const char* RunFileNamePattern = "hms_all_%03d.dat.0";  //Raw data file name pattern
+  const char* RunFileNamePattern="nps_%d.dat.0"; 
+  vector<TString> pathList;
+  pathList.push_back(".");
+  pathList.push_back("./raw");
+  pathList.push_back("./raw/../raw.copiedtotape");
+  pathList.push_back("./cache");
+  pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
+   //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
   const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/hms_replay_production_%d_%d.root";
