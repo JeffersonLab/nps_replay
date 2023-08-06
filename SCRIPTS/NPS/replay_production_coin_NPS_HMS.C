@@ -1,4 +1,4 @@
-void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
+void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -18,50 +18,58 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Create file name patterns.
   //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="hms_nps_%d.dat.0"; // FIXME: CHECK NAME;
-  vector<TString> pathList;
+  const char* RunFileNamePattern="nps_%d.dat.0"; 
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
-
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_eel108_%d.root";//FIXME
+  pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
+  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
-  gHcParms->AddString("g_ctp_database_filename", "DBASE/NPS/standard.database");  // FIXME: DBASE FOR HMS+NPS;
+  gHcParms->AddString("g_ctp_database_filename", "DBASE/NPS/standard_coin.database");  // FIXME: DBASE FOR HMS+NPS;
   gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
   gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
-
-  //Load param file to include (or not) raw fADC data in ROOTfile
+  gHcParms->Load(gHcParms->GetString("g_ctp_det_calib_filename"));
+  gHcParms->Load(gHcParms->GetString("g_ctp_bcm_calib_filename"));
+  gHcParms->Load(gHcParms->GetString("g_ctp_optics_filename"));
+  // Load parameters for SHMS trigger configuration
+  gHcParms->Load(gHcParms->GetString("g_ctp_trig_config_filename"));
+  // Load hpcentral momentum offset 
+  gHcParms->Load("PARAM/HMS/GEN/hpcentral_function_sp18.param");
+  // Load fadc debug parameters
+  gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug_sp18.param");
 
   // Load params for COIN trigger configuration
-  gHcParms->Load("PARAM/TRIG/tcoin.param"); //FIXME: COIN TRIG CONFIG
-
-  // Load fadc debug parameters
-  gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug.param");
-  gHcParms->Load("PARAM/SHMS/GEN/p_fadc_debug.param"); //FIXME: CHANGE SHMS TO NPS
+  //gHcParms->Load("PARAM/TRIG/tcoin.param"); //FIXME: COIN TRIG CONFIG
 
    
   // Load the Hall C style detector map 
   gHcDetectorMap = new THcDetectorMap();
-  gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_eel108.map"); //FIXME: CHANGE TO COIN MAP
+  gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_coin.map"); //FIXME: CHANGE TO COIN MAP
   //gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_standard.map");
 
-  // Dec data
-  gHaApps->Add(new Podd::DecData("D","Decoder raw data")); //FIXME: NEED THIS ONE?
+  /*// Dec data
+  gHaApps->Add(new Podd::DecData("D","Decoder raw data")); //FIXME: NEED THIS ONE?*/
+
+    // Load BCM values
+  ifstream bcmFile;
+  //  TString bcmParamFile = Form("PARAM/HMS/BCM/bcmcurrent_%d.param", RunNumber);
+  //  bcmFile.open(bcmParamFile);
+  //  if (bcmFile.is_open()) gHcParms->Load(bcmParamFile);
 
   //=:=:=
   // HMS 
   //=:=:=
 
   THcHallCSpectrometer* HMS = new THcHallCSpectrometer("H", "HMS");
-  HMS->SetEvtType(2);
+  /*HMS->SetEvtType(2);
   HMS->AddEvtType(4);
   HMS->AddEvtType(5);
   HMS->AddEvtType(6);
-  HMS->AddEvtType(7);
+  HMS->AddEvtType(7);*/
   gHaApps->Add(HMS);
   // Add drift chambers to HMS apparatus
   THcDC* hdc = new THcDC("dc", "Drift Chambers");
@@ -81,7 +89,12 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Add rastered beam apparatus
   THaApparatus* hbeam = new THcRasteredBeam("H.rb", "Rastered Beamline");
-  gHaApps->Add(hbeam);  
+  gHaApps->Add(hbeam);
+
+  if (bcmFile.is_open()) {
+    THcBCMCurrent* bcm = new THcBCMCurrent("H.bcm", "BCM Module");
+    gHaPhysics->Add(bcm);
+  }  
   // Add physics modules
   // Calculate reaction point
   THcReactionPoint* hrp = new THcReactionPoint("H.react", "HMS reaction point", "H", "H.rb");
@@ -90,43 +103,49 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   THcExtTarCor* hext = new THcExtTarCor("H.extcor", "HMS extended target corrections", "H", "H.react");
   gHaPhysics->Add(hext);
   // Calculate golden track quantities
-  THaGoldenTrack* hgtr = new THaGoldenTrack("H.gtr", "HMS Golden Track", "H");
-  gHaPhysics->Add(hgtr);
+  THaGoldenTrack* gtr = new THaGoldenTrack("H.gtr", "HMS Golden Track", "H");
+  gHaPhysics->Add(gtr);
+  // Calculate primary (scattered beam - usually electrons) kinematics
+  THcPrimaryKine* hkin = new THcPrimaryKine("H.kin", "HMS Single Arm Kinematics", "H", "H.rb");
+  gHaPhysics->Add(hkin);
   // Calculate the hodoscope efficiencies
   THcHodoEff* heff = new THcHodoEff("hhodeff", "HMS hodo efficiency", "H.hod");
   gHaPhysics->Add(heff);
 
-  // Add event handler for scaler events
-  THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H", "Hall C scaler event type 4");  
-  hscaler->AddEvtType(2);
-  hscaler->AddEvtType(4);
-  hscaler->AddEvtType(5);
-  hscaler->AddEvtType(6);
-  hscaler->AddEvtType(7);
+  // Add handler for scaler events
+  THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H", "Hall C scaler event type 2");  
+  hscaler->AddEvtType(1);
+  //  hscaler->AddEvtType(140);
   hscaler->AddEvtType(129);
+  hscaler->AddEvtType(130);
   hscaler->SetDelayedType(129);
+  hscaler->SetDelayedType(130);
   hscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(hscaler);
 
-  /*
-  // Add HMS event handler for helicity scalers
-  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
-  //hhelscaler->SetDebugFile("HHelScaler.txt");
-  hhelscaler->SetROC(5);
-  hhelscaler->SetUseFirstEvent(kTRUE);
-  gHaEvtHandlers->Add(hhelscaler);
-  */
+  // Add event handler for helicity scalers
+  //  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
+  //  hhelscaler->SetDebugFile("HHelScaler.txt");
+  //  hhelscaler->SetROC(5);
+  //  hhelscaler->SetUseFirstEvent(kTRUE);
+  //  gHaEvtHandlers->Add(hhelscaler);
+
+  // Add event handler for DAQ configuration event
+  THcConfigEvtHandler *hconfig = new THcConfigEvtHandler("hconfig", "Hall C configuration event handler");
+  gHaEvtHandlers->Add(hconfig);
   
   //=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
   // Kinematics Modules
   //=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
 
-  // Add Physics Module to calculate primary (scattered electrons) beam kinematics
+  /*// Add Physics Module to calculate primary (scattered electrons) beam kinematics
   THcPrimaryKine* hkin_primary = new THcPrimaryKine("H.kin.primary", "HMS Single Arm Kinematics", "H", "H.rb");
   gHaPhysics->Add(hkin_primary);
   // Add Physics Module to calculate secondary (scattered hadrons) beam kinematics
   THcSecondaryKine* pkin_secondary = new THcSecondaryKine("P.kin.secondary", "SHMS Single Arm Kinematics", "P", "H.kin.primary");
-  gHaPhysics->Add(pkin_secondary); // FIXME: CHANGE SHMS to NPS?
+  gHaPhysics->Add(pkin_secondary); // FIXME: CHANGE SHMS to NPS?*/
+
+  
 
 
   //=:=:=
@@ -152,16 +171,19 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   gHaApps->Add(TRG);
 
   // Add trigger detector to trigger apparatus
-  THcTrigDet* coin = new THcTrigDet("coin", "Coincidence Trigger Information");
+  /*THcTrigDet* coin = new THcTrigDet("coin", "Coincidence Trigger Information");
   // Suppress missing reference time warnings for these event types
   coin->SetEvtType(1);
   coin->AddEvtType(2);
-  TRG->AddDetector(coin); 
+  TRG->AddDetector(coin);*/
 
-  //Add coin physics module THcCoinTime::THcCoinTime (const char *name, const char* description, const char* hadArmName, 
+  THcTrigDet* hms = new THcTrigDet("hms", "HMS Trigger Information");
+  TRG->AddDetector(hms); 
+
+  /*//Add coin physics module THcCoinTime::THcCoinTime (const char *name, const char* description, const char* hadArmName, 
   // const char* elecArmName, const char* coinname) :
   THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidende Time Determination", "P", "H", "T.coin");
-  gHaPhysics->Add(coinTime);
+  gHaPhysics->Add(coinTime);*/
 
   // Add event handler for EPICS events
   THaEpicsEvtHandler* hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
@@ -202,6 +224,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   analyzer->SetEvent(event);
   // Set EPICS event type
   analyzer->SetEpicsEvtType(180);
+  analyzer->AddEpicsEvtType(181);
   analyzer->SetCountMode(2);  // 0 = counter is # of physics triggers
                               // 1 = counter is # of all decode reads
                               // 2 = counter is event number
@@ -209,17 +232,17 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Define output ROOT file
   analyzer->SetOutFile(ROOTFileName.Data());
   // Define crate map
-  analyzer->SetCrateMapFileName("MAPS/NPS/db_cratemap.dat") ; //FIXME: CHANGE
+  analyzer->SetCrateMapFileName("MAPS/NPS/db_cratemap_coin.dat") ; //FIXME: CHANGE
   // Define DEF-file+
-  analyzer->SetOdefFile("DEF-files/NPS/NPS.def"); //FIXME: CHANGE
+  analyzer->SetOdefFile("DEF-files/NPS/NPS_coin.def"); //FIXME: CHANGE
   // Define cuts file
-  analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def"); //FIXME: CHANGE
+  analyzer->SetCutFile("DEF-files/NPS/NPS_cuts_coin.def"); //FIXME: CHANGE
   // File to record accounting information for cuts
-  analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));  // optional //FIXME: CHANGE
+  //analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));  // optional //FIXME: CHANGE
   // start the actual analysis
   analyzer->Process(run);     
   // Create report file from template.
-  analyzer->PrintReport("TEMPLATES/NPS/NPS.template",
+  analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
 			Form("REPORT_OUTPUT/NPS/eel108/eel108_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
   
 }
