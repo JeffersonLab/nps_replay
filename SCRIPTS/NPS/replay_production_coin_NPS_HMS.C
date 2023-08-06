@@ -1,3 +1,4 @@
+ifstream bcmFile;
 void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
 {
 
