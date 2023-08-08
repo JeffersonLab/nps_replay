@@ -3,9 +3,12 @@
 0 - 99999
 gpbeam = 10.386077023902068
 gtargmass_amu = 12.0107
+htheta_lab = 29.99
+hpcentral = 3.0
 stheta_lab = 29.99
-nps_pcentral = 2.6
-ppartmass = 0.000511
+nps_theta_offset=0
+#nps_pcentral = 2.6
+#ppartmass = 0.000511
 hpartmass = 0.000511
 
 nps_cal_ADCMode = 3

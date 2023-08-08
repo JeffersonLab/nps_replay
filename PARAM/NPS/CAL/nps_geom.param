@@ -49,7 +49,8 @@ nps_cal_arr_UseSampWaveform = 1
 ;  If nps_cal_arr_OutputSampRawWaveform = 1 then output raw (Adc Chan) 4ns samples in the waveform
 ;  If nps_cal_arr_OutputSampRawWaveform = 0 then output pedestal subtracted (converted to mV) 4ns samples in the waveform
 ;  Default is nps_cal_arr_OutputSampRawWaveform=0 if  nps_cal_arr_OutputSampRawWaveform is not set in parameter file
-nps_cal_arr_OutputSampRawWaveform = 1 
+nps_cal_arr_OutputSampRawWaveform = 1
+nps_cal_arr_OutputSampWaveform = 1
 nps_cal_arr_SampThreshold = 4
 
 ;nps_cal_arr_SampThreshold = 10

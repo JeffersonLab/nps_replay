@@ -1,8 +1,8 @@
 Block: RawDecode
 #include "DEF-files/HMS/PRODUCTION/CUTS/hstackana_rawdecode_cuts.def"
-RawDecode_master 1
 
-Pedestal_event 0
+
+
 RawDecode_master 1
 
 Block: Decode
