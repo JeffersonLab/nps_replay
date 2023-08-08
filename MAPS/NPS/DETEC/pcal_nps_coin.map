@@ -4,7 +4,7 @@
 ! HCER_ID=14       ::  (TDC),ADC
 ! HCAL_ID=15       ::  ADC
 ! HRASTER_ID=18    ::  ADC
-
+! NPSCAL_ID=26  :: ADC
 
 DETECTOR=10
 
@@ -1868,7 +1868,7 @@ SLOT=18
 ! standard map for testing NPS software
 
  
-! NPSCAL_ID=26  :: ADC
+ 
 
 ! general map format: (channel, plane, counter, signal)
 ! channel  ->  actual module channel being used (i.e., fADC chan 0,1,2,.. etc) 

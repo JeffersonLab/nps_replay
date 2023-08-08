@@ -1,4 +1,3 @@
-ifstream bcmFile;
 void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
 {
 
@@ -20,6 +19,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Create file name patterns.
   //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
   const char* RunFileNamePattern="nps_%d.dat.0"; 
+  vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
@@ -39,7 +39,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Load parameters for SHMS trigger configuration
   gHcParms->Load(gHcParms->GetString("g_ctp_trig_config_filename"));
   // Load hpcentral momentum offset 
-  gHcParms->Load("PARAM/HMS/GEN/hpcentral_function_sp18.param");
+  //gHcParms->Load("PARAM/HMS/GEN/hpcentral_function_sp18.param");
   // Load fadc debug parameters
   gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug_sp18.param");
 
@@ -56,10 +56,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   gHaApps->Add(new Podd::DecData("D","Decoder raw data")); //FIXME: NEED THIS ONE?*/
 
     // Load BCM values
-  ifstream bcmFile;
-  //  TString bcmParamFile = Form("PARAM/HMS/BCM/bcmcurrent_%d.param", RunNumber);
-  //  bcmFile.open(bcmParamFile);
-  //  if (bcmFile.is_open()) gHcParms->Load(bcmParamFile);
+
 
   //=:=:=
   // HMS 
@@ -92,10 +89,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   THaApparatus* hbeam = new THcRasteredBeam("H.rb", "Rastered Beamline");
   gHaApps->Add(hbeam);
 
-  if (bcmFile.is_open()) {
-    THcBCMCurrent* bcm = new THcBCMCurrent("H.bcm", "BCM Module");
-    gHaPhysics->Add(bcm);
-  }  
+
   // Add physics modules
   // Calculate reaction point
   THcReactionPoint* hrp = new THcReactionPoint("H.react", "HMS reaction point", "H", "H.rb");
@@ -233,7 +227,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Define output ROOT file
   analyzer->SetOutFile(ROOTFileName.Data());
   // Define crate map
-  analyzer->SetCrateMapFileName("MAPS/NPS/db_cratemap_coin.dat") ; //FIXME: CHANGE
+  analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_coin.dat") ; //FIXME: CHANGE
   // Define DEF-file+
   analyzer->SetOdefFile("DEF-files/NPS/NPS_coin.def"); //FIXME: CHANGE
   // Define cuts file
