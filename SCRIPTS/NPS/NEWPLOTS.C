@@ -8,7 +8,7 @@ void NEWPLOTS( Int_t nrun=20990) {
     // --------------------------------------------------------------------------------
     
     TChain *t;
-    TFile *f = new TFile("../../ROOTfiles/nps_eel108_1355_latest.root");
+    TFile *f= new TFile(Form("../../ROOTfiles/NPS/nps_%i.root",nrun),"UPDATE");
     t = new TChain("T");
     t->Add(f->GetName(),-1);
     t->SetBranchStatus("*",false);
@@ -183,16 +183,16 @@ void NEWPLOTS( Int_t nrun=20990) {
             TotalGoodHit->Fill(counterofgoodhit);
         }
         }
-    TFile *F1= new TFile(Form("../../ROOTfiles/HMS/hms50k/deut_replay_hms50k_%i_50000.root",nrun),"UPDATE");
-    F1->WriteTObject(TimeBlock_Zoom, "TimeBlock_Zoom");
-    F1->WriteTObject(TotalHit,"TotalHit");
-    F1->WriteTObject(TimeBlock,"TimeBlock");
-    F1->WriteTObject(TotalGoodHit,"TotalGoodHit");
-    F1->WriteTObject(GoodHitPerBlock,"GoodHitPerBlock");
-    F1->WriteTObject(AmpBlock,"AmpBlock");
-    F1->WriteTObject(PulseBlock,"PulseBlock");
-    F1->WriteTObject(GoodPulseBlock,"GoodPulseBlock");
-    F1->Close();
+    
+    f->WriteTObject(TimeBlock_Zoom, "TimeBlock_Zoom");
+    f->WriteTObject(TotalHit,"TotalHit");
+    f->WriteTObject(TimeBlock,"TimeBlock");
+    f->WriteTObject(TotalGoodHit,"TotalGoodHit");
+    f->WriteTObject(GoodHitPerBlock,"GoodHitPerBlock");
+    f->WriteTObject(AmpBlock,"AmpBlock");
+    f->WriteTObject(PulseBlock,"PulseBlock");
+    f->WriteTObject(GoodPulseBlock,"GoodPulseBlock");
+    f->Close();
     }
 
 /*Event number is 2Block number is 47Pulse number is 4
