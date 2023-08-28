@@ -17,8 +17,8 @@ hhodo_adc_mode=1
 htofusinginvadc=0
 
 ; Set output Waveform
-hhodo_OutputSampWaveform = 1
-hhodo_OutputSampRawWaveform = 1
+;hhodo_OutputSampWaveform = 1
+;hhodo_OutputSampRawWaveform = 1
 
 ; hstart_time_center  center of allowed time window (ns)
 hstart_time_center = 32.

@@ -7,12 +7,12 @@ hcal_ADCmode=1
 
 hcal_adc_tdc_offset = 200.
 ; use hcal cuts to do cal_arr_Param for now
-hcal_arr_OutputSampRawWaveform = 1
-hcal_arr_OutputSampWaveform =1
+;hcal_arr_OutputSampRawWaveform = 1
+;hcal_arr_OutputSampWaveform =1
 
 ;hcal waveform here:
-hcal_OutputSampWaveform =1
-hcal_OutputSampRawWaveform=1
+;hcal_OutputSampWaveform =1
+;hcal_OutputSampRawWaveform=1
 
 ; FADC Pulse time window cuts
 ; fall 2019 startup

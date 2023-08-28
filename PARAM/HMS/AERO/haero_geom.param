@@ -8,8 +8,8 @@ haero_num_pairs = 8
 haero_diff_box_zpos = 231.0
 
 ;Waveform
-haero_OutputSampWaveform =1
-haero_OutputSampWaveform =1
+;haero_OutputSampWaveform =1
+;haero_OutputSampWaveform =1
 
 ; Number of regions in which tracks can be matched too
 haero_num_regions = 1;

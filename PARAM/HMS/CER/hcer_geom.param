@@ -4,8 +4,8 @@
 hcer_tot_pmts = 2
 
 hcer_mirror_zpos = 230.0
-hcer_OutputSampWaveform = 1
-hcer_OutputSampRawWaveform = 1
+;hcer_OutputSampWaveform = 1
+;hcer_OutputSampRawWaveform = 1
 hcer_num_regions = 3 ; This value is from the 6 GeV era
 
 ; hcer_region: 8 values for each region (1 per mirror + sum)

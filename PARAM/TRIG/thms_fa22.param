@@ -1,8 +1,8 @@
 t_hms_numAdc = 13
 t_hms_numTdc = 57
 
-t_hms_OutputSampRawWaveform = 1
-t_hms_OutputSampWaveform = 1
+;t_hms_OutputSampRawWaveform = 1
+;t_hms_OutputSampWaveform = 1
 
 t_hms_tdcoffset = 300.
 t_hms_adc_tdc_offset = 300.
