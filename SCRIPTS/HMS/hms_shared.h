@@ -11,6 +11,7 @@ vector<TString> paths_to_data() {
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
+  pathList.push_back("./cache");
   //pathList.push_back("/work/halla/parity/disk1/bob/hallc");
   //    pathList.push_back("./raw2");
 //  pathList.push_back("./raw-sp18");
@@ -66,8 +67,8 @@ void setupApparatus() {
   THcTrigDet* hms = new THcTrigDet("hms", "HMS Trigger Information");
   TRG->AddDetector(hms);
   // Add helicty (wmhenry 6/22/23)
-  //  THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
-  //  TRG->AddDetector(helicity);
+  THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
+  //TRG->AddDetector(helicity);
   // Set up the equipment to be analyzed.
   THcHallCSpectrometer* HMS = new THcHallCSpectrometer("H", "HMS");
   gHaApps->Add(HMS);
@@ -130,11 +131,11 @@ void setupApparatus() {
   gHaEvtHandlers->Add(hscaler);
 
   // Add event handler for helicity scalers
-  //  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
-  //  hhelscaler->SetDebugFile("HHelScaler.txt");
-  //  hhelscaler->SetROC(5);
-  //  hhelscaler->SetUseFirstEvent(kTRUE);
-  //  gHaEvtHandlers->Add(hhelscaler);
+  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
+  hhelscaler->SetDebugFile("HHelScaler.txt");
+  hhelscaler->SetROC(5);
+  hhelscaler->SetUseFirstEvent(kTRUE);
+  gHaEvtHandlers->Add(hhelscaler);
   
   // Add event handler for DAQ configuration event
   THcConfigEvtHandler *hconfig = new THcConfigEvtHandler("hconfig", "Hall C configuration event handler");
