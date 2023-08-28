@@ -27,7 +27,7 @@
 
 //MAIN FUNCTION
 
-void ALL(int RunNumber = 452, int nevent = -1) {
+void ALL(int RunNumber = 708, int nevent = -1) {
 
 	//CONSTANTS
 	
@@ -58,7 +58,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
         //Run over root files and trees
 	
-	 f= new TFile(Form("../../ROOTfiles/NPS/nps_%i.root",RunNumber),"UPDATE");
+	 f= new TFile(Form("../../ROOTfiles/NPS/nps_coin_%i.root",RunNumber),"UPDATE");
             t= (TChain *) f->Get("T");
             t->SetBranchAddress("NPS.cal.fly.adcSampPulseAmp",&adcSampPulseAmp) ;
             t->SetBranchAddress("Ndata.NPS.cal.fly.adcCounter",&NdataadcCounter) ;
@@ -83,9 +83,9 @@ void ALL(int RunNumber = 452, int nevent = -1) {
  				    
 	// divide pad into nrows x ncols 	 
 
-        TCanvas *c = new TCanvas("c","c",800,600);
+        //TCanvas *c = new TCanvas("c","c",800,600);
 				    
-	  c->Divide(ncols, nrows,0,0); // divide pad into nrows x ncols
+	  //c->Divide(ncols, nrows,0,0); // divide pad into nrows x ncols
 
         // LOOP OVER BLOCKS TO CREATE HISTOGRAMS
 	  
@@ -170,8 +170,8 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
            // DECLARATION OF CANVAS'S
 
-	   TCanvas *c_Amp = new TCanvas("", "c_Amp", 800, 600);
-           c_Amp->cd();
+	   //TCanvas *c_Amp = new TCanvas("", "c_Amp", 800, 600);
+           //c_Amp->cd();
             
             // Histogram for the block number
 	   
@@ -207,7 +207,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
             // Set bin labels for the Amplitude
 	    
-            c_Amp->cd();	 
+            //c_Amp->cd();	 
 
             //x Axis
 
@@ -255,12 +255,12 @@ void ALL(int RunNumber = 452, int nevent = -1) {
           TLine *ln_Amp = new TLine();
           ln_Amp->SetLineStyle(2);
           ln_Amp->SetLineColor(kBlack);
-          c_Amp->cd();
+          //c_Amp->cd();
 
 	  // Vertical lines on the x axis
 
           for ( Int_t i=-2;i<29;i++){
-	     ln_Amp->DrawLine(i+0.5,-0.5,i+0.5,36.5);
+	     //ln_Amp->DrawLine(i+0.5,-0.5,i+0.5,36.5);
            }
 
 	  // Vertical lines of the y axis
@@ -269,7 +269,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
     
                ln_Amp->SetLineStyle(2);
                ln_Amp->SetLineColor(kBlack);
-               ln_Amp->DrawLine(-1.5,h_Amp->GetYaxis()->GetBinUpEdge(i),29.5,h_Amp->GetYaxis()->GetBinUpEdge(i));
+               //ln_Amp->DrawLine(-1.5,h_Amp->GetYaxis()->GetBinUpEdge(i),29.5,h_Amp->GetYaxis()->GetBinUpEdge(i));
             }
 
             
@@ -284,9 +284,9 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 	  
 	   //INTEGRAL 
 
-           TCanvas *c_Int = new TCanvas("", "c_Int", 800, 600);
+           //TCanvas *c_Int = new TCanvas("", "c_Int", 800, 600);
             
-           c_Int->cd();
+           //c_Int->cd();
 
            // Histogram for the block number
 
@@ -316,7 +316,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
          // Set bin labels for the Integral histogram
 	    
-         c_Int->cd();	 
+         //c_Int->cd();	 
 
          // x Axis
 
@@ -369,7 +369,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 	 // Vertical lines on the x axis
 
            for ( Int_t i=-2;i<29;i++){
-	     ln_Int->DrawLine(i+0.5,-0.5,i+0.5,36.5);
+	     //ln_Int->DrawLine(i+0.5,-0.5,i+0.5,36.5);
            }
 
 	 // Vertical lines of the y axis
@@ -378,7 +378,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
     
                ln_Int->SetLineStyle(2);
                ln_Int->SetLineColor(kBlack);
-               ln_Int->DrawLine(-1.5,h_Int->GetYaxis()->GetBinUpEdge(i),29.5,h_Int->GetYaxis()->GetBinUpEdge(i));
+               //ln_Int->DrawLine(-1.5,h_Int->GetYaxis()->GetBinUpEdge(i),29.5,h_Int->GetYaxis()->GetBinUpEdge(i));
             }
 	    
 	   //c_Int->Print("INTEGRAL_MEAN_VALUES.pdf");
@@ -391,9 +391,9 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 	   // PEDESTAL
 
 
-           TCanvas *c_Ped = new TCanvas("", "c_Ped", 800, 600);
+           //TCanvas *c_Ped = new TCanvas("", "c_Ped", 800, 600);
             
-           c_Ped->cd();
+           //c_Ped->cd();
 
            // Histogram for the block number
 
@@ -423,7 +423,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
          // Set bin labels for the Pedestal histogram
 	    
-         c_Ped->cd();	 
+         //c_Ped->cd();	 
 
          // x Axis
 
@@ -475,7 +475,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 	 // Vertical lines on the x axis
 
            for ( Int_t i=-2;i<29;i++){
-	     ln_Ped->DrawLine(i+0.5,-0.5,i+0.5,36.5);
+	     //ln_Ped->DrawLine(i+0.5,-0.5,i+0.5,36.5);
            }
 
 	 // Vertical lines of the y axis
@@ -484,7 +484,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
     
                ln_Ped->SetLineStyle(2);
                ln_Ped->SetLineColor(kBlack);
-               ln_Ped->DrawLine(-1.5,h_Ped->GetYaxis()->GetBinUpEdge(i),29.5,h_Ped->GetYaxis()->GetBinUpEdge(i));
+               //ln_Ped->DrawLine(-1.5,h_Ped->GetYaxis()->GetBinUpEdge(i),29.5,h_Ped->GetYaxis()->GetBinUpEdge(i));
             }
 	    
 	   //c_Ped->Print("PEDESTAL_MEAN_VALUES.pdf");
@@ -495,9 +495,9 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
 
 
-           TCanvas *c_Time = new TCanvas("", "c_Time", 800, 600);
+           //TCanvas *c_Time = new TCanvas("", "c_Time", 800, 600);
             
-           c_Time->cd();
+           //c_Time->cd();
 
            // Histogram for the block number
 
@@ -527,7 +527,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 
          // Set bin labels for the Time histogram
 	    
-         c_Time->cd();	 
+         //c_Time->cd();	 
 
          // x Axis
 
@@ -579,7 +579,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
 	 // Vertical lines on the x axis
 
            for ( Int_t i=-2;i<29;i++){
-	     ln_Time->DrawLine(i+0.5,-0.5,i+0.5,36.5);
+	     //ln_Time->DrawLine(i+0.5,-0.5,i+0.5,36.5);
            }
 
 	 // Vertical lines of the y axis
@@ -588,7 +588,7 @@ void ALL(int RunNumber = 452, int nevent = -1) {
     
                ln_Time->SetLineStyle(2);
                ln_Time->SetLineColor(kBlack);
-               ln_Time->DrawLine(-1.5,h_Time->GetYaxis()->GetBinUpEdge(i),29.5,h_Time->GetYaxis()->GetBinUpEdge(i));
+               //ln_Time->DrawLine(-1.5,h_Time->GetYaxis()->GetBinUpEdge(i),29.5,h_Time->GetYaxis()->GetBinUpEdge(i));
             }
 	    
 	   //c_Time->Print("TIME_MEAN_VALUES.pdf");

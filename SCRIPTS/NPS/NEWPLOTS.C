@@ -8,7 +8,7 @@ void NEWPLOTS( Int_t nrun=20990) {
     // --------------------------------------------------------------------------------
     
     TChain *t;
-    TFile *f= new TFile(Form("../../ROOTfiles/NPS/nps_%i.root",nrun),"UPDATE");
+    TFile *f= new TFile(Form("../../ROOTfiles/NPS/nps_coin_%i.root",nrun),"UPDATE");
     t = new TChain("T");
     t->Add(f->GetName(),-1);
     t->SetBranchStatus("*",false);

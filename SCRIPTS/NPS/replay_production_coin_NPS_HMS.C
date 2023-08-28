@@ -25,7 +25,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/NPS/nps_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/NPS/nps_coin_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -44,7 +44,7 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug_sp18.param");
 
   // Load params for COIN trigger configuration
-  //gHcParms->Load("PARAM/TRIG/tcoin.param"); //FIXME: COIN TRIG CONFIG
+  //gHcParms->Load("PARAM/TRIG/thms_fa22.param"); //FIXME: I modified here to see if we can get waveforms from HODO ADCs.
 
    
   // Load the Hall C style detector map 
@@ -79,8 +79,8 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   THcCherenkov* hcer = new THcCherenkov("cer", "Heavy Gas Cherenkov");
   HMS->AddDetector(hcer);
   // Add Aerogel Cherenkov to HMS apparatus
-  // THcAerogel* haero = new THcAerogel("aero", "Aerogel");
-  // HMS->AddDetector(haero);
+  //THcAerogel* haero = new THcAerogel("aero", "Aerogel");
+  //HMS->AddDetector(haero);
   // Add calorimeter to HMS apparatus
   THcShower* hcal = new THcShower("cal", "Calorimeter");
   HMS->AddDetector(hcal);
@@ -238,6 +238,6 @@ void replay_production_coin_NPS_HMS(Int_t RunNumber=0, Int_t MaxEvent=0)
   analyzer->Process(run);     
   // Create report file from template.
   analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
-			Form("REPORT_OUTPUT/NPS/eel108/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
+			Form("REPORT_OUTPUT/NPS/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
   
 }
