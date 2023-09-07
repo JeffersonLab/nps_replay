@@ -10,7 +10,7 @@ t_hms_adc_tdc_offset = 300.
 t_hms_tdcchanperns = 0.09766
 
 ;helicity_freq = 120.0007547169
-helicity_freq = 29.56
+helicity_freq = 29.55964838
 helicity_delay =8 
 helicity_CycleOffset = 0.
 
