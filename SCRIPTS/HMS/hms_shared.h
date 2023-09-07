@@ -68,7 +68,7 @@ void setupApparatus() {
   TRG->AddDetector(hms);
   // Add helicty (wmhenry 6/22/23)
   THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
-  //TRG->AddDetector(helicity);
+  TRG->AddDetector(helicity);
   // Set up the equipment to be analyzed.
   THcHallCSpectrometer* HMS = new THcHallCSpectrometer("H", "HMS");
   gHaApps->Add(HMS);
@@ -119,6 +119,7 @@ void setupApparatus() {
   // Add handler for EPICS events
   THaEpicsEvtHandler *hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
   gHaEvtHandlers->Add(hcepics);
+
   // Add handler for scaler events
   THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H", "Hall C scaler event type 2");  
   hscaler->AddEvtType(1);
@@ -131,11 +132,11 @@ void setupApparatus() {
   gHaEvtHandlers->Add(hscaler);
 
   // Add event handler for helicity scalers
-  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
-  hhelscaler->SetDebugFile("HHelScaler.txt");
-  hhelscaler->SetROC(5);
-  hhelscaler->SetUseFirstEvent(kTRUE);
-  gHaEvtHandlers->Add(hhelscaler);
+    THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
+    //    hhelscaler->SetDebugFile("HHelScaler.txt");
+    hhelscaler->SetROC(5);
+    //    hhelscaler->SetUseFirstEvent(kTRUE);
+    gHaEvtHandlers->Add(hhelscaler);
   
   // Add event handler for DAQ configuration event
   THcConfigEvtHandler *hconfig = new THcConfigEvtHandler("hconfig", "Hall C configuration event handler");
