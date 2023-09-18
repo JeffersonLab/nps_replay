@@ -1,6 +1,6 @@
-void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
+void eel108_replay_carlos(Int_t RunNumber=0, Int_t MaxEvent=0)
 {
-
+  //gSystem->Load("libNPSlib");
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
     cout << "Enter a Run Number (-1 to exit): ";
@@ -18,14 +18,14 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Create file name patterns.
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="nps_coin_%d.dat.0";
+  const char* RunFileNamePattern="nps_%d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/carlos_nps_%d_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -33,6 +33,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
   gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
+  gHcParms->Load("PARAM/carlos_temp.param");
 
   //Load param file to include (or not) raw fADC data in ROOTfile 
    
@@ -52,10 +53,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Add handler for prestart event 125.
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
-   // Add handler for EPICS events
-  THaEpicsEvtHandler *hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
-  gHaEvtHandlers->Add(hcepics);
- 
+  
   THcAnalyzer* analyzer = new THcAnalyzer;  
   THaEvent* event = new THaEvent;
 
@@ -70,7 +68,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   run->Print();
   
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber);
+  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber,MaxEvent);
 
   // Define the analysis parameters
   analyzer->SetEvent( event );
@@ -82,14 +80,11 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_eel108.dat");
   analyzer->SetOdefFile("DEF-files/NPS/NPS.def");      
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def");  
-  // Set EPICS event type
-  analyzer->SetEpicsEvtType(180);
-  analyzer->AddEpicsEvtType(181);
-  analyzer->AddEpicsEvtType(182);
+  analyzer->EnableBenchmarks();
   
   analyzer->Process(run);     // start the actual analysis
   // Create report file from template.
   analyzer->PrintReport("TEMPLATES/NPS/NPS.template",
-			Form("REPORT_OUTPUT/NPS/eel108/eel108_report_%d_%d.report", RunNumber, MaxEvent));
+			Form("REPORT_OUTPUT/NPS/eel108/carlos_eel108_report_%d_%d.report", RunNumber, MaxEvent));
   
 }

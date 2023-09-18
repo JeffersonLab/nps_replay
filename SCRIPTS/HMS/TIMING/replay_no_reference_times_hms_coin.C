@@ -3,7 +3,7 @@
 
 #include "/home/cdaq/nps-2023/nps_replay/SCRIPTS/HMS/hms_shared.h"
 
-void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
+void replay_no_reference_times_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) { cout << "Enter a Run Number (-1 to exit): ";
@@ -19,19 +19,26 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
    const char* RunFileNamePattern = "nps_coin_%04d.dat.0";  //Raw data file name pattern
   //      const char* RunFileNamePattern = "hms_all_%04d.dat.0";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
-  const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/hms_replay_production_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/HMS/TIMING/hms_coin_noReferenceTime_%d_%d.root";
   TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent);
   //Specifics for the replay
-  TString odef_file = "DEF-files/HMS/PRODUCTION/hstackana_production.def";
+  TString odef_file = "DEF-files/HMS/TIMING/no_reference_times.def";
   TString cdef_file = "DEF-files/HMS/PRODUCTION/CUTS/hstackana_production_cuts.def";
-  TString summary_file = Form("REPORT_OUTPUT/HMS/summary_production_%d_%d.report",
-			      RunNumber, MaxEvent);
-  TString report_file  = Form("REPORT_OUTPUT/HMS/hms50k/replay_hms_production_%d_%d.report",
-			      RunNumber, MaxEvent);
+  TString summary_file = "";
+  TString report_file  = "";
 
   //Initialize gHcParms.
   //Shared HMS gHcParms setup located in ../hms_shared.h
   setupParms(RunNumber);
+
+  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/HMS/GEN/h_no_reference_times.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+
+  //Now remove all Timing Windows and revert to 
+  //the default values specifid in hallc_replay
+  gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
+
   //Initialize HMS single-arm DAQ with detectors
   //Shared HMS apparatus setup located in ../hms_shared.h
   setupApparatus();

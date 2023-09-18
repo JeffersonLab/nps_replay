@@ -1,9 +1,9 @@
 //Not intended to be standalone. Must be called in SCRIPT from top directory of hallc_replay_XEM
 //Same functionality as any SCRIPT in hallc_replay_XEM
 
-#include "SCRIPTS/HMS/hms_shared.h"
+#include "/home/cdaq/nps-2023/nps_replay/SCRIPTS/HMS/hms_shared.h"
 
-void replay_cosmics_hms_nps(Int_t RunNumber=0, Int_t MaxEvent=0) {
+void replay_production_hms_coin_wph(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) { cout << "Enter a Run Number (-1 to exit): ";
@@ -16,7 +16,7 @@ void replay_cosmics_hms_nps(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Create file name patterns.
   //  const char* RunFileNamePattern = "hms_tests_%03d.dat.0";  //Raw data file name pattern
-  const char* RunFileNamePattern = "hms_all_%03d.dat.0";  //Raw data file name pattern
+  const char* RunFileNamePattern = "nps_coin_%03d.dat.0";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
   const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/hms_replay_production_%d_%d.root";

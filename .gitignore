@@ -24,6 +24,7 @@ raw
 raw.copiedtotape
 cache
 scratch
+.vscode
 
 # Symbolic links
 hcana

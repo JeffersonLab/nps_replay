@@ -57,8 +57,14 @@ void ALL(int RunNumber = 708, int nevent = -1) {
          Int_t  NdataadcCounter;
 
         //Run over root files and trees
+        if (nevent == 50000){
+         f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
+        }
+        else{
+         f= new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
+        }
 	
-	 f= new TFile(Form("../../ROOTfiles/NPS/nps_coin_%i.root",RunNumber),"UPDATE");
+	 
             t= (TChain *) f->Get("T");
             t->SetBranchAddress("NPS.cal.fly.adcSampPulseAmp",&adcSampPulseAmp) ;
             t->SetBranchAddress("Ndata.NPS.cal.fly.adcCounter",&NdataadcCounter) ;
@@ -175,13 +181,13 @@ void ALL(int RunNumber = 708, int nevent = -1) {
             
             // Histogram for the block number
 	   
-           TH2F *h_Amp = new TH2F("", "Mean Values : Sample Pulse Amplitude ", 31, -1.5, 29.5, 37, -0.5, 36.5);
+           TH2F *h_Amp = new TH2F("", "Mean Values : Sample Pulse Amplitude ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Amp->GetXaxis()->SetTitle("Column Number");
            h_Amp->GetYaxis()->SetTitle("Row Number");
 
            // Histogram for the Mean values
 
-           TH2D* h_Mean_Amp = new TH2D("", "Mean Values : Sample Pulse Amplitude ",31,-1.5,29.5,37,-0.5, 36.5);
+           TH2D* h_Mean_Amp = new TH2D("", "Mean Values : Sample Pulse Amplitude ",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Amp->GetXaxis()->SetTitle("Column Number");
            h_Mean_Amp->GetYaxis()->SetTitle("Row Number");
 	   
@@ -211,16 +217,16 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
             //x Axis
 
-            for (int i = 0; i <= 31; i++) {
+            for (int i = 0; i <= 30; i++) {
             std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
-            h_Mean_Amp->GetXaxis()->SetBinLabel(31-i, label.c_str()); // Set label for current bin
+            h_Mean_Amp->GetXaxis()->SetBinLabel(30-i, label.c_str()); // Set label for current bin
             }
 
             h_Mean_Amp->GetXaxis()->SetTickSize(0.009);
 
    	    //y axis
 
-           for (int i = 0; i <= 36; i++) {
+           for (int i = 0; i <= 35; i++) {
            std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
            h_Mean_Amp->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
            }
@@ -240,7 +246,7 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
           // y axis
 
-          for (int i = 0; i <= 36; i++) {
+          for (int i = 0; i <= 35; i++) {
           std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
           h_Amp->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
           }
@@ -290,13 +296,13 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
            // Histogram for the block number
 
-           TH2F *h_Int = new TH2F("", "Mean Values : Sample Pulse Integral ", 31, -1.5, 29.5, 37, -0.5, 36.5);
+           TH2F *h_Int = new TH2F("", "Mean Values : Sample Pulse Integral ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Int->GetXaxis()->SetTitle("Column Number");
            h_Int->GetYaxis()->SetTitle("Row Number");
 
            //Histogram for the Mean values
 
-           TH2D* h_Mean_Int = new TH2D("", "Mean Values : Sample Pulse Integral ",31,-1.5,29.5,37,-0.5, 36.5);
+           TH2D* h_Mean_Int = new TH2D("", "Mean Values : Sample Pulse Integral ",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Int->GetXaxis()->SetTitle("Column Number");
            h_Mean_Int->GetYaxis()->SetTitle("Row Number");
 
@@ -320,16 +326,16 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // x Axis
 
-        for (int i = 0; i <= 31; i++) {
+        for (int i = 0; i <= 30; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
-        h_Mean_Int->GetXaxis()->SetBinLabel(31-i, label.c_str()); // Set label for current bin
+        h_Mean_Int->GetXaxis()->SetBinLabel(30-i, label.c_str()); // Set label for current bin
         }
 
         h_Mean_Int->GetXaxis()->SetTickSize(0.009);
 
 	 // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Mean_Int->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }
@@ -349,7 +355,7 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Int->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }
@@ -397,13 +403,13 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
            // Histogram for the block number
 
-           TH2F *h_Ped = new TH2F("", "Mean Values : Sample Pulse Pedestal ", 31, -1.5, 29.5, 37, -0.5, 36.5);
+           TH2F *h_Ped = new TH2F("", "Mean Values : Sample Pulse Pedestal ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Ped->GetXaxis()->SetTitle("Column Number");
            h_Ped->GetYaxis()->SetTitle("Row Number");
 
            //Histogram for the Mean values
 
-           TH2D* h_Mean_Ped = new TH2D("", "Mean Values : Sample Pulse Pedestal ",31,-1.5,29.5,37,-0.5, 36.5);
+           TH2D* h_Mean_Ped = new TH2D("", "Mean Values : Sample Pulse Pedestal ",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Ped->GetXaxis()->SetTitle("Column Number");
            h_Mean_Ped->GetYaxis()->SetTitle("Row Number");
 
@@ -427,15 +433,15 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // x Axis
 
-        for (int i = 0; i <= 31; i++) {
+        for (int i = 0; i <= 30; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
-        h_Mean_Ped->GetXaxis()->SetBinLabel(31-i, label.c_str()); // Set label for current bin
+        h_Mean_Ped->GetXaxis()->SetBinLabel(30-i, label.c_str()); // Set label for current bin
         }
         h_Mean_Ped->GetXaxis()->SetTickSize(0.009);
 
 	 // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Mean_Ped->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }
@@ -455,7 +461,7 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Ped->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }
@@ -501,13 +507,13 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
            // Histogram for the block number
 
-           TH2F *h_Time = new TH2F("", "Mean Values : Sample Pulse Time ", 31, -1.5, 29.5, 37, -0.5, 36.5);
+           TH2F *h_Time = new TH2F("", "Mean Values : Sample Pulse Time ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Time->GetXaxis()->SetTitle("Column Number");
            h_Time->GetYaxis()->SetTitle("Row Number");
 
            //Histogram for the Mean values
 
-           TH2D* h_Mean_Time = new TH2D("", "Mean Values : Sample Pulse Time ",31,-1.5,29.5,37,-0.5, 36.5);
+           TH2D* h_Mean_Time = new TH2D("", "Mean Values : Sample Pulse Time ",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Time->GetXaxis()->SetTitle("Column Number");
            h_Mean_Time->GetYaxis()->SetTitle("Row Number");
 
@@ -531,15 +537,15 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // x Axis
 
-        for (int i = 0; i <= 31; i++) {
+        for (int i = 0; i <= 30; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
-        h_Mean_Time->GetXaxis()->SetBinLabel(31-i, label.c_str()); // Set label for current bin
+        h_Mean_Time->GetXaxis()->SetBinLabel(30-i, label.c_str()); // Set label for current bin
         }
         h_Mean_Time->GetXaxis()->SetTickSize(0.009);
 
 	 // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Mean_Time->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }
@@ -559,7 +565,7 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 
          // y axis
 
-        for (int i = 0; i <= 36; i++) {
+        for (int i = 0; i <= 35; i++) {
         std::string label = std::to_string(i); // Create label string as "1", "2", "3", etc.
         h_Time->GetYaxis()->SetBinLabel(i+1, label.c_str()); // Set label for current bin
         }

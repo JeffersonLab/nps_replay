@@ -1,7 +1,7 @@
 #********************
 # Block Definitions *
 #********************
-
+block g.*
 block H.*
 block T.*
 block T.hms.*

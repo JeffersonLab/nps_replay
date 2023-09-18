@@ -15,18 +15,18 @@ void replay_hms_raster_simple(Int_t RunNumber=0, Int_t MaxEvent=0) {
     }
   }
 
-  // Create file name patterns.
-  const char* RunFileNamePattern = "hms_all_%05d.dat";
+  // Create file name patterns.  // SEP 15
+  const char* RunFileNamePattern = "nps_coin_%d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
 
-  const char* ROOTFileNamePattern = "ROOTfiles/hms_raster_simple_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/COIN/raster/hms_raster_simple_%d_%d.root";
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber);
-  gHcParms->AddString("g_ctp_database_filename", "DBASE/HMS/standard.database");
+  gHcParms->AddString("g_ctp_database_filename", "DBASE/HMS/standard.nps.database");
   gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
   gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);

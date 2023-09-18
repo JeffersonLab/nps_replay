@@ -1,6 +1,4 @@
-#include "MultiFileRun.h"
-
-void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEvent = 1, int MaxSegment = 1, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
+void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -20,8 +18,10 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
 
   // Create file name patterns.
   //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="%s_%d.dat.%u"; 
-  vector<string> pathList;
+  const char* RunFileNamePattern="nps_coin_%d.dat.0";
+  //const char* RunFileNamePattern="hms_all_%d.dat.0"; 
+  //const char* RunFileNamePattern="nps_%d.dat.0"; 
+  vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
@@ -29,11 +29,11 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
 
   const char* ROOTFileNamePattern;
-  if (MaxEvent == 50000 && FirstEvent == 1){
-    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d_%d.root";
+  if (MaxEvent == 50000){
+    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d.root";
   }
   else{
-    ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d_%d.root";
+    ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d.root";
   }
   
   
@@ -185,9 +185,6 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THcTrigDet* hms = new THcTrigDet("hms", "HMS Trigger Information");
   TRG->AddDetector(hms); 
 
-  THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
-  TRG->AddDetector(helicity); // check later
-
   /*//Add coin physics module THcCoinTime::THcCoinTime (const char *name, const char* description, const char* hadArmName, 
   // const char* elecArmName, const char* coinname) :
   THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidende Time Determination", "P", "H", "T.coin");
@@ -216,25 +213,17 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THaEvent* event = new THaEvent;
 
   //Define the run(s) that we want to analyze.
-  //THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
-  vector<string> fileNames = {};
-  for(Int_t iseg = FirstSegment; iseg <= MaxSegment; iseg++) {
-    TString codafilename;
-    codafilename.Form(RunFileNamePattern, fname_prefix, RunNumber, iseg);
-    cout << "codafilename = " << codafilename << endl;
-    fileNames.emplace_back(codafilename.Data());
-  }
-  auto* run = new Podd::MultiFileRun( pathList, fileNames);
-
+  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
-  run->SetEventRange(FirstEvent, MaxEvent);    
+  run->SetEventRange(1, MaxEvent);    
   run->SetNscan(1);
   run->SetDataRequired(0x7);
   run->Print();
   
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
+  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent);
 
   // Define the analysis parameters
   analyzer->SetEvent(event);

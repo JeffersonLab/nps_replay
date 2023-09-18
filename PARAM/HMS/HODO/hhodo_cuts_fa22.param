@@ -31,7 +31,7 @@ hscin_tdc_max = 1200
 hscin_tdc_to_time = 0.09766   ; See HC Log Entry 3574348
 
 ; tof and you figured out good values
-htof_tolerance = 2.0
+htof_tolerance = 10.0
 
 ; hms_tof_params
 ; hnum_scin_counters, hhodo_zpos, hhodo_center_coord, hhodo_width

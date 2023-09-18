@@ -1,11 +1,12 @@
 #! /bin/bash
 
 # Which spectrometer are we analyzing.
-spec="hms"
-SPEC="HMS"
+spec="nps"
+SPEC="NPS"
 
 # What is the last run number for the spectrometer.
 # The pre-fix zero must be stripped because ROOT is ... well ROOT
+# FIXME: change to corresponding run number for nps.
 lastRun=$( \
     ls raw/"${spec}"_all_*.dat raw/../raw.copiedtotape/"${spec}"_all_*.dat -R 2>/dev/null | perl -ne 'if(/0*(\d+)/) {print "$1\n"}' | sort -n | tail -1 \
 )
@@ -21,18 +22,36 @@ if [ -z "$numEvents" ]; then
   numEvents=50000
 fi
 
-# Which scripts to run.
-script="SCRIPTS/${SPEC}/PRODUCTION/replay_cosmics_${spec}_nps.C"
-config="CONFIG/${SPEC}/PRODUCTION/${spec}_production.cfg"
-expertConfig="CONFIG/${SPEC}/PRODUCTION/${spec}_production_expert.cfg"
-hmsCounter="./UTIL_XEM/el_counter.C"
-shmsCounter="./UTIL_XEM/el_counter.C"
+if [ "$numEvents" == 50000 ]; then
+  rootFileDir="./ROOTfiles/COIN/50k/"
+  outFile="${spec}_hms_coin_50k_${runNum}"
+  config="CONFIG/COIN/50k/${spec}_hms_coin_50k.cfg"
+  monPdfDir="./HISTOGRAMS/COIN/PDF/50k/"
+ 
+ 
+else
+  rootFileDir="./ROOTfiles/COIN/PRODUCTION/"
+  config="CONFIG/COIN/PRODUCTION/${spec}_hms_coin_all.cfg"
+  monPdfDir="./HISTOGRAMS/COIN/PDF/PRODUCTION/"
+  outFile="${spec}_hms_coin_all_${runNum}"
+fi
+
+firstEvent=1
+
+# Which scripts to run. This is online display cfg file, not hcana cfg file.
+
+script="SCRIPTS/${SPEC}/replay_production_coin_NPS_HMS.C" 
+
+#expertConfig="CONFIG/${SPEC}/PRODUCTION/${spec}_production_expert.cfg" #FIXME: expert file missing
+
+#hmsCounter="./UTIL_XEM/el_counter.C" #FIXME: ??? 
+#shmsCounter="./UTIL_XEM/el_counter.C"
 
 # Define some useful directories
-rootFileDir="./ROOTfiles/${SPEC}/${spec}50k"
+
 monRootDir="./HISTOGRAMS/${SPEC}/ROOT"
-monPdfDir="./HISTOGRAMS/${SPEC}/PDF"
-reportFileDir="./REPORT_OUTPUT/${SPEC}"
+r="./HISTOGRAMS/NPS/PDF/"
+reportFileDir="./REPORT_OUTPUT/COIN/replayreport/"
 reportMonDir="./UTIL_OL/REP_MON"
 reportMonOutDir="./MON_OUTPUT/${SPEC}/REPORT"
 
@@ -40,37 +59,38 @@ reportMonOutDir="./MON_OUTPUT/${SPEC}/REPORT"
 reportMonFile="summary_output_${runNum}.txt"
 
 # Which commands to run.
-runHcana="./hcana -q \"${script}(${runNum}, ${numEvents})\""
+runHcana="hcana -q \"${script}(${runNum}, ${numEvents})\""
 #runHcana="/home/cdaq/cafe-2022/hcana/hcana -q \"${script}(${runNum}, ${numEvents})\""
 runOnlineGUI="./online -f ${config} -r ${runNum}"
 saveOnlineGUI="./online -f ${config} -r ${runNum} -P"
-saveExpertOnlineGUI="./online -f ${expertConfig} -r ${runNum} -P"
-runReportMon="./${reportMonDir}/reportSummary.py ${runNum} ${numEvents} ${spec} singles"
-openReportMon="emacs ${reportMonOutDir}/${reportMonFile}"
+#saveExpertOnlineGUI="./online -f ${expertConfig} -r ${runNum} -P"
+#FIXME: ???
+#runReportMon="./${reportMonDir}/reportSummary.py ${runNum} ${numEvents} ${spec} singles"
+#openReportMon="emacs ${reportMonOutDir}/${reportMonFile}"
+#runHistogram= "root -q \"Amplitude.C(${runNum})\""
 
-# Name of the replay ROOT file
-replayFile="${spec}_replay_production_${runNum}"
-rootFile="${replayFile}_${numEvents}.root"
-latestRootFile="${rootFileDir}/${replayFile}_latest.root"
+# Name of the replay ROOT file nps_eel108_%d.root
+replayFile="${spec}_hms_coin_${runNum}_${firstEvent}_${numEvents}"
+rootFile="${replayFile}.root"
+latestRootFile="${rootFileDir}/${spec}_hms_coin_${runNum}_latest.root"
 
 # Names of the monitoring file
 monRootFile="${spec}_production_${runNum}.root"
-monPdfFile="${spec}_production_${runNum}.pdf"
+monPdfFile="${spec}_test_zh_${runNum}.pdf"
 monExpertPdfFile="${spec}_production_expert_${runNum}.pdf"
 latestMonRootFile="${monRootDir}/${spec}_production_latest.root"
-latestMonPdfFile="${monPdfDir}/${spec}_production_latest.pdf"
+latestMonPdfFile="${monPdfDir}/${spec}_hms_coin_latest.pdf"
 
 # Where to put log
 reportFile="${reportFileDir}/replay_${spec}_production_${runNum}_${numEvents}.report"
 summaryFile="${reportFileDir}/summary_production_${runNum}_${numEvents}.txt"
 
 # What is base name of onlineGUI output.
-outFile="${spec}_production_${runNum}"
 outExpertFile="${spec}_production_expert_${runNum}"
 outFileMonitor="output.txt"
 
 # Replay out files
-replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${runNum}_${numEvents}.txt"
+replayReport="${reportFileDir}/replayReport_${spec}_hms_coin_${runNum}_${numEvents}.txt"
 
 # Start analysis and monitoring plots.
 {
@@ -92,7 +112,18 @@ replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${r
 
   # Link the ROOT file to latest for online monitoring
   ln -fs ${rootFile} ${latestRootFile}
+
+  echo "running histogram scripts"
   
+  sleep 2
+  cd macros/NPS/
+  hcana -q "ALL.C(${runNum},${numEvents})"
+  sleep 2
+  hcana -q "NEWPLOTS.C(${runNum},${numEvents})"
+  sleep 2
+  hcana -q "VTP_hcana.C(${runNum},${numEvents})"
+  cd ../..
+
   echo "" 
   echo ""
   echo ""
@@ -108,10 +139,10 @@ replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${r
   sleep 2
   cd onlineGUI
   eval ${runOnlineGUI}
-  eval ${saveExpertOnlineGUI}
-  mv "${outExpertFile}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf"
+  eval ${saveOnlineGUI}
+  mv "${outFile}.pdf" "../${monPdfDir}/nps_hms_coin_${runNum}_${numEvents}.pdf"
   cd ..
-  ln -fs ${monExpertPdfFile} ${latestMonPdfFile}
+  ln -fs nps_hms_coin_${runNum}_${numEvents}.pdf  ${latestMonPdfFile}
 
   echo "" 
   echo ""
@@ -176,4 +207,4 @@ replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${r
   echo ""
   echo ""
 
-} 2>&1 | tee "${replayReport}"
+}  2>&1 | tee "${replayReport}"

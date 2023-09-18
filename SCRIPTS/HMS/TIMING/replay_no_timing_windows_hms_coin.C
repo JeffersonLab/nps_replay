@@ -16,13 +16,15 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Create file name patterns.
   //  const char* RunFileNamePattern = "hms_tests_%03d.dat.0";  //Raw data file name pattern
+//   const char* RunFileNamePattern = "hms_all_%04d.dat.0";  //Raw data file name pattern
    const char* RunFileNamePattern = "nps_coin_%04d.dat.0";  //Raw data file name pattern
   //      const char* RunFileNamePattern = "hms_all_%04d.dat.0";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
-  const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/hms_replay_production_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/HMS/TIMING/nps_coin_noTimingWindow_%d_%d.root";
   TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent);
   //Specifics for the replay
-  TString odef_file = "DEF-files/HMS/PRODUCTION/hstackana_production.def";
+//  TString odef_file = "DEF-files/HMS/PRODUCTION/hstackana_production_all.def";
+  TString odef_file = "DEF-files/HMS/TIMING/no_timing_windows.def";
   TString cdef_file = "DEF-files/HMS/PRODUCTION/CUTS/hstackana_production_cuts.def";
   TString summary_file = Form("REPORT_OUTPUT/HMS/summary_production_%d_%d.report",
 			      RunNumber, MaxEvent);
@@ -32,6 +34,13 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
   //Initialize gHcParms.
   //Shared HMS gHcParms setup located in ../hms_shared.h
   setupParms(RunNumber);
+
+  //Now remove all Timing Windows and revert to 
+  //the default values specifid in hallc_replay
+  gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
+
+
   //Initialize HMS single-arm DAQ with detectors
   //Shared HMS apparatus setup located in ../hms_shared.h
   setupApparatus();

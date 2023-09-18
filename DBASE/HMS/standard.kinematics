@@ -135,10 +135,12 @@ gtargmass_amu=1.00794
 htheta_lab = -13.5
 hpcentral = 1.960
 
-1168
-gtargmass_amu=1.00794
-htheta_lab = -13.5
-hpcentral = 1.942
+1168 # SEP 16 ZH: adding correct kine manually.
+gtargmass_amu=2.014
+htheta_lab = -12.49
+hpcentral = 6.8
+gpbeam = 10.539
+hpartmass = 0.000511
 
 1169
 gtargmass_amu=1.00794
@@ -1671,4 +1673,13 @@ gtargmass_amu =  1.00794
 hpartmass = 0.00051099
 htheta_lab = -21.0
 hpcentral = 4.1
+
+1122 - 1300
+gpbeam = 10.539
+gtargmass_amu = 12.0107
+htheta_lab = 16.440
+hpcentral = 4.637
+stheta_lab = 36.280
+nps_theta_offset = 0
+hpartmass = 0.000511
 

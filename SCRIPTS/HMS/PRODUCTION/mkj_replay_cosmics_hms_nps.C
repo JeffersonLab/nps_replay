@@ -1,9 +1,9 @@
 //Not intended to be standalone. Must be called in SCRIPT from top directory of hallc_replay_XEM
 //Same functionality as any SCRIPT in hallc_replay_XEM
 
-#include "/home/cdaq/nps-2023/nps_replay/SCRIPTS/HMS/hms_shared.h"
+#include "/home/cdaq/nps-2023/nps_replay/SCRIPTS/HMS/mkj_hms_shared.h"
 
-void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
+void mkj_replay_cosmics_hms_nps(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) { cout << "Enter a Run Number (-1 to exit): ";
@@ -16,17 +16,17 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
 
   // Create file name patterns.
   //  const char* RunFileNamePattern = "hms_tests_%03d.dat.0";  //Raw data file name pattern
-   const char* RunFileNamePattern = "nps_coin_%04d.dat.0";  //Raw data file name pattern
-  //      const char* RunFileNamePattern = "hms_all_%04d.dat.0";  //Raw data file name pattern
+  const char* RunFileNamePattern = "hms_all_%d.dat.0";  //Raw data file name pattern
   //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
-  const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/hms_replay_production_%d_%d.root";
+  //    const char* RunFileNamePattern = "hms_all_%05d.dat";  //Raw data file name pattern
+  const char* ROOTFileNamePattern = "ROOTfiles/HMS/hms50k/mkj_hms_replay_production_%d_%d.root";
   TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, MaxEvent);
   //Specifics for the replay
-  TString odef_file = "DEF-files/HMS/PRODUCTION/hstackana_production.def";
+  TString odef_file = "DEF-files/HMS/PRODUCTION/hstackana_production_all.def";
   TString cdef_file = "DEF-files/HMS/PRODUCTION/CUTS/hstackana_production_cuts.def";
-  TString summary_file = Form("REPORT_OUTPUT/HMS/summary_production_%d_%d.report",
+  TString summary_file = Form("REPORT_OUTPUT/HMS/mkj_summary_production_%d_%d.report",
 			      RunNumber, MaxEvent);
-  TString report_file  = Form("REPORT_OUTPUT/HMS/hms50k/replay_hms_production_%d_%d.report",
+  TString report_file  = Form("REPORT_OUTPUT/HMS/hms50k/mkj_replay_hms_production_%d_%d.report",
 			      RunNumber, MaxEvent);
 
   //Initialize gHcParms.
@@ -60,7 +60,7 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
   analyzer->SetEpicsEvtType(180);
   analyzer->AddEpicsEvtType(181);
   // Define crate map
-  analyzer->SetCrateMapFileName("MAPS/db_cratemap.dat");
+  analyzer->SetCrateMapFileName("MAPS/NPS/db_cratemap_coin.dat");
 
   // Define output ROOT file
   analyzer->SetOutFile(ROOTFileName.Data());
@@ -75,7 +75,7 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
   analyzer->Process(run);
 
   // Create report file from template
-  analyzer->PrintReport(gHcParms->GetString("g_ctp_template_filename"),
+   analyzer->PrintReport(gHcParms->GetString("g_ctp_template_filename"),
   			report_file);  // optional
 
 }

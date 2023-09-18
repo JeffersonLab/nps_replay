@@ -16,14 +16,14 @@ void replay_no_reference_times_hms(Int_t RunNumber=0, Int_t MaxEvent=0) {
   }
 
   // Create file name patterns.
-  const char* RunFileNamePattern = "hms_all_%05d.dat";
+  const char* RunFileNamePattern = "nps_%04d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
 
-  const char* ROOTFileNamePattern = "ROOTfiles/hms_noReferenceTime_%d_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/HMS/TIMING/hms_noReferenceTime_%d_%d.root";
 
   // Load Global parameters
   // Add variables to global list.

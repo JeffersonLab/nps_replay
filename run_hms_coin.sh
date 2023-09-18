@@ -40,7 +40,7 @@ reportMonOutDir="./MON_OUTPUT/${SPEC}/REPORT"
 reportMonFile="summary_output_${runNum}.txt"
 
 # Which commands to run.
-runHcana="./hcana -q \"${script}(${runNum}, ${numEvents})\""
+runHcana="hcana -q \"${script}(${runNum}, ${numEvents})\""
 #runHcana="/home/cdaq/cafe-2022/hcana/hcana -q \"${script}(${runNum}, ${numEvents})\""
 runOnlineGUI="./online -f ${config} -r ${runNum}"
 saveOnlineGUI="./online -f ${config} -r ${runNum} -P"

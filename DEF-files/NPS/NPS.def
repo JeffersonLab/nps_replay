@@ -1,3 +1,9 @@
 # See $ANALYZER/examples/output_example.def for examples
 
 block NPS.*
+begin epics
+hchv30:00:000:VMon 
+hchv30:00:001:VMon 
+hchv30:00:002:VMon 
+hchv30:00:003:VMon 
+end epics

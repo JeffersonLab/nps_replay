@@ -18,6 +18,9 @@ void NPS_TIME(){
 
      //Draw vertical and horizontal lines to delimit blocks
 
+     
+     H2->Draw("colz");
+     H1->Draw("text,same");
      TLine *ln_Amp = new TLine();
      ln_Amp->SetLineStyle(2);
      ln_Amp->SetLineColor(kBlack);
@@ -25,8 +28,8 @@ void NPS_TIME(){
 
      // Vertical lines on the x axis
 
-     for ( Int_t i=-2;i<29;i++){
-	     ln_Amp->DrawLine(i+0.5,-0.5,i+0.5,36.5);
+     for ( Int_t i=-1;i<29;i++){
+	     ln_Amp->DrawLine(i+0.5,-0.5,i+0.5,35.5);
            }
 
      // Vertical lines of the y axis
@@ -35,10 +38,7 @@ void NPS_TIME(){
     
              ln_Amp->SetLineStyle(2);
              ln_Amp->SetLineColor(kBlack);
-             ln_Amp->DrawLine(-1.5,H1->GetYaxis()->GetBinUpEdge(i),29.5,H1->GetYaxis()->GetBinUpEdge(i));
+             ln_Amp->DrawLine(-0.5,H1->GetYaxis()->GetBinUpEdge(i),29.5,H1->GetYaxis()->GetBinUpEdge(i));
             }
-     H2->Draw("colz");
-     H1->Draw("text,same");
-     
 
 }

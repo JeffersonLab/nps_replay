@@ -20,6 +20,11 @@ TH1F hFRYB 'HMS FRYB; FRYB RAW ADC (chan); Counts' H.rb.raster.frybRawAdc 1000 0
 TH1F hFRYB_V 'HMS FRYB; FRYB RAW ADC (Volts); Counts' FRYB_V 1000 0 1.0
 TH2F hFRA_XvsY 'HMS FRA X vs Y; FRXA RAW ADC (Volts); FRYA RAW ADC (Volts)' FRXA_V FRYA_V 1000 0 1.0 1000 0 1.0
 TH2F hFRB_XvsY 'HMS FRB X vs Y; FRXB RAW ADC (Volts); FRYB RAW ADC (Volts)' FRXB_V FRYB_V 1000 0 1.0 1000 0 1.0
+TH2F hFRApos_XvsY_notrack 'HMS FRA X vs Y (No Track); FRA X Position (cm); FRA Y Position (cm)' H.rb.raster.fr_xa H.rb.raster.fr_ya 300 -0.6 0.6 300 -0.6 0.6
+TH2F hFRBpos_XvsY_notrack 'HMS FRB X vs Y (No Track); FRB X Position (cm); FRB Y Position (cm)' H.rb.raster.fr_xb H.rb.raster.fr_yb 300 -0.6 0.6 300 -0.6 0.6
+
+
+
 #******************
 # EPICS VARIABLES *
 #******************
