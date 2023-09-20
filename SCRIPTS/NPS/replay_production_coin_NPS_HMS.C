@@ -32,7 +32,9 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   if (MaxEvent == 50000 && FirstEvent == 1){
     ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d_%d.root";
   }
-  else{
+  else if (MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
+    ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d_%d_%d.root";
+  }  else{
     ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d_%d.root";
   }
   
@@ -234,7 +236,12 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   run->Print();
   
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
+  TString ROOTFileName;
+  if(MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
+    ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstSegment, FirstEvent, MaxEvent);
+  } else {
+     ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
+  }
 
   // Define the analysis parameters
   analyzer->SetEvent(event);
