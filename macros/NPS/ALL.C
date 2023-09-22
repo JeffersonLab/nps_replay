@@ -65,7 +65,15 @@ void ALL(int RunNumber = 708, int nevent = -1) {
         }
 	
 	 
-            t= (TChain *) f->Get("T");
+       t = new TChain("T");
+       t->Add(f->GetName(),-1);
+	     t->SetBranchStatus("*",false);
+	         t->SetBranchStatus("Ndata.NPS.cal.fly.adcCounter",true);
+		     t->SetBranchStatus("NPS.cal.fly.adcCounter",true);
+		         t->SetBranchStatus("NPS.cal.fly.adcSampPulseTime",true);
+			     t->SetBranchStatus("NPS.cal.fly.adcSampPulseAmp",true);
+			     t->SetBranchStatus("NPS.cal.fly.adcSampPed",true);
+			     t->SetBranchStatus("NPS.cal.fly.adcSampPulseInt",true);
             t->SetBranchAddress("NPS.cal.fly.adcSampPulseAmp",&adcSampPulseAmp) ;
             t->SetBranchAddress("Ndata.NPS.cal.fly.adcCounter",&NdataadcCounter) ;
             t->SetBranchAddress("NPS.cal.fly.adcCounter",&adcCounter) ;

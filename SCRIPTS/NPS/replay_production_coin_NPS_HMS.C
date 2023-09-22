@@ -190,8 +190,8 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
 
   //Add coin physics module THcCoinTime::THcCoinTime (const char *name, const char* description, const char* elecArmName, 
   // const char* hadArmName, const char* coinname) :
-  THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidence Time Determination", "NPS", "H", "T.hms");
-  gHaPhysics->Add(coinTime);
+  //THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidence Time Determination", "NPS", "H", "T.hms");
+  //gHaPhysics->Add(coinTime);
 
   // Add event handler for EPICS events
   THaEpicsEvtHandler* hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
