@@ -18,7 +18,7 @@ void vld_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Create file name patterns.
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="nps_coin_%d.dat.0";
+  const char* RunFileNamePattern="nps_%d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
@@ -39,8 +39,6 @@ void vld_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Load the Hall C style detector map 
   gHcDetectorMap = new THcDetectorMap();
   gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_vld.map");
-  //gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_eel108.map");
-  //gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_standard.map");
   
   //Add NPS spectrometer apparatus
   THaApparatus* NPS = new THcNPSApparatus("NPS","NPS");
@@ -81,7 +79,6 @@ void vld_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
    
   analyzer->SetOutFile(ROOTFileName.Data());
   analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_vld.dat");
-  //analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_eel108.dat");
   analyzer->SetOdefFile("DEF-files/NPS/NPS.def");      
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def");  
   // Set EPICS event type
