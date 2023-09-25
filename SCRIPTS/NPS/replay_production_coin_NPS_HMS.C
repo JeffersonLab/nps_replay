@@ -54,7 +54,7 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug_sp18.param");
 
   // Load params for COIN trigger configuration
-  //gHcParms->Load("PARAM/TRIG/thms_fa22.param"); //FIXME: I modified here to see if we can get waveforms from HODO ADCs.
+  gHcParms->Load("PARAM/TRIG/thms_fa22.param"); //FIXME: I modified here to see if we can get waveforms from HODO ADCs.
 
    
   // Load the Hall C style detector map 
@@ -188,10 +188,10 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
   TRG->AddDetector(helicity); // check later
 
-  /*//Add coin physics module THcCoinTime::THcCoinTime (const char *name, const char* description, const char* hadArmName, 
-  // const char* elecArmName, const char* coinname) :
-  THcCoinTime* coinTime = new THcCoinTime("CTime", "Coincidende Time Determination", "P", "H", "T.coin");
-  gHaPhysics->Add(coinTime);*/
+  //Add coin physics module THcNPSCoinTime::THcNPSCoinTime (const char *name, const char* description, const char* elecArmName, 
+  // const char* hadArmName, const char* coinname) :
+  //THcNPSCoinTime* coinTime = new THcNPSCoinTime("CTime", "Coincidence Time Determination", "NPS", "H", "T.hms");
+  //gHaPhysics->Add(coinTime);
 
   // Add event handler for EPICS events
   THaEpicsEvtHandler* hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
@@ -242,6 +242,16 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   analyzer->SetEpicsEvtType(180);
   analyzer->AddEpicsEvtType(181);
   analyzer->AddEpicsEvtType(182);
+  analyzer->AddEpicsEvtType(183);
+  analyzer->AddEpicsEvtType(184);
+  analyzer->AddEpicsEvtType(185);
+  analyzer->AddEpicsEvtType(186);
+  analyzer->AddEpicsEvtType(187);
+  analyzer->AddEpicsEvtType(188);
+  analyzer->AddEpicsEvtType(189);
+  analyzer->AddEpicsEvtType(190);
+  analyzer->AddEpicsEvtType(191);
+  
   analyzer->SetCountMode(2);  // 0 = counter is # of physics triggers
                               // 1 = counter is # of all decode reads
                               // 2 = counter is event number
