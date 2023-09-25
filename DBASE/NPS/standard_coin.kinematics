@@ -263,11 +263,78 @@ stheta_lab = 32.28
 nps_theta_offset = -16.3
 hpartmass = 0.938272
 
-1328 - 9999
+1328 - 1340
 gpbeam = 10.539
 gtargmass_amu= 1.00794
 htheta_lab = -29.86
 hpcentral = 4.0872
 stheta_lab = 32.28
 nps_theta_offset = -16.3
+hpartmass = 0.938272
+
+1341 - 1343                                                                                                                       
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 1.00794                                                                                                            
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 33.48                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1344 - 1345
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 26.98                                                                                                            
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 33.48                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1349 - 1360 
+# DAQ test no beam
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 26.98                                                                                                            
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 33.48                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1361 - 1362 
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 1.00794                                                                                                             
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 31.29                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1363 - 1373
+# LED TEST, NPS ONLY
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 1.00794                                                                                                             
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 31.29                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1374 - 1395
+# Scaler and DAQ TEST
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 1.00794                                                                                                             
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 31.29                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
+hpartmass = 0.938272
+
+1396 - 9999
+# Placeholder, change later
+gpbeam = 10.539                                                                                                                   
+gtargmass_amu= 1.00794                                                                                                             
+htheta_lab = -29.86                                                                                                               
+hpcentral = 4.0872                                                                                                                
+stheta_lab = 31.29                                                                                                                
+nps_theta_offset = -16.3                                                                                                          
 hpartmass = 0.938272

@@ -77,11 +77,11 @@ void NPS_VTP(int opt){
 
      // Vertical lines of the y axis
   
-     for (Int_t i=1; i<=H1->GetNbinsY(); i++) {
+     for (Int_t i=1; i<=H7->GetNbinsY(); i++) {
     
              ln_Amp->SetLineStyle(2);
              ln_Amp->SetLineColor(kBlack);
-             ln_Amp->DrawLine(-0.5,H1->GetYaxis()->GetBinUpEdge(i),29.5,H1->GetYaxis()->GetBinUpEdge(i));
+             ln_Amp->DrawLine(-0.5,H7->GetYaxis()->GetBinUpEdge(i),29.5,H7->GetYaxis()->GetBinUpEdge(i));
             }
   }
   if(opt == 7){
@@ -100,11 +100,11 @@ void NPS_VTP(int opt){
 
      // Vertical lines of the y axis
   
-     for (Int_t i=1; i<=H1->GetNbinsY(); i++) {
+     for (Int_t i=1; i<=H9->GetNbinsY(); i++) {
     
              ln_Amp->SetLineStyle(2);
              ln_Amp->SetLineColor(kBlack);
-             ln_Amp->DrawLine(-0.5,H1->GetYaxis()->GetBinUpEdge(i),29.5,H1->GetYaxis()->GetBinUpEdge(i));
+             ln_Amp->DrawLine(-0.5,H9->GetYaxis()->GetBinUpEdge(i),29.5,H9->GetYaxis()->GetBinUpEdge(i));
             }
 
   }
@@ -128,11 +128,11 @@ void NPS_VTP(int opt){
 
      // Vertical lines of the y axis
   
-     for (Int_t i=1; i<=H1->GetNbinsY(); i++) {
+     for (Int_t i=1; i<=H11->GetNbinsY(); i++) {
     
              ln_Amp->SetLineStyle(2);
              ln_Amp->SetLineColor(kBlack);
-             ln_Amp->DrawLine(-0.5,H1->GetYaxis()->GetBinUpEdge(i),29.5,H1->GetYaxis()->GetBinUpEdge(i));
+             ln_Amp->DrawLine(-0.5,H11->GetYaxis()->GetBinUpEdge(i),29.5,H11->GetYaxis()->GetBinUpEdge(i));
             }
   }
 }

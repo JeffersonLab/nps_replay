@@ -122,6 +122,8 @@ replayReport="${reportFileDir}/replayReport_${spec}_hms_coin_${runNum}_${numEven
   hcana -q "NEWPLOTS.C(${runNum},${numEvents})"
   sleep 2
   hcana -q "VTP_hcana.C(${runNum},${numEvents})"
+  sleep 2
+  hcana -q "helicity.C(${runNum},${numEvents})"
   cd ../..
 
   echo "" 
