@@ -9,12 +9,12 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
     
     TChain *t;
     TFile *f;
-        if (nevent == 50000){
-         f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",nrun),"UPDATE");
-        }
-        else{
+        //if (nevent == 50000){
+         //f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",nrun),"UPDATE");
+        //}
+        //else{
          f= new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",nrun),"UPDATE");
-        }
+        //}
 
     t = new TChain("T");
     t->Add(f->GetName(),-1);
@@ -58,12 +58,12 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
 
     //Filling Histogram
     int nentries;
-    if (nevent == -1){
+    //if (nevent == -1){
         nentries = t->GetEntries();
-    }
-    else{
-        nentries = nevent;
-    }
+    //}
+    //else{
+      //  nentries = nevent;
+    //}
 
     cout <<"Total Event Number is "<< nentries << endl;
     for(Int_t i=0; i<nentries; i++){
@@ -187,7 +187,7 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
 	    if(GoodPulsenumber[n]!=0){
 	        //counterofgoodhit +=1;
             counterofgoodhit += GoodPulsenumber[n];
-		GoodHitPerBlock->Fill(n+1,GoodPulsenumber[n]);
+		GoodHitPerBlock->Fill(n,GoodPulsenumber[n]);
 	    }
 	}
 

@@ -29,12 +29,12 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
 
   const char* ROOTFileNamePattern;
-  if (MaxEvent == 50000 && FirstEvent == 1){
-    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d_%d.root";
-  }
-  else{
+ // if (MaxEvent == 50000 && FirstEvent == 1){
+  //  ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d_%d.root";
+  //}
+  //else{
     ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d_%d.root";
-  }
+  //}
   
   
   // Add variables to global list.

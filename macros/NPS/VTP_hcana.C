@@ -53,12 +53,12 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 
     // Tree branches
 
-    if (nevent == 50000){
-        f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
-        }
-    else{
+    //if (nevent == 50000){
+      //  f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
+        //}
+    //else{
         f= new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
-        }
+      //  }
     t= new TChain("T");
     t->Add(f->GetName(), -1);
     t->SetBranchStatus("*", false); // disable all branches
@@ -89,12 +89,12 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
        TH1F *h_vtp_cluster_y_position;
 
 	  
-	  h_vtp_cluster_energy = new TH1F("h_vtp_cluster_energy"," Cluster Energy",10000, 0,5000);
+	  h_vtp_cluster_energy = new TH1F("h_vtp_cluster_energy"," Cluster Energy",5000, 0,10000);
       h_vtp_cluster_energy->SetFillColor(2);
 	  h_vtp_cluster_energy->SetMarkerColor(kRed);
 	  h_vtp_cluster_energy->SetMarkerSize(34);
           	
-	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time"," Cluster Time",400,0, 200);
+	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time"," Cluster Time",200,0, 400);
       h_vtp_cluster_time->SetFillColor(2);
 	  h_vtp_cluster_time->SetMarkerColor(kRed);
 	  h_vtp_cluster_time->SetMarkerSize(34);
@@ -115,12 +115,12 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_y_position->SetMarkerSize(34);
 
 	// FILL HISTOGRAM FOR EACH BLOCK
-    if (nevent == -1){
+    //if (nevent == -1){
       evtmax = t->GetEntries();
-     }
-     else{
-      evtmax = nevent;
-     }
+     //}
+     //else{
+      //evtmax = nevent;
+     //}
  
 
     for (Int_t evt = 0; evt <evtmax; evt++) {
@@ -337,13 +337,13 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   
             // Histogram for the block number
 	   
-           TH2F *h_Amp = new TH2F("h_Amp", "ENERGY OF THE CLUSTERS IN EACH BLOCK (MeV) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
+           TH2F *h_Amp = new TH2F("h_Amp", "ACCUMULATED ENERGY IN EACH BLOCK (MeV) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Amp->GetXaxis()->SetTitle("Column Number");
            h_Amp->GetYaxis()->SetTitle("Row Number");
            //h_Amp->SetMinimum(100);
            // Histogram for the Fit values
 
-           TH2F* h_Mean_Amp = new TH2F("h_Mean_Amp", "ENERGY OF THE CLUSTERS IN EACH BLOCK (MeV) ",30,-0.5,29.5,36,-0.5, 35.5);
+           TH2F* h_Mean_Amp = new TH2F("h_Mean_Amp", "ACCUMULATED ENERGY IN EACH BLOCK (MeV) ",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Amp->GetXaxis()->SetTitle("Column Number");
            h_Mean_Amp->GetYaxis()->SetTitle("Row Number");
 	        //h_Mean_Amp->SetMinimum(100);
@@ -467,14 +467,14 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   
             // Histogram for the block number
 	   
-           TH2F *h_time = new TH2F("h_time", "TIME OF THE CLUSTERS IN EACH BLOCK (ns) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
+           TH2F *h_time = new TH2F("h_time", "TIME OF THE CLUSTERS  (ns) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_time->GetXaxis()->SetTitle("Column Number");
            h_time->GetYaxis()->SetTitle("Row Number");
            //h_time->SetMinimum(100);
 
            // Histogram for the Fit values
 
-           TH2F* h_time1 = new TH2F("h_time1", "TIME OF THE CLUSTERS IN EACH BLOCK (ns) ",30,-0.5,29.5,36,-0.5, 35.5);
+           TH2F* h_time1 = new TH2F("h_time1", "TIME OF THE CLUSTERS  (ns) ",30,-0.5,29.5,36,-0.5, 35.5);
            h_time1->GetXaxis()->SetTitle("Column Number");
            h_time1->GetYaxis()->SetTitle("Row Number");
 	       // h_time1->SetMinimum(100);
@@ -596,14 +596,14 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   
             // Histogram for the block number
 	   
-           TH2F *h_clust_numb = new TH2F("h_clust_numb", "SIZE OF THE CLUSTER IN EACH BLOCK ", 30, -0.5, 29.5, 36, -0.5, 35.5);
+           TH2F *h_clust_numb = new TH2F("h_clust_hits", " ACCUMULATED NUMBER OF HITS IN EACH BLOCK ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_clust_numb->GetXaxis()->SetTitle("Column Number");
            h_clust_numb->GetYaxis()->SetTitle("Row Number");
            //h_clust_numb->SetMinimum(100);
 
            // Histogram for the Fit values
 
-           TH2F* h_clust_numb1 = new TH2F("h_clust_numb1", "SIZE OF THE CLUSTER IN EACH BLOCK ",30,-0.5,29.5,36,-0.5, 35.5);
+           TH2F* h_clust_numb1 = new TH2F("h_clust_hits", " ACCUMULATED NUMBER OF HITS IN EACH BLOCK ",30,-0.5,29.5,36,-0.5, 35.5);
            h_clust_numb1->GetXaxis()->SetTitle("Column Number");
            h_clust_numb1->GetYaxis()->SetTitle("Row Number");
 

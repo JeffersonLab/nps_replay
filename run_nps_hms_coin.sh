@@ -17,24 +17,25 @@ if [ -z "$runNum" ]; then
   runNum=$lastRun
 fi
 
-numEvents=$2
-if [ -z "$numEvents" ]; then
-  numEvents=50000
-fi
+numEventsk=$2
 
-if [ "$numEvents" == 50000 ]; then
-  rootFileDir="./ROOTfiles/COIN/50k/"
-  outFile="${spec}_hms_coin_50k_${runNum}"
-  config="CONFIG/COIN/50k/${spec}_hms_coin_50k.cfg"
-  monPdfDir="./HISTOGRAMS/COIN/PDF/50k/"
+numSegEvent=$3
+numEventjob=$4
+
+
+#if [ "$numEvents" == 50000 ]; then
+ # rootFileDir="./ROOTfiles/COIN/50k/"
+  #outFile="${spec}_hms_coin_50k_${runNum}"
+  #config="CONFIG/COIN/50k/${spec}_hms_coin_50k.cfg"
+  #monPdfDir="./HISTOGRAMS/COIN/PDF/50k/"
  
  
-else
+#else
   rootFileDir="./ROOTfiles/COIN/PRODUCTION/"
   config="CONFIG/COIN/PRODUCTION/${spec}_hms_coin_all.cfg"
   monPdfDir="./HISTOGRAMS/COIN/PDF/PRODUCTION/"
   outFile="${spec}_hms_coin_all_${runNum}"
-fi
+#fi
 
 firstEvent=1
 
@@ -59,7 +60,7 @@ reportMonOutDir="./MON_OUTPUT/${SPEC}/REPORT"
 reportMonFile="summary_output_${runNum}.txt"
 
 # Which commands to run.
-runHcana="hcana -q \"${script}(${runNum}, ${numEvents})\""
+runHcana="./run_gen.sh ${runNum} ${numEventsk} ${numSegEvent} ${numEventjob}"
 #runHcana="/home/cdaq/cafe-2022/hcana/hcana -q \"${script}(${runNum}, ${numEvents})\""
 runOnlineGUI="./online -f ${config} -r ${runNum}"
 saveOnlineGUI="./online -f ${config} -r ${runNum} -P"
@@ -70,7 +71,7 @@ saveOnlineGUI="./online -f ${config} -r ${runNum} -P"
 #runHistogram= "root -q \"Amplitude.C(${runNum})\""
 
 # Name of the replay ROOT file nps_eel108_%d.root
-replayFile="${spec}_hms_coin_${runNum}_${firstEvent}_${numEvents}"
+replayFile="${spec}_hms_coin_${runNum}_${numEventsk}k_events"
 rootFile="${replayFile}.root"
 latestRootFile="${rootFileDir}/${spec}_hms_coin_${runNum}_latest.root"
 
@@ -82,15 +83,12 @@ latestMonRootFile="${monRootDir}/${spec}_production_latest.root"
 latestMonPdfFile="${monPdfDir}/${spec}_hms_coin_latest.pdf"
 
 # Where to put log
-reportFile="${reportFileDir}/replay_${spec}_production_${runNum}_${numEvents}.report"
-summaryFile="${reportFileDir}/summary_production_${runNum}_${numEvents}.txt"
 
 # What is base name of onlineGUI output.
 outExpertFile="${spec}_production_expert_${runNum}"
 outFileMonitor="output.txt"
 
 # Replay out files
-replayReport="${reportFileDir}/replayReport_${spec}_hms_coin_${runNum}_${numEvents}.txt"
 
 # Start analysis and monitoring plots.
 {
@@ -102,28 +100,31 @@ replayReport="${reportFileDir}/replayReport_${spec}_hms_coin_${runNum}_${numEven
   echo "Running ${SPEC} analysis on the run ${runNum}:"
   echo " -> SCRIPT:  ${script}"
   echo " -> RUN:     ${runNum}"
-  echo " -> NEVENTS: ${numEvents}"
+  echo " -> NEVENTS: ${numEventsk}"
   echo " -> COMMAND: ${runHcana}"
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
   sleep 2
+  cd ../replay_scripts
   eval ${runHcana}
 
   # Link the ROOT file to latest for online monitoring
+  sleep 2
+  cd ../nps_replay
   ln -fs ${rootFile} ${latestRootFile}
 
   echo "running histogram scripts"
   
   sleep 2
   cd macros/NPS/
-  hcana -q "ALL.C(${runNum},${numEvents})"
+  hcana -q "ALL.C(${runNum},${numEventsk})"
   sleep 2
-  hcana -q "NEWPLOTS.C(${runNum},${numEvents})"
+  hcana -q "NEWPLOTS.C(${runNum},${numEventsk})"
   sleep 2
-  hcana -q "VTP_hcana.C(${runNum},${numEvents})"
+  hcana -q "VTP_hcana.C(${runNum},${numEventsk})"
   sleep 2
-  hcana -q "helicity.C(${runNum},${numEvents})"
+  hcana -q "helicity.C(${runNum},${numEventsk})"
   cd ../..
 
   echo "" 
@@ -142,9 +143,9 @@ replayReport="${reportFileDir}/replayReport_${spec}_hms_coin_${runNum}_${numEven
   cd onlineGUI
   eval ${runOnlineGUI}
   eval ${saveOnlineGUI}
-  mv "${outFile}.pdf" "../${monPdfDir}/nps_hms_coin_${runNum}_${numEvents}.pdf"
+  mv "${outFile}.pdf" "../${monPdfDir}/nps_hms_coin_${runNum}_${numEventsk}k.pdf"
   cd ..
-  ln -fs nps_hms_coin_${runNum}_${numEvents}.pdf  ${latestMonPdfFile}
+  ln -fs nps_hms_coin_${runNum}_${numEventsk}k.pdf  ${latestMonPdfFile}
 
   echo "" 
   echo ""

@@ -57,12 +57,12 @@ void ALL(int RunNumber = 708, int nevent = -1) {
          Int_t  NdataadcCounter;
 
         //Run over root files and trees
-        if (nevent == 50000){
-         f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
-        }
-        else{
+        //if (nevent == 50000){
+         //f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
+        //}
+        //else{
          f= new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
-        }
+        //}
 	
 	 
        t = new TChain("T");
@@ -106,26 +106,26 @@ void ALL(int RunNumber = 708, int nevent = -1) {
         for (int iBlock = 0; iBlock < nblocks; iBlock++){
 
 	 
-          h_adcSampPulseAmp[iBlock] = new TH1F(Form("h_adcSampPulseAmplitude_%i", iBlock),Form("Block %i: ADC Sample Pulse Amplitude", iBlock),50, 0,50);
+          h_adcSampPulseAmp[iBlock] = new TH1F(Form("h_adcSampPulseAmplitude_%i", iBlock),Form("Block %i: ADC Sample Pulse Amplitude", iBlock),500, 0,1000);
           h_adcSampPulseAmp[iBlock]->SetFillColor(2);
 	  h_adcSampPulseAmp[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulseAmp[iBlock]->SetMarkerSize(34);
           h_adcSampPulseAmp[iBlock]->SetAxisRange(0, 1.3, "Y");          
 
-          h_adcSampPulseInt[iBlock] = new TH1F(Form("h_adcSampPulseIntegral_%i", iBlock),Form("Block %i: ADC Sample Pulse Integral", iBlock),50, 0,50);
+          h_adcSampPulseInt[iBlock] = new TH1F(Form("h_adcSampPulseIntegral_%i", iBlock),Form("Block %i: ADC Sample Pulse Integral", iBlock),500, 0,1000);
           h_adcSampPulseInt[iBlock]->SetFillColor(2);
 	  h_adcSampPulseInt[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulseInt[iBlock]->SetMarkerSize(34);
 	  //  h_adcSampPulseInt[iBlock]->SetAxisRange(0, 1.3, "Y");
 
-          h_adcSampPulseTime[iBlock] = new TH1F(Form("h_adcSampPulseTime_%i", iBlock),Form("Block %i: ADC Sample Pulse Time", iBlock),250, 0,250);
+          h_adcSampPulseTime[iBlock] = new TH1F(Form("h_adcSampPulseTime_%i", iBlock),Form("Block %i: ADC Sample Pulse Time", iBlock),200, 0,500);
           h_adcSampPulseTime[iBlock]->SetFillColor(2);
 	  h_adcSampPulseTime[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulseTime[iBlock]->SetMarkerSize(34);
 	  //   h_adcSampPulseTime[iBlock]->SetAxisRange(0, 1.3, "Y");
 
 
-          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pedestal", iBlock),250, 0,250);
+          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pedestal", iBlock),200, 0,500);
           h_adcSampPulsePed[iBlock]->SetFillColor(2);
 	  h_adcSampPulsePed[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulsePed[iBlock]->SetMarkerSize(34);
@@ -137,12 +137,12 @@ void ALL(int RunNumber = 708, int nevent = -1) {
        
 	  // FILL HISTOGRAM FOR EACH BLOCK
      
-     if (nevent == -1){
+     //if (nevent == -1){
       replaynumber = t->GetEntries();
-     }
-     else{
-      replaynumber = nevent;
-     }
+     //}
+     //else{
+      //replaynumber = nevent;
+     //}
  
        
         	for (Int_t evt = 0; evt < replaynumber  ; evt++) {//  loop over the events
