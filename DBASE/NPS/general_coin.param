@@ -6,13 +6,9 @@
 #include "PARAM/NPS/CAL/nps_geom.param"
 
 ;NPS default cut parameter files
-;#include "PARAM/NPS/CAL/nps_cuts_translation.param"
-;#include "PARAM/NPS/CAL/nps_cuts_original.param"
 #include "PARAM/NPS/CAL/nps_cuts_eel108.param"
 
 ;NPS default calibration parameter files
-;#include "PARAM/NPS/CAL/nps_calib_translation.param"
-;#include "PARAM/NPS/CAL/nps_calib_original.param"
 #include "PARAM/NPS/CAL/nps_calib_eel108.param"
 #real raddeg
 raddeg=3.14159265/180
@@ -45,11 +41,6 @@ cminch=2.54
 #include "PARAM/HMS/AERO/haero_cuts_fa22.param"
 #include "PARAM/HMS/CAL/hcal_cuts_nps23.param"
 
-; HMS default calib parameter files included in 
-;Default values always loaded.
-;Specific calibration files loaded in with g_ctp_det_calib_filename
-;Specific g_ctp_det_calib_filename loaded by run in standard.database
-;#include "DBASE/HMS/default_det_calib_fa22.param"
 
 ; TRIG detector param file
-#include "PARAM/TRIG/thms_fa22.param"
+#include "PARAM/TRIG/thms_nps23.param"

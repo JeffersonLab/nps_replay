@@ -22,6 +22,7 @@
 #include "DEF-files/HMS/PRODUCTION/EXTCOR/hextcor_histos.def"
 
 #include "DEF-files/HMS/PRODUCTION/EPICS/hepics_vars.def"
+#include "DEF-files/NPS/NPS_histos.def"
 
 block NPS.*
 

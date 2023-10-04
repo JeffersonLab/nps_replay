@@ -94,7 +94,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_energy->SetMarkerColor(kRed);
 	  h_vtp_cluster_energy->SetMarkerSize(34);
           	
-	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time"," Cluster Time",200,0, 400);
+	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time"," Hit Time In Each Block",200,0, 400);
       h_vtp_cluster_time->SetFillColor(2);
 	  h_vtp_cluster_time->SetMarkerColor(kRed);
 	  h_vtp_cluster_time->SetMarkerSize(34);
@@ -104,7 +104,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_size->SetMarkerColor(kRed);
 	  h_vtp_cluster_size->SetMarkerSize(34);
           
-	  h_vtp_cluster_x_position = new TH1F("h_vtp_cluster_x_position"," X position of clusters",82, -0.5,40);
+	  h_vtp_cluster_x_position = new TH1F("h_vtp_cluster_x_position"," X position of clusters ",82, -0.5,40);
       h_vtp_cluster_x_position->SetFillColor(2);
 	  h_vtp_cluster_x_position->SetMarkerColor(kRed);
 	  h_vtp_cluster_x_position->SetMarkerSize(34);
@@ -289,7 +289,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   //TCanvas *c_timee = new TCanvas ("c_time","c_time",800,600);
 	   //c_timee->cd();
 	   //c_timee->SetLogy();
-	   h_vtp_cluster_time->GetXaxis()->SetTitle("Cluster Time");
+	   h_vtp_cluster_time->GetXaxis()->SetTitle("Accumulating Hit Time In Each Block");
 	   h_vtp_cluster_time->GetYaxis()->SetTitle("Events");  
 	   //h_vtp_cluster_time->Draw();
        f->WriteTObject(h_vtp_cluster_time,"h_vtp_cluster_time");                                                                                                   
@@ -467,14 +467,14 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   
             // Histogram for the block number
 	   
-           TH2F *h_time = new TH2F("h_time", "TIME OF THE CLUSTERS  (ns) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
+           TH2F *h_time = new TH2F("h_time", "Hit Time In Each Block (ns) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_time->GetXaxis()->SetTitle("Column Number");
            h_time->GetYaxis()->SetTitle("Row Number");
            //h_time->SetMinimum(100);
 
            // Histogram for the Fit values
 
-           TH2F* h_time1 = new TH2F("h_time1", "TIME OF THE CLUSTERS  (ns) ",30,-0.5,29.5,36,-0.5, 35.5);
+           TH2F* h_time1 = new TH2F("h_time1", "Hit Time In Each Block (ns) ",30,-0.5,29.5,36,-0.5, 35.5);
            h_time1->GetXaxis()->SetTitle("Column Number");
            h_time1->GetYaxis()->SetTitle("Row Number");
 	       // h_time1->SetMinimum(100);

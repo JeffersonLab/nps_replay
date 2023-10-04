@@ -31,6 +31,7 @@ numEventjob=$4
  
  
 #else
+  replayReport="./REPORT_OUTPUT/COIN/replayreport/nps_hms_coin_${runNum}_${numEventsk}k.txt"
   rootFileDir="./ROOTfiles/COIN/PRODUCTION/"
   config="CONFIG/COIN/PRODUCTION/${spec}_hms_coin_all.cfg"
   monPdfDir="./HISTOGRAMS/COIN/PDF/PRODUCTION/"

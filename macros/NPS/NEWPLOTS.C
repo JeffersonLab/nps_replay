@@ -151,22 +151,22 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
 
     // Get the mean and change zoom in region ------------
 
-    TimeBlock->FitSlicesY(nullptr,0,-1,0,"QNR");
-    TH1D *f_ZoomMean = (TH1D*)gDirectory->Get("TimeBlock_1");
-    Double_t TimeMean[1080] = {};
+   // TimeBlock->FitSlicesY(nullptr,0,-1,0,"QNR");
+   // TH1D *f_ZoomMean = (TH1D*)gDirectory->Get("TimeBlock_1");
+   // Double_t TimeMean[1080] = {};
     //f_ZoomMean->Draw();
-    for(Int_t i=0;i<1080;i++){
-        TimeMean[i] = f_ZoomMean->GetBinContent(i+1);
-    }
+   // for(Int_t i=0;i<1080;i++){
+    //    TimeMean[i] = f_ZoomMean->GetBinContent(i+1);
+   // }
     Double_t Sum = 0;
-    Double_t nBINs = 0;
-    for(Int_t i=0;i<1080;i++){
-        if(TimeMean[i]!=0 and TimeMean[i] < binnumber * 4 and TimeMean[i] > 0){
-            Sum+=TimeMean[i];
-            nBINs += 1;
-        }
-    }
-    Sum = Sum / nBINs;
+   // Double_t nBINs = 0;
+   // for(Int_t i=0;i<1080;i++){
+     //   if(TimeMean[i]!=0 and TimeMean[i] < binnumber * 4 and TimeMean[i] > 0){
+       //     Sum+=TimeMean[i];
+         //   nBINs += 1;
+       // }
+   // }
+    Sum = 130;
     //cout << Sum << endl;
     TH2D *TimeBlock_Zoom = new TH2D(*TimeBlock); // X = Block number, Y = zoom in Timing
     TimeBlock_Zoom->SetName("TimeBlock_Zoom");
@@ -179,7 +179,7 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
 	//cout << "This is 2nd iteration " << i << endl;
 	Int_t GoodPulsenumber[2000] = {};
         for(Int_t j=0; j<NadcCounter; j++){
-            if(Pulsetime[j]<= Sum + 10 and Pulsetime[j]>= Sum - 10){ // FIXME: change range
+            if(Pulsetime[j]<= Sum + 40 and Pulsetime[j]>= Sum - 40){ // FIXME: change range
                 GoodPulsenumber[Int_t(adcCounter[j])] += 1;
             }
         }
