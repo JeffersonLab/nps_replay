@@ -62,8 +62,8 @@ gfrxb_adc_zero_offset = 54300
 gfrya_adc_zero_offset = 54630
 gfryb_adc_zero_offset = 54800
 ;
-gfrxa_adcpercm = (63427-44954)/.2
-gfrxb_adcpercm = (63841-44824)/.2
+gfrxa_adcpercm = -(63427-44954)/.2
+gfrxb_adcpercm = -(63841-44824)/.2
 gfrya_adcpercm = -(65450-44885)/.2
 gfryb_adcpercm = -(64417-45240)/.2
 
