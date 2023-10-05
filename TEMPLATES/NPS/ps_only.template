@@ -1,0 +1,6 @@
+Ps1_factor = {ghconfig_ti_ps_factors[0]}
+Ps2_factor = {ghconfig_ti_ps_factors[1]}
+Ps3_factor = {ghconfig_ti_ps_factors[2]}
+Ps4_factor = {ghconfig_ti_ps_factors[3]}
+Ps5_factor = {ghconfig_ti_ps_factors[4]}
+Ps6_factor = {ghconfig_ti_ps_factors[5]}

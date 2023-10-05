@@ -1,0 +1,8 @@
+variable ghconfig_ti_ps_factors
+variable T.hms.hEDTM_tdcTime
+variable H.BCM4A.scalerRate
+variable H.BCM4A.scalerCurrent
+variable H.hL1ACCP.scaler
+variable H.hTRIG5.scaler
+variable H.hTRIG6.scaler
+variable H.EDTM.scaler

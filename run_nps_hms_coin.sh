@@ -70,7 +70,6 @@ saveOnlineGUI="./online -f ${config} -r ${runNum} -P"
 #runReportMon="./${reportMonDir}/reportSummary.py ${runNum} ${numEvents} ${spec} singles"
 #openReportMon="emacs ${reportMonOutDir}/${reportMonFile}"
 #runHistogram= "root -q \"Amplitude.C(${runNum})\""
-
 # Name of the replay ROOT file nps_eel108_%d.root
 replayFile="${spec}_hms_coin_${runNum}_${numEventsk}k_events"
 rootFile="${replayFile}.root"
@@ -164,39 +163,18 @@ outFileMonitor="output.txt"
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
   echo ""
-  echo "Generating report file monitoring data file ${SPEC} run ${runNum}."
+  echo " Calculating Live Time information"
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-
-#  eval ${runReportMon}
-#  mv "${outFileMonitor}" "${reportMonOutDir}/${reportMonFile}"
-#  eval ${openReportMon}
+  
+  hcana -q "SCRIPTS/NPS/SCALERS/replay_nps_scalers_test.C(${runNum})"
 
   sleep 2
 
-  echo ""
-  echo ""
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  echo ""
-  echo "Counting good electrons in root file ${latestRootFile}"
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  hcana -q "macros/NPS/DeadTime_EDTM.C(${runNum})"
 
-
-#if [[ "${spec}" == "shms" ]]; then
-#  ./hcana -l << EOF
-#  .L ${shmsCounter}
-#  run_el_counter_${spec}("${latestRootFile}");
-#EOF
-#fi
-#if [[ "${spec}" == "hms" ]]; then
-#  ./hcana -l << EOF
-#  .L ${hmsCounter}
-#  run_el_counter_${spec}("${latestRootFile}");
-#EOF
-#fi
-
+  sleep 2
+  
   sleep 2
 
   echo ""
