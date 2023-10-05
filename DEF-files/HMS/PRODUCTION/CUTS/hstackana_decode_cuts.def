@@ -3,7 +3,10 @@ Block: Decode
 hcut_TRIG1        T.hms.hTRIG1_tdcTimeRaw > 0
 hcut_TRIG2        T.hms.hTRIG2_tdcTimeRaw > 0
 hcut_TRIG3        T.hms.hTRIG3_tdcTimeRaw > 0
-HMS_Pretrig       hcut_TRIG1 || hcut_TRIG2 || hcut_TRIG3
+hcut_TRIG4        T.hms.hTRIG4_tdcTimeRaw > 0
+hcut_TRIG5        T.hms.hTRIG5_tdcTimeRaw > 0
+hcut_TRIG6        T.hms.hTRIG6_tdcTimeRaw > 0
+HMS_Pretrig       hcut_TRIG1 || hcut_TRIG2 || hcut_TRIG3 || hcut_TRIG4 || hcut_TRIG5 || hcut_TRIG6
 
 hms_trigs              HMS_event
 hcut_edtm_accepted     T.hms.hEDTM_tdcTimeRaw != 0.0

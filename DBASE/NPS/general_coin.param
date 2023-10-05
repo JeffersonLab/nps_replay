@@ -42,5 +42,3 @@ cminch=2.54
 #include "PARAM/HMS/CAL/hcal_cuts_nps23.param"
 
 
-; TRIG detector param file
-#include "PARAM/TRIG/thms_nps23.param"
