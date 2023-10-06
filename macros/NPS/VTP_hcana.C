@@ -99,7 +99,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_time->SetMarkerColor(kRed);
 	  h_vtp_cluster_time->SetMarkerSize(34);
           	
-	  h_vtp_cluster_size = new TH1F("h_vtp_cluster_size"," Cluster Size",20, -0.5,10.5);
+	  h_vtp_cluster_size = new TH1F("h_vtp_cluster_size"," Cluster Size",200, -0.5,99.5);
       h_vtp_cluster_size->SetFillColor(2);
 	  h_vtp_cluster_size->SetMarkerColor(kRed);
 	  h_vtp_cluster_size->SetMarkerSize(34);
