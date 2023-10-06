@@ -25,4 +25,4 @@
 #include "DEF-files/NPS/NPS_histos.def"
 
 block NPS.*
-
+block CTime.*

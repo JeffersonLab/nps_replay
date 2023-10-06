@@ -7,7 +7,7 @@ nps_cal_make_grid = 0
 ; Select which Clustering Algorithm to use for NPS
 ; 0 == Use standard SHMS clustering algorithm (developed by Yerevan group)
 ; 1 == Use Cellular Automata Approach (Same approach is used by Hall A DVCS Calorimeter)
-nps_cal_clustering = 0
+nps_cal_clustering = 1
 
 ; for now manually set the FADC mode
 ;  1 == Use the pulse int - pulse ped

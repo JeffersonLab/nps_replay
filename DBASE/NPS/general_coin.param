@@ -9,7 +9,7 @@
 #include "PARAM/NPS/CAL/nps_cuts_eel108.param"
 
 ;NPS default calibration parameter files
-#include "PARAM/NPS/CAL/nps_calib_eel108.param"
+#include "PARAM/NPS/CAL/nps_calib_nps23.param"
 #real raddeg
 raddeg=3.14159265/180
 #real cminch
