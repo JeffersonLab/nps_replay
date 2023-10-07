@@ -82,7 +82,6 @@ monExpertPdfFile="${spec}_production_expert_${runNum}.pdf"
 latestMonRootFile="${monRootDir}/${spec}_production_latest.root"
 latestMonPdfFile="${monPdfDir}/${spec}_hms_coin_latest.pdf"
 
-# Where to put log
 
 # What is base name of onlineGUI output.
 outExpertFile="${spec}_production_expert_${runNum}"
@@ -113,6 +112,19 @@ outFileMonitor="output.txt"
   sleep 2
   cd ../nps_replay
   ln -fs ${rootFile} ${latestRootFile}
+
+  echo "" 
+  echo ""
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  echo ""
+  echo " Doing the scaler only replay on the first segment"
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  
+  hcana -q "SCRIPTS/NPS/SCALERS/replay_nps_scalers_test.C(${runNum})"
+
+  sleep 2
 
   echo "running histogram scripts"
   
@@ -147,16 +159,30 @@ outFileMonitor="output.txt"
   cd ..
   ln -fs nps_hms_coin_${runNum}_${numEventsk}k.pdf  ${latestMonPdfFile}
 
-  echo "" 
-  echo ""
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  echo ""
-  echo "Done analyzing ${SPEC} run ${runNum}."
-  echo ""
-  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-  sleep 2
+# Where to put log
+
+###########################################################
+# function used to prompt user for questions
+function yes_or_no(){
+  while true; do
+    read -p "$* [y/n]: " yn
+    case $yn in
+      [Yy]*) return 0 ;;
+      [Nn]*) echo "No entered" ; return 1 ;;
+    esac
+  done
+}
+# post pdfs in hclog
+yes_or_no "Upload these plots to logbook HCLOG? " && \
+    /site/ace/certified/apps/bin/logentry \
+    -cert /home/cdaq/.elogcert \
+    -t "${numEventsk}k replay plots for run ${runNum}" \
+    -e cdaq \
+    -l HCLOG \
+    -a ${latestMonPdfFile} \
+###########################################################
+
 
   echo "" 
   echo ""
@@ -166,15 +192,20 @@ outFileMonitor="output.txt"
   echo " Calculating Live Time information"
   echo ""
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
-  
-  hcana -q "SCRIPTS/NPS/SCALERS/replay_nps_scalers_test.C(${runNum})"
+
+    hcana -q "macros/NPS/DeadTime_EDTM.C(${runNum})"
 
   sleep 2
 
-  hcana -q "macros/NPS/DeadTime_EDTM.C(${runNum})"
+  echo "" 
+  echo ""
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
+  echo ""
+  echo "Done analyzing ${SPEC} run ${runNum}."
+  echo ""
+  echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
 
-  sleep 2
-  
   sleep 2
 
   echo ""

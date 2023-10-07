@@ -60,6 +60,16 @@ void replay_nps_scalers_test(int RunNumber=0, int MaxEvent=-1, int FirstEvent = 
   THcTrigDet* hms = new THcTrigDet("hms", "HMS Trigger Information");
   TRG->AddDetector(hms); 
 
+  THcHelicityScaler *hhelscaler = new THcHelicityScaler("H", "Hall C helicity scaler");
+  //hhelscaler->SetDebugFile("HHelScaler.txt");
+  hhelscaler->SetROC(5);
+  hhelscaler->SetUseFirstEvent(kTRUE);
+  gHaEvtHandlers->Add(hhelscaler);
+  THcHelicity* helicity = new THcHelicity("helicity", "Helicity Detector");
+  TRG->AddDetector(helicity);
+
+
+
   // Add event handler for EPICS events
   //THaEpicsEvtHandler* hcepics = new THaEpicsEvtHandler("epics", "HC EPICS event type 180");
   //gHaEvtHandlers->Add(hcepics);
