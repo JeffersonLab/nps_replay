@@ -126,7 +126,7 @@ void Charge_Deadtime_calculation(Int_t RunNo, Int_t SegNo){
 		time = (H_1MHz_scaler-H_1MHz_scaler_last)/1000000.;
 		if((H_1MHz_scaler-H_1MHz_scaler_last)>1000.){
 			current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time-1605.)/9570.;
-			if(current>5.) ChargeCount += current*time/1000.;//mC
+			if(current>2.) ChargeCount += current*time/1000.;//mC
 		}
 		H_1MHz_scaler_last = H_1MHz_scaler;
 		H_BCM4A_scaler_last = H_BCM4A_scaler;
@@ -137,7 +137,7 @@ void Charge_Deadtime_calculation(Int_t RunNo, Int_t SegNo){
         //cout<<H_EDTM_scaler<<"\t"<<H_BCM4A_scalerCurrent<<endl;
         if(T_hms_hEDTM_tdcTime>1.) NoEDTM_Events++;
 
-        if(H_BCM4A_scalerCurrent>5.){
+        if(H_BCM4A_scalerCurrent>2.){
             if(Current_high_Flag==0){
                 NoEDTM_LowCurrent += H_EDTM_scaler-EDTM_scaler_highCurrent;
                 NofhL1ACCP_LowCurrent += H_hL1ACCP_scaler-NofhL1ACCP_highCurrent;
@@ -176,7 +176,7 @@ void Charge_Deadtime_calculation(Int_t RunNo, Int_t SegNo){
     cout<<"EDTM events in the root file: "<<NoEDTM_Events<<endl;
     cout<<"Electronics live time: "<<NoEDTM_Events/(H_EDTM_scaler-EDTM_0)<<endl;
     cout<<endl;
-    cout<<"----------------------------Results for current>5uA------------------------------"<<endl;
+    cout<<"----------------------------Results for current>2uA------------------------------"<<endl;
     cout<<"Total EDTM signals during the run: "<<EDTM_Total<<endl;
     cout<<"EDTM events in the root file: "<<EDTM_Event_high_Current<<endl;
     cout<<"Electronics live time: "<<EDTM_Event_high_Current/EDTM_Total<<endl;
@@ -194,7 +194,7 @@ void Charge_Deadtime_calculation(Int_t RunNo, Int_t SegNo){
     if(ps[4]!=-1) cout<<"L1ACCP/TRIG5(after ps): "<<(H_hL1ACCP_scaler-L1ACCP_0)/(H_hTRIG5_scaler-TRIG5_0)*ps[4]<<endl;
     if(ps[5]!=-1) cout<<"L1ACCP/TRIG6(after ps): "<<(H_hL1ACCP_scaler-L1ACCP_0)/(H_hTRIG6_scaler-TRIG6_0)*ps[5]<<endl;
     cout<<endl;
-    cout<<"----------------------------Results for current>5uA------------------------------"<<endl;
+    cout<<"----------------------------Results for current>2uA------------------------------"<<endl;
     cout<<"Total L1ACCP during the run: "<<NofhL1ACCP<<endl;
     cout<<"Total TRIG5 during the run: "<<NofhTRIG5<<endl;
     cout<<"Total TRIG6 during the run: "<<NofhTRIG6<<endl;
@@ -203,7 +203,7 @@ void Charge_Deadtime_calculation(Int_t RunNo, Int_t SegNo){
     cout<<endl;
     cout<<endl;
     cout<<"-------------------------------Accumulated charge------------------------------"<<endl;
-    cout<<"Accumulated charge(current>5uA): "<<ChargeCount<<" mC"<<endl;
+    cout<<"Accumulated charge(current>2uA): "<<ChargeCount<<" mC"<<endl;
     cout<<endl;
     cout<<endl;
     

@@ -89,7 +89,7 @@ void DeadTime_EDTM(Int_t RunNo){
 
         if(T_hms_hEDTM_tdcTime>1.) NoEDTM_Events++;
 
-        if(H_BCM4A_scalerCurrent>5.){
+        if(H_BCM4A_scalerCurrent>2.){
             if(Current_high_Flag==0){
                 NoEDTM_LowCurrent += H_EDTM_scaler-EDTM_scaler_highCurrent;
                 NofhL1ACCP_LowCurrent += H_hL1ACCP_scaler-NofhL1ACCP_highCurrent;
@@ -128,7 +128,7 @@ void DeadTime_EDTM(Int_t RunNo){
     cout<<"EDTM events in the root file: "<<NoEDTM_Events<<endl;
     cout<<"Electronics live time: "<<NoEDTM_Events/H_EDTM_scaler<<endl;
     cout<<endl;
-    cout<<"----------------------------Results for current>5uA------------------------------"<<endl;
+    cout<<"----------------------------Results for current>2uA------------------------------"<<endl;
     cout<<"Total EDTM signals during the run: "<<EDTM_Total<<endl;
     cout<<"EDTM events in the root file: "<<EDTM_Event_high_Current<<endl;
     cout<<"Electronics live time: "<<EDTM_Event_high_Current/EDTM_Total<<endl;
@@ -146,7 +146,7 @@ void DeadTime_EDTM(Int_t RunNo){
     if(ps[4]!=-1) cout<<"L1ACCP/TRIG5(after ps): "<<H_hL1ACCP_scaler/H_hTRIG5_scaler*ps[4]<<endl;
     if(ps[5]!=-1) cout<<"L1ACCP/TRIG6(after ps): "<<H_hL1ACCP_scaler/H_hTRIG6_scaler*ps[5]<<endl;
     cout<<endl;
-    cout<<"----------------------------Results for current>5uA------------------------------"<<endl;
+    cout<<"----------------------------Results for current>2uA------------------------------"<<endl;
     cout<<"Total L1ACCP during the run: "<<NofhL1ACCP<<endl;
     cout<<"Total TRIG5 during the run: "<<NofhTRIG5<<endl;
     cout<<"Total TRIG6 during the run: "<<NofhTRIG6<<endl;
