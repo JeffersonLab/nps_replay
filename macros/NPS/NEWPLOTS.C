@@ -166,7 +166,7 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
          //   nBINs += 1;
        // }
    // }
-    Sum = 130;
+    Sum = 150;
     //cout << Sum << endl;
     TH2D *TimeBlock_Zoom = new TH2D(*TimeBlock); // X = Block number, Y = zoom in Timing
     TimeBlock_Zoom->SetName("TimeBlock_Zoom");

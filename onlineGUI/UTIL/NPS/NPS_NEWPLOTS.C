@@ -43,7 +43,7 @@ void NPS_NEWPLOTS(int opt){
      H4->Draw();
   }
   if(opt == 5){
-     H5->GetXaxis()->SetTitle("#_of_Pulses_Above_4mV_Pass_+-10ns_Cut");
+     H5->GetXaxis()->SetTitle("#_of_Pulses_Above_4mV_Pass_150+-40ns_Cut");
      H5->Draw();
   }
   if(opt == 6){
