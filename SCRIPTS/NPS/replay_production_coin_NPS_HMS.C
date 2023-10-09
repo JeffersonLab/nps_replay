@@ -150,8 +150,6 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THcNPSSecondaryKine* pkin_secondary = new THcNPSSecondaryKine("NPS.kin.secondary", "NPS Secondary Kinematics", "P", "H.kin",0.0,"H.react");
   gHaPhysics->Add(pkin_secondary); 
 
-  
-
 
   //=:=:=
   // NPS
@@ -165,10 +163,8 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THcNPSCalorimeter* cal = new THcNPSCalorimeter("cal", "Calorimeter");
   NPS->AddDetector(cal);
 
-  /*
   THcNPSTrackInfo* nps_trk = new THcNPSTrackInfo("NPS.cal.trk", "NPS Track Info", "NPS", "H.react");
-  gHaApps->Add(nps_trk);
-  */
+  gHaPhysics->Add(nps_trk);
 
   //=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
   // Global Objects & Event Handlers
