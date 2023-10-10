@@ -273,7 +273,14 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   // start the actual analysis
   analyzer->Process(run);     
   // Create report file from template.
-  analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
-			Form("REPORT_OUTPUT/COIN/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
+  if(MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
+    analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
+			  Form("REPORT_OUTPUT/COIN/coin_NPS_HMS_report_%d_%d_%d_%d.report",
+			  RunNumber, FirstSegment, FirstEvent, MaxEvent)); //FIXME:CHANGE
+  } else {
+    analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
+			  Form("REPORT_OUTPUT/COIN/coin_NPS_HMS_report_%d_%d.report",
+			  RunNumber, MaxEvent)); //FIXME:CHANGE
+  }
   
 }
