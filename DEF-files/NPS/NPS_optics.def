@@ -1,0 +1,23 @@
+#Include 'only' variables for HMS Optics script
+#Production variables already defined take care of all things.
+
+#include "DEF-files/HMS/PRODUCTION/PID/hpid_vars.def"
+#block H.cal.etottracknorm
+#block H.cer.npeSum
+#include "DEF-files/HMS/PRODUCTION/KIN/hkin_vars.def"
+#block H.kin.*
+#include "DEF-files/HMS/PRODUCTION/GTR/hgtr_vars.def"
+#block H.dc.y_fp
+#block H.dc.x_fp
+#block H.dc.yp_fp
+#block H.dc.xp_fp
+#block H.gtr.dp
+#block H.gtr.ph
+#block H.gtr.y
+#include "DEF-files/HMS/PRODUCTION/EXTCOR/hextcor_vars.def"
+#block H.extcor.xsieve
+#block H.extcor.ysieve
+#block H.react.z
+#include "DEF-files/HMS/PRODUCTION/RASTER/hraster_vars.def"
+#block H.rb.raster.*
+#include "DEF-files/HMS/PRODUCTION/EPICS/hepics_vars.def"
