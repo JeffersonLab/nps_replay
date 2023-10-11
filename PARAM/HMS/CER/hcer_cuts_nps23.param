@@ -28,4 +28,4 @@ hcer_adc_tdc_offset= 0.
 ; fall 2019 -spring 2020 analysis A1n, d2n
 ; cut variable is H.cer.goodAdcTdcDiffTime
 hcer_adcTimeWindowMin =   117.,  139.
-hcer_adcTimeWindowMax =  157., 179.
+hcer_adcTimeWindowMax =  170., 179.

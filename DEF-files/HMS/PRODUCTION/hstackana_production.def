@@ -17,3 +17,7 @@
 #include "DEF-files/HMS/PRODUCTION/KIN/hkin_vars.def"
 #include "DEF-files/HMS/PRODUCTION/GTR/hgtr_vars.def"
 #include "DEF-files/HMS/PRODUCTION/EXTCOR/hextcor_vars.def"
+#include "DEF-files/HMS/PRODUCTION/HEL/hel_vars.def"
+
+block T.hms*
+block H.hod*
