@@ -1,0 +1,17 @@
+#********************
+# VTP Variables
+#********************
+
+block NPS.cal.vtpClusE
+
+block NPS.cal.vtpClusX
+block NPS.cal.vtpClusY
+
+block NPS.cal.vtpClusTime
+
+block NPS.cal.vtpClusSize
+
+; Add single Ndata branch to  get number of of hits
+block Ndata.NPS.cal.vtpClusY
+
+;block NPS.cal.vtp*

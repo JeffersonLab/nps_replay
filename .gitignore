@@ -19,6 +19,7 @@ NPS_OUTPUT
 HISTOGRAMS
 MON_OUTPUT
 ROOTfiles
+ROOTfiles_old*
 .root_history
 raw
 raw.copiedtotape

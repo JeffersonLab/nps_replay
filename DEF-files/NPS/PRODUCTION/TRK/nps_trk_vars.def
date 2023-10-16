@@ -1,0 +1,13 @@
+#********************
+# Calorimeter Track Variables
+#********************
+
+block NPS.cal.trk.x
+block NPS.cal.trk.y
+block NPS.cal.trk.p
+
+block NPS.cal.trk.px
+block NPS.cal.trk.py
+block NPS.cal.trk.pz
+
+block NPS.cal.trk.mult

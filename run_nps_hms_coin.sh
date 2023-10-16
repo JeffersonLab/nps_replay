@@ -137,6 +137,10 @@ outFileMonitor="output.txt"
   hcana -q "VTP_hcana.C(${runNum},${numEventsk})"
   sleep 2
   hcana -q "helicity.C(${runNum},${numEventsk})"
+  sleep 2
+  hcana -q -b "Pion_plot.C(${runNum})"
+  sleep 2
+  hcana -q -b "Make_scaler_plots.C(${runNum})"
   cd ../..
 
   echo "" 

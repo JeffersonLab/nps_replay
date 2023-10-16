@@ -23,8 +23,8 @@
 const double_t angle = 20.61; 
 const double_t convdeg = TMath::Pi()/180.;
 const double_t MinClusSize = 3;
-const double_t clusTmax = 155. + 10;
-const double_t clusTmin = 155. - 10;
+const double_t clusTmax = 160;
+const double_t clusTmin = 148;
 
 //forward declaration;
 void GetPvect(double_t clx, double_t cly,double_t clz, double_t cle, TVector3 &vtx, TVector3 &pvect);

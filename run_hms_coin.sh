@@ -17,10 +17,12 @@ if [ -z "$runNum" ]; then
 fi
 
 numEvents=$2
+
 if [ -z "$numEvents" ]; then
   numEvents=50000
 fi
 
+numEventsk=eval ${numEvents}/1000
 # Which scripts to run.
 script="SCRIPTS/${SPEC}/PRODUCTION/replay_production_${spec}_coin.C"
 config="CONFIG/${SPEC}/PRODUCTION/${spec}_production.cfg"
@@ -92,6 +94,19 @@ replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${r
 
   # Link the ROOT file to latest for online monitoring
   ln -fs ${rootFile} ${latestRootFile}
+
+  sleep 2
+  cd macros/HMS/
+#  hcana -q "ALL.C(${runNum},${numEventsk})"
+#  sleep 2
+#  hcana -q "NEWPLOTS.C(${runNum},${numEventsk})"
+#  sleep 2
+#  hcana -q "VTP_hcana.C(${runNum},${numEventsk})"
+#  sleep 2
+  hcana -q "helicity.C(${runNum},${numEvents})"
+  cd ../..
+
+
   
   echo "" 
   echo ""
@@ -109,9 +124,40 @@ replayReport="${reportFileDir}/REPLAY_REPORT/replayReport_${spec}_production_${r
   cd onlineGUI
   eval ${runOnlineGUI}
   eval ${saveExpertOnlineGUI}
+  pwd
+  echo " ->file      ${outExpertFile}"
+  echo "../HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf"
   mv "${outExpertFile}.pdf" "../HISTOGRAMS/${SPEC}/PDF/${outExpertFile}.pdf"
   cd ..
   ln -fs ${monExpertPdfFile} ${latestMonPdfFile}
+
+###########################################################
+# function used to prompt user for questions
+function yes_or_no(){
+  while true; do
+    read -p "$* [y/n]: " yn
+    case $yn in
+      [Yy]*) return 0 ;;
+      [Nn]*) echo "No entered" ; return 1 ;;
+    esac
+  done
+}
+# post pdfs in hclog
+yes_or_no "Upload these plots to logbook HCLOG? " && \
+    /site/ace/certified/apps/bin/logentry \
+    -cert /home/cdaq/.elogcert \
+    -t "${numEventsk}k replay plots for run ${runNum} TEST TEST TEST" \
+    -e cdaq \
+    -l TLOG \
+    -a ${latestMonPdfFile} \
+
+#    /home/cdaq/bin/hclog \
+#    --logbook "HCLOG" \
+#    --tag Autolog \
+#    --title ${events}" replay plots for run ${runnum} TEST TEST TEST" \
+#    --attach ${latestMonPdfFile} 
+###########################################################
+#    --title ${events}" replay plots for run ${runnum}" \
 
   echo "" 
   echo ""

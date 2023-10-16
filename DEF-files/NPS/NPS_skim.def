@@ -1,0 +1,7 @@
+# See $ANALYZER/examples/output_example.def for examples
+
+# HMS Histogram and Branch Definitions (Includes Epics)
+#include "DEF-files/HMS/PRODUCTION/hstackana_production.def"
+
+# HMS Histogram and Branch Definitions
+#include "DEF-files/NPS/PRODUCTION/nps_stackana_production.def"

@@ -1,0 +1,18 @@
+#********************
+# Calorimeter Variables
+#********************
+
+block NPS.cal.clusE
+
+block NPS.cal.clusT
+
+block NPS.cal.clusX
+block NPS.cal.clusY
+block NPS.cal.clusZ
+
+block NPS.cal.etot
+
+block NPS.cal.nhits
+
+block NPS.cal.nclust
+block NPS.cal.clusSize

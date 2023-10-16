@@ -1,0 +1,13 @@
+#********************
+# Calorimeter Fly Variables
+#********************
+
+# Production
+block NPS.cal.fly.e : NPS.cal.fly.e
+block NPS.cal.fly.block_clusterID
+block NPS.cal.fly.goodAdcTdcDiffTime
+
+# Cumulative (small size in file)
+block NPS.cal.fly.earray
+block NPS.cal.fly.nclust
+block NPS.cal.fly.ntracks

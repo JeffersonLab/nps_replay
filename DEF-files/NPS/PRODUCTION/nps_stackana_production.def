@@ -1,0 +1,18 @@
+#********************
+# NPS Defitions
+#********************
+
+# NPS Histograms
+#include "DEF-files/NPS/NPS_histos.def"
+
+# NPS Variables
+#include "DEF-files/NPS/PRODUCTION/CAL/nps_cal_vars.def"
+#include "DEF-files/NPS/PRODUCTION/FLY/nps_fly_vars.def"
+#include "DEF-files/NPS/PRODUCTION/TRK/nps_trk_vars.def"
+
+#include "DEF-files/NPS/PRODUCTION/KIN2/nps_secondary_vars.def"
+
+#include "DEF-files/NPS/PRODUCTION/CTIME/nps_ctime_vars.def"
+
+#include "DEF-files/NPS/PRODUCTION/VTP/nps_vtp_vars.def"
+;#include "DEF-files/NPS/PRODUCTION/VLD/nps_vld_vars.def"

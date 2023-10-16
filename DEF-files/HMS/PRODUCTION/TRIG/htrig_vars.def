@@ -1,0 +1,7 @@
+#********************
+# Trigger Apparatus Variables
+#********************
+
+block T.hms.npsTRIG1_tdcTimeRaw
+block T.hms.npsTRIG6_tdcTimeRaw
+block T.hms.hEDTM_tdcTimeRaw

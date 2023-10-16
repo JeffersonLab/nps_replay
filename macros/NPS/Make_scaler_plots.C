@@ -277,6 +277,11 @@ void Make_scaler_plots(Int_t RunNo){
 
     // TFile *rootFile = new TFile("macros/NPS/output.root", "RECREATE");
     TFile *rootFile = new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_latest.root",RunNo), "UPDATE");
+    
+    h_L1ACCP_rate->SetOption("SCAT");
+    h_BCM4A_rate->SetOption("SCAT");
+    h_TI_Livetime->SetOption("SCAT");
+
     h_L1ACCP_rate->Write("L1ACCP_Rate");
     h_BCM4A_rate->Write("BCM4A_rate");
     h_TI_Livetime->Write("TI_Livetime");

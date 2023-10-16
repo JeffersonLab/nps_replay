@@ -19,5 +19,6 @@
 #include "DEF-files/HMS/PRODUCTION/EXTCOR/hextcor_vars.def"
 #include "DEF-files/HMS/PRODUCTION/HEL/hel_vars.def"
 
-block T.hms*
-block H.hod*
+#include "DEF-files/HMS/PRODUCTION/TRIG/htrig_vars.def"
+
+# DO NOT ADD WHOLE BLOCK DEFINITIONS HERE!!!
