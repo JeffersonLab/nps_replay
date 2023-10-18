@@ -115,7 +115,7 @@ void Make_scaler_plots(Int_t RunNo){
         if(H_1MHz_scaler-H_1MHz_scaler_last>100.){
             time = H_1MHz_scaler/1000000.;
             L1ACCP_rate_i = (H_hL1ACCP_scaler-H_hL1ACCP_scaler_last)/time;
-            current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time-1605.)/9570.;
+            current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time+1605.)/9570.;
 
             TT.push_back(time/60.);
             L1ACCP_rate.push_back(L1ACCP_rate_i);

@@ -118,7 +118,7 @@ void Make_scaler_plots(Int_t RunNo){
             time = H_1MHz_scaler/1000000.;
             time_diff = (H_1MHz_scaler-H_1MHz_scaler_last)/1000000.;
             L1ACCP_rate_i = (H_hL1ACCP_scaler-H_hL1ACCP_scaler_last)/time_diff;
-            current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time_diff-1605.)/9570.;
+            current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time_diff+1605.)/9570.;
 
             TT.push_back(time/60.);
             L1ACCP_rate.push_back(L1ACCP_rate_i);
@@ -199,30 +199,30 @@ void Make_scaler_plots(Int_t RunNo){
             QuartetPhase_Flag = 0;
             Asymmetry = 0.;
             Asymmetry_Total = 0.;
-            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate-1605.)/9570.;
-            Asymmetry_Total += (H_BCM4A_Hel_scalerRate-1605.)/9570.;
+            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate+1605.)/9570.;
+            Asymmetry_Total += (H_BCM4A_Hel_scalerRate+1605.)/9570.;
         }
         if(fabs(ActualHel)>0.1 && QuartetPhase>0.5 && QuartetPhase<1.5 && QuartetPhase_Flag == 0){
             QuartetPhase_Flag = 1;
-            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate-1605.)/9570.;
-            Asymmetry_Total += (H_BCM4A_Hel_scalerRate-1605.)/9570.;
+            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate+1605.)/9570.;
+            Asymmetry_Total += (H_BCM4A_Hel_scalerRate+1605.)/9570.;
         }
         if(fabs(ActualHel)>0.1 && QuartetPhase>1.5 && QuartetPhase<2.5 && QuartetPhase_Flag == 1){
             QuartetPhase_Flag = 2;
-            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate-1605.)/9570.;
-            Asymmetry_Total += (H_BCM4A_Hel_scalerRate-1605.)/9570.;
+            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate+1605.)/9570.;
+            Asymmetry_Total += (H_BCM4A_Hel_scalerRate+1605.)/9570.;
         }
         if(fabs(ActualHel)>0.1 && QuartetPhase>2.5 && QuartetPhase<3.5 && QuartetPhase_Flag == 2){
             QuartetPhase_Flag = 3;
-            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate-1605.)/9570.;
-            Asymmetry_Total += (H_BCM4A_Hel_scalerRate-1605.)/9570.;
+            Asymmetry += ActualHel*(H_BCM4A_Hel_scalerRate+1605.)/9570.;
+            Asymmetry_Total += (H_BCM4A_Hel_scalerRate+1605.)/9570.;
 
             Asymmetry = Asymmetry/Asymmetry_Total*1000000; // ppm
             Charge_Asymmetry.push_back(Asymmetry);
             if(Asymmetry>Asymmetry_max) Asymmetry_max = Asymmetry;
             // cout<<EventNo<<"\t"<<QuartetPhase<<"\t"<<Asymmetry<<endl;
         }
-        // cout<<EventNo<<"\t"<<QuartetPhase<<"\t"<<ActualHel<<"\t"<<(H_BCM4A_Hel_scalerRate-1605.)/9570.<<"\t"<<H_BCM4A_Hel_scalerCurrent<<endl;
+        // cout<<EventNo<<"\t"<<QuartetPhase<<"\t"<<ActualHel<<"\t"<<(H_BCM4A_Hel_scalerRate+1605.)/9570.<<"\t"<<H_BCM4A_Hel_scalerCurrent<<endl;
     }
 
 
