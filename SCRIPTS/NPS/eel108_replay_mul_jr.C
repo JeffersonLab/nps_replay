@@ -1,4 +1,4 @@
-void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
+void eel108_replay_mul_jr(Int_t RunNumber=0, Int_t MaxEvent=0, Int_t split=0)
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -19,14 +19,14 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   // Create file name patterns.
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
   //const char* RunFileNamePattern="nps_coin_%d.dat.0";
-  const char* RunFileNamePattern="nps_%d.dat.0";
+  const char* RunFileNamePattern="nps_%d.dat.%d";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -61,7 +61,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   THaEvent* event = new THaEvent;
 
   //Define the run(s) that we want to analyze.
-  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber , split ) );
   
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
@@ -71,7 +71,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   run->Print();
   
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber);
+  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber,split      );
 
   // Define the analysis parameters
   analyzer->SetEvent( event );

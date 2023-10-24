@@ -1,4 +1,5 @@
 variable T.hms.hEDTM_tdcTime
+variable H.BCM4A.scaler
 variable H.BCM4A.scalerRate
 variable H.BCM4A.scalerCurrent
 variable H.hL1ACCP.scaler
@@ -8,3 +9,8 @@ variable H.EDTM.scaler
 variable T.helicity.hel
 variable T.helicity.helpred
 variable T.helicity.helrep
+variable H.hTRIG1.scaler
+variable H.hTRIG2.scaler
+variable H.hTRIG3.scaler
+variable H.hTRIG4.scaler
+variable H.1MHz.scaler

@@ -81,6 +81,7 @@ monPdfFile="${spec}_test_zh_${runNum}.pdf"
 monExpertPdfFile="${spec}_production_expert_${runNum}.pdf"
 latestMonRootFile="${monRootDir}/${spec}_production_latest.root"
 latestMonPdfFile="${monPdfDir}/${spec}_hms_coin_latest.pdf"
+latestMonPdfFile_hclog="${monPdfDir}/nps_hms_coin_${runNum}_${numEventsk}k.pdf"
 
 
 # What is base name of onlineGUI output.
@@ -184,7 +185,8 @@ yes_or_no "Upload these plots to logbook HCLOG? " && \
     -t "${numEventsk}k replay plots for run ${runNum}" \
     -e cdaq \
     -l HCLOG \
-    -a ${latestMonPdfFile} \
+    --tag Autolog \
+    -a ${latestMonPdfFile_hclog} \
 ###########################################################
 
 

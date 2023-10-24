@@ -94,7 +94,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_energy->SetMarkerColor(kRed);
 	  h_vtp_cluster_energy->SetMarkerSize(34);
           	
-	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time"," Accumulated Hit Time In Each Block",200,0, 400);
+	  h_vtp_cluster_time = new TH1F("h_vtp_cluster_time","Cluster time",200,0, 400);
       h_vtp_cluster_time->SetFillColor(2);
 	  h_vtp_cluster_time->SetMarkerColor(kRed);
 	  h_vtp_cluster_time->SetMarkerSize(34);
@@ -289,7 +289,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	   //TCanvas *c_timee = new TCanvas ("c_time","c_time",800,600);
 	   //c_timee->cd();
 	   //c_timee->SetLogy();
-	   h_vtp_cluster_time->GetXaxis()->SetTitle("Accumulating Hit Time In Each Block");
+	   h_vtp_cluster_time->GetXaxis()->SetTitle("Cluster Time");
 	   h_vtp_cluster_time->GetYaxis()->SetTitle("Events");  
 	   //h_vtp_cluster_time->Draw();
        f->WriteTObject(h_vtp_cluster_time,"h_vtp_cluster_time");                                                                                                   

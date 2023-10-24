@@ -20,7 +20,7 @@ void cosmics_replay_wassim(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Create file name patterns.
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="nps_%d.dat.0";
+  const char* RunFileNamePattern="nps_coin_%d.dat.0";
   vector<TString> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");

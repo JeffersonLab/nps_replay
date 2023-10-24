@@ -1,4 +1,6 @@
-void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
+#include "MultiFileRun.h"
+
+void vld_replay_multi(Int_t RunNumber=0, Int_t MaxEvent=0, int FirstSegment = 0, int MaxSegment = 1, int FirstEvent = 1, const char* fname_prefix = "nps_coin")
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -18,15 +20,14 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
 
   // Create file name patterns.
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  //const char* RunFileNamePattern="nps_coin_%d.dat.0";
-  const char* RunFileNamePattern="nps_%d.dat.0";
-  vector<TString> pathList;
+  const char* RunFileNamePattern="%s_%d.dat.%u";
+  vector<string> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
+  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d_%d_%d.root";
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -39,8 +40,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
    
   // Load the Hall C style detector map 
   gHcDetectorMap = new THcDetectorMap();
-  gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_eel108.map");
-  //gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_standard.map");
+  gHcDetectorMap->Load("MAPS/NPS/DETEC/pcal_nps_vld.map");
   
   //Add NPS spectrometer apparatus
   THaApparatus* NPS = new THcNPSApparatus("NPS","NPS");
@@ -59,9 +59,17 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
  
   THcAnalyzer* analyzer = new THcAnalyzer;  
   THaEvent* event = new THaEvent;
-
   //Define the run(s) that we want to analyze.
-  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  //THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  vector<string> fileNames = {};
+  for(Int_t iseg = FirstSegment; iseg <= MaxSegment; iseg++) {
+    TString codafilename;
+    codafilename.Form(RunFileNamePattern, fname_prefix, RunNumber, iseg);
+    cout << "codafilename = " << codafilename << endl;
+    fileNames.emplace_back(codafilename.Data());
+  }
+  auto* run = new Podd::MultiFileRun( pathList, fileNames);
+
   
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
@@ -71,7 +79,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   run->Print();
   
   // Define the analysis parameters
-  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber);
+  TString ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
 
   // Define the analysis parameters
   analyzer->SetEvent( event );
@@ -80,7 +88,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
                               // 2 = counter is event number
    
   analyzer->SetOutFile(ROOTFileName.Data());
-  analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_eel108.dat");
+  analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_vld.dat");
   analyzer->SetOdefFile("DEF-files/NPS/NPS.def");      
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts.def");  
   // Set EPICS event type

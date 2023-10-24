@@ -28,6 +28,7 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
 			      RunNumber, MaxEvent);
   TString report_file  = Form("REPORT_OUTPUT/HMS/hms50k/replay_hms_production_%d_%d.report",
 			      RunNumber, MaxEvent);
+  TString report_file_hel = Form("REPORT_OUTPUT/HMS/hms50k/hel_replay_hms_production_%d_%d.report", RunNumber, MaxEvent);
 
   //Initialize gHcParms.
   //Shared HMS gHcParms setup located in ../hms_shared.h
@@ -77,5 +78,7 @@ void replay_production_hms_coin(Int_t RunNumber=0, Int_t MaxEvent=0) {
   // Create report file from template
   analyzer->PrintReport(gHcParms->GetString("g_ctp_template_filename"),
   			report_file);  // optional
+
+  analyzer->PrintReport("TEMPLATES/HMS/SCALERS/hhelscalers.template",report_file_hel); // optional
 
 }
