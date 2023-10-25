@@ -22,7 +22,3 @@ script="SCRIPTS/NPS/PeterB.C"
 runbc="root -l -b -n -q -x \"${script}(${runNum}, ${dnps})\""
 eval ${runbc}
 
-# look at histograms
-cd /net/cdaq/cdaql2data/cdaq/skimfiles/Skimhist
-fname = "Skimhist(${runNum}.top"
-./td fanme
