@@ -20,7 +20,7 @@ nps_cal_arr_ADCmode = 1
 
 ; This value sets how far (in ns) before and after a hit a neighbor block can be hit and still be added to a cluster
 ; If a block is hit at time t, then the neighbor block must be hit in the interval (t - nps_cal_ClusterTimeWindow, t + nps_cal_ClusterTimeWindow) to be included in the cluster
-;nps_cal_cluster_time_window = 10.0
+nps_cal_cluster_time_window = 5.0
 
 ; this offset (in ns) is applied to adcPulseTime variable to move away from negative values
 ;(this may need to be modified for actual NPS data, as an offset may not be neede anymore)
@@ -288,7 +288,7 @@ nps_cal_arr_AdcPulseTimeMax = 100., 100., 100., 100., 100., 100., 100., 100., 10
 ; Debug parameters (Do we need these for NPS? Maybe Steve can comment, as we move along with NPS software development)
 nps_dbg_init_cal = 0
 nps_dbg_decoded_cal = 0
-nps_dbg_clusters_cal = 0
+nps_dbg_clusters_cal = 1
 nps_dbg_tracks_cal = 0
 
 ; Exclusion bandwidth for calorimeter fiducial volume.
