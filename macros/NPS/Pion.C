@@ -39,16 +39,18 @@ void pi0_script(int RunNo){
     TString Input_File = FilePath + Form("nps_hms_coin_%d_latest.root",RunNo);
     TFile *f1 = new TFile(Input_File , "UPDATE");
 	TTree* oldtree = (TTree *) f1 -> Get("T");
+    if (!oldtree) cout << "Tree T does not find in rootfile" << endl;
 
 	Int_t nentries = (Int_t)oldtree-> GetEntries();
 	
  double_t nclust;
- double_t clusX[20];
- double_t clusY[20];
- double_t clusZ[20];
- double_t clusT[20];
- double_t clusE[20];
- double_t clusSize[20];
+ // increase size to be 40, in run 2253 observed nclust > 20 caused the script to fail.
+ double_t clusX[40];
+ double_t clusY[40];
+ double_t clusZ[40];
+ double_t clusT[40];
+ double_t clusE[40];
+ double_t clusSize[40];
 
   // Vertex Position
   double_t vtx_ok;
@@ -121,7 +123,6 @@ void pi0_script(int RunNo){
 		for(int evt=0; evt<nentries;evt++){
 		
 	oldtree->GetEntry(evt);
-	
 	    if (evt % 10000 == 0) cout << "Event number = " << evt << endl;
 	
 	    if(abs(vtx_z)>4.) continue;
@@ -147,8 +148,7 @@ void pi0_script(int RunNo){
     
     if(gtr_ok < 1) continue;
 
-			for(int i=0; i<nclust;i++){
-			
+			for(int i=0; i<nclust;i++){			
 				for(int j=i+1; j<nclust;j++){
 
 	                if(clusSize[i] < MinClusSize || clusSize[j] <MinClusSize) continue;
@@ -204,7 +204,7 @@ void pi0_script(int RunNo){
 	cout << "Finished filling new Tree" << endl; 
 	f1->cd();
 	newtree->Write();
-	f1->Close();   
+	f1->Close();
 }
 
 void GetPvect(double_t clx, double_t cly,double_t clz, double_t cle, TVector3 &vtx, TVector3 &pvect)
