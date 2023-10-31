@@ -18,6 +18,10 @@ nps_cal_clustering = 1
 ; Threshold on selecting good adc is dynamic pedestal+nps_cal_AdcPosThreshold
 nps_cal_arr_ADCmode = 1
 
+; This value sets how far (in ns) before and after a hit a neighbor block can be hit and still be added to a cluster
+; If a block is hit at time t, then the neighbor block must be hit in the interval (t - nps_cal_ClusterTimeWindow, t + nps_cal_ClusterTimeWindow) to be included in the cluster
+nps_cal_cluster_time_window = 5.0
+
 ; this offset (in ns) is applied to adcPulseTime variable to move away from negative values
 ;(this may need to be modified for actual NPS data, as an offset may not be neede anymore)
 ; needs to be an array of 1079 elements
