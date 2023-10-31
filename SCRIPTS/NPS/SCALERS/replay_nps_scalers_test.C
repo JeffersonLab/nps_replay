@@ -2,7 +2,7 @@
 
 void replay_nps_scalers_test(int RunNumber=0, int MaxEvent=-1, int FirstEvent = 1, int MaxSegment = 0, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
 {
-
+// READ HERE !!!! THIS IS HARD CODED TO ONLY REPLAY 50k events!!! Ignore the MaxEvent = -1!!!!!!!!!
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
     cout << "Enter a Run Number (-1 to exit): ";
@@ -108,7 +108,7 @@ void replay_nps_scalers_test(int RunNumber=0, int MaxEvent=-1, int FirstEvent = 
 
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
-  run->SetEventRange(FirstEvent, MaxEvent);    
+  run->SetEventRange(FirstEvent, 50000);    
   run->SetNscan(1);
   run->SetDataRequired(0x7);
   run->Print();

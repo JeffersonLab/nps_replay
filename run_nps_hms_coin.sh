@@ -131,17 +131,13 @@ outFileMonitor="output.txt"
   
   sleep 2
   cd macros/NPS/
-  hcana -q "ALL.C(${runNum},${numEventsk})"
-  sleep 2
+  hcana -q "ALL.C(${runNum},${numEventsk})" 
   hcana -q "NEWPLOTS.C(${runNum},${numEventsk})"
-  sleep 2
   hcana -q "VTP_hcana.C(${runNum},${numEventsk})"
-  sleep 2
   hcana -q "helicity.C(${runNum},${numEventsk})"
-  sleep 2
   hcana -q -b "Pion_plot.C(${runNum})"
-  sleep 2
   hcana -q -b "Make_scaler_plots.C(${runNum})"
+  sleep 2 
   cd ../..
 
   echo "" 
