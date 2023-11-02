@@ -142,7 +142,7 @@ void replay_nps_scalers(int RunNumber=0, int MaxEvent=0, int FirstEvent = 1, int
   // start the actual analysis
   analyzer->Process(run);     
   // Create report file from template.
-  //analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
-  //			Form("REPORT_OUTPUT/COIN/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
+  analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
+  			Form("REPORT_OUTPUT/COIN/SCALERS/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
   
 }

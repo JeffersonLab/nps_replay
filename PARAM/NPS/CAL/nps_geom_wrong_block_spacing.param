@@ -30,14 +30,9 @@ nps_cal_arr_front_y = 0.
 nps_cal_arr_front_z = 300.
 
 ;dimensions of calorimeter blocks
-;nps_cal_arr_xstep = 2.
-;nps_cal_arr_ystep = 2.
-;nps_cal_arr_zsize = 50.0
-; the above are not correct. Changed to correct
-; values on Oct. 31, 2023, Peter Bosted
-nps_cal_arr_xstep = 2.16
-nps_cal_arr_ystep = 2.16
-nps_cal_arr_zsize = 20.5
+nps_cal_arr_xstep = 2.
+nps_cal_arr_ystep = 2.
+nps_cal_arr_zsize = 50.0
 
 
 ; Parameters copied from HMS
