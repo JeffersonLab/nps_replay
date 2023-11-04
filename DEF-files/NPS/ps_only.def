@@ -6,6 +6,7 @@ variable H.hL1ACCP.scaler
 variable H.hTRIG5.scaler
 variable H.hTRIG6.scaler
 variable H.EDTM.scaler
+variable H.EDTM_CP.scaler
 variable T.helicity.hel
 variable T.helicity.helpred
 variable T.helicity.helrep

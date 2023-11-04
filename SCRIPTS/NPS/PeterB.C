@@ -206,14 +206,14 @@ void PeterB(Int_t runNumber, Int_t targ=1){
 
     tt->GetEntry(kk);
     evtType = tt->GetLeaf("fEvtHdr.fEvtType")->GetValue(); 
-    if(kk>0 && kk<10) printf("kk,evtype %d %3.1f edtm=%8.1f %8.1f %8.1f \n",kk,evtType,edtmtdc,trig1tdc, trig6tdc) ;
+    if(kk>0 && kk<100) printf("kk,evtype %d %3.1f edtm=%8.1f %8.1f %8.1f \n",kk,evtType,edtmtdc,trig1tdc, trig6tdc) ;
 // skip etdm events and no-track HMS events
     if(edtmtdc<0.1 && hdelta > -15. && hdelta < 15.) {
 // look at HMS 
     if(hdelta>-100. && hdelta<100. &&
       HgtrTh>-1. && HgtrTh<1. && hcaletot>0.001 &&
       HgtrPh>-1. && HgtrPh<1. ) {
-      if(kk>300 && kk<400) printf("HMS %d %3.1f %6.2f %7.4f %7.4f %5.2f %5.2f\n",
+      if(kk>300 && kk<310) printf("HMS %d %3.1f %6.2f %7.4f %7.4f %5.2f %5.2f\n",
 	kk,evtType,hdelta,HgtrTh,HgtrPh,hcaletot,hcernpe) ;
       /*    fprintf(f7,"%6.2f %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f\n",
 	    hdelta,HgtrTh,HgtrPh,hdcx,hdcxp,hdcy,hdcyp) ; */
@@ -230,7 +230,7 @@ void PeterB(Int_t runNumber, Int_t targ=1){
     }
 
 // look at NPS
-    if(kk>10 && kk<300 && nclust > 1.) {
+    if(kk>290 && kk<300 && nclust > 1.) {
       printf("ct= %8.2f %8.2f %8.0f %8.0f %8.0f %8.0f %8.0f \n",
         ctpi1,ctpi2,trig1tdc,trig6tdc,edtmtdc,starttime,fptime) ;
       printf("kk=%d et=%3.1f nclust= %6.1f vnclus=%d\n",
@@ -458,7 +458,7 @@ void PeterB(Int_t runNumber, Int_t targ=1){
         cthist1[icc]++ ;
 	printf("error, no trig1 or trg6 %.0f %.0f \n",trig1tdc,trig6tdc) ;
       }
-      if(mbest>0.1 && mbest<0.2 && kk>2000 && kk<2050) 
+      if(mbest>0.1 && mbest<0.2 && kk>2000 && kk<2010) 
         printf("%7.3f %7.1f %8.1f %8.1f %d %d \n",mbest,ctpi1,
          trig1tdc,trig6tdc,trg1,trg6) ;
 // cluster times for trig6 only
@@ -525,7 +525,7 @@ void PeterB(Int_t runNumber, Int_t targ=1){
 	    int nn=0 ;
 	    if(j == 0) nn = n1best ;
 	    if(j == 1) nn = n2best ;
-	    if(kk>500 && kk<700)
+	    if(kk>500 && kk<510)
             printf("%5d %6.3f %5.1f %5.1f %5.1f \n",
 		  j,clusE[nn],clusX[nn],clusY[nn],clusT[nn]) ;
             for(int i=0 ; i < 1080 ; i++) {
@@ -536,7 +536,7 @@ void PeterB(Int_t runNumber, Int_t targ=1){
 		  i,icluster,block_e[i],block_t[i]) ;
 		int jj = block_t[i] - 142. ;
 		if(jj > -1 && jj<20) blktimeh[i][jj]++ ;
-	        if(kk>500 && kk<700) 
+	        if(kk>500 && kk<510) 
                   printf("%4d %3d %8.4f %8.1f \n",
 		  i,icluster,block_e[i],block_t[i]) ;
 		if(block_e[i] > etot/5.) {
