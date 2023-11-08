@@ -25,7 +25,7 @@
 #include <fstream>   
 #include "TExec.h"
 
-void PEDESTALS(int RunNumber, int evt){
+void PEDESTALS(int RunNumber = 2731){
 
 	  //CONSTANTS
 	
@@ -46,7 +46,7 @@ void PEDESTALS(int RunNumber, int evt){
 
           //Run over root files and trees
 	
-	  f= new TFile(Form("../../../../../../../cdaq/nps-2023/nps_replay/ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_%ik_events.root",RunNumber,evt));
+	  f= new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",RunNumber),"UPDATE");
 	   //  f= new TFile(Form("../ROOTfiles/nps_%i.root",RunNumber));
 	   t= new TChain("T");
 	   t->Add(f->GetName(), -1);
@@ -109,9 +109,6 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
 	   // PEDESTAL
 
 
-           TCanvas *c_Ped = new TCanvas("", "c_Ped", 800, 600);
-            
-           c_Ped->cd();
 
            // Histogram for the block number
 
@@ -151,7 +148,6 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
                 if (Mean_Ped[iBlock] > 0){
                difference[iBlock] = static_cast<int>((Mean_Ped[iBlock] * (4096. / 1000.)) - values[iBlock]);
 
-                cout << "DIFFERENCE   = "<< difference[iBlock]<<endl;
 		// cout<<"Block Number  = "<< iBlock<<  "    Pedestal  = "<<Mean_Ped[iBlock]<<endl;
                 h_Mean_Ped->Fill(29-col,row,difference[iBlock]);
                 h_Ped->Fill(29-col,row,difference[iBlock]);
@@ -159,8 +155,6 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
 	    }
 
          // Set bin labels for the Pedestal histogram
-	    
-         c_Ped->cd();	 
 
          // x Axis
 
@@ -180,7 +174,6 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
          h_Mean_Ped->GetYaxis()->SetTickSize(0.009);
          h_Mean_Ped->GetYaxis()->SetTickSize(0.009);
          h_Mean_Ped->SetOption("text COLZ");
-         h_Mean_Ped->Draw("same");
 
          // x Axis
 
@@ -204,28 +197,9 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
 
 	 // Draw vertical and horizontal lines to delimit blocks
 
-         TLine *ln_Ped = new TLine();
-         ln_Ped->SetLineStyle(2);
-         ln_Ped->SetLineColor(kBlack);
-         
-
-	 // Vertical lines on the x axis
-
-           for ( Int_t i=-1;i<29;i++){
-	     ln_Ped->DrawLine(i+0.5,-0.5,i+0.5,35.5);
-           }
-
-	 // Vertical lines of the y axis
-  
-           for (Int_t i=1; i<=h_Ped->GetNbinsY(); i++) {
-    
-               ln_Ped->SetLineStyle(2);
-               ln_Ped->SetLineColor(kBlack);
-               ln_Ped->DrawLine(-0.5,h_Ped->GetYaxis()->GetBinUpEdge(i),29.5,h_Ped->GetYaxis()->GetBinUpEdge(i));
-            }
-	    
-	   
-	   c_Ped->Print("PEDESTAL_MEAN_VALUES.pdf");
+            f->WriteTObject(h_Mean_Ped, "h_Mean_Ped");
+            f->WriteTObject(h_Ped, "h_Ped");
+            f->Close();
 
 
 	  
