@@ -27,7 +27,7 @@
 
 //MAIN FUNCTION
 
-void ALL(int RunNumber = 708, int nevent = -1) {
+void ALL(int RunNumber = 2724, int nevent = -1) {
 
 	//CONSTANTS
 	
@@ -118,14 +118,14 @@ void ALL(int RunNumber = 708, int nevent = -1) {
 	  h_adcSampPulseInt[iBlock]->SetMarkerSize(34);
 	  //  h_adcSampPulseInt[iBlock]->SetAxisRange(0, 1.3, "Y");
 
-          h_adcSampPulseTime[iBlock] = new TH1F(Form("h_adcSampPulseTime_%i", iBlock),Form("Block %i: ADC Sample Pulse Time", iBlock),200, 0,500);
+          h_adcSampPulseTime[iBlock] = new TH1F(Form("h_adcSampPulseTime_%i", iBlock),Form("Block %i: ADC Sample Pulse Time", iBlock),150, 100,250);
           h_adcSampPulseTime[iBlock]->SetFillColor(2);
 	  h_adcSampPulseTime[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulseTime[iBlock]->SetMarkerSize(34);
 	  //   h_adcSampPulseTime[iBlock]->SetAxisRange(0, 1.3, "Y");
 
 
-          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pedestal", iBlock),200, 0,500);
+          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pedestal", iBlock),250, 0,500);
           h_adcSampPulsePed[iBlock]->SetFillColor(2);
 	  h_adcSampPulsePed[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulsePed[iBlock]->SetMarkerSize(34);
@@ -427,10 +427,10 @@ void ALL(int RunNumber = 708, int nevent = -1) {
               int row = iBlock / 30; // row number
 	      
 	      Mean_Ped[iBlock] = h_adcSampPulsePed[iBlock]->GetMean();
-            if (Mean_Ped[iBlock]>0){
+	       if (Mean_Ped[iBlock]>0){
                 h_Mean_Ped->Fill(29-col,row,Mean_Ped[iBlock]);
                 h_Ped->Fill(29-col,row,iBlock);
-	      }
+		 }
 	     else {h_Mean_Ped->Fill(29-col,row,0);h_Ped->Fill(29-col,row,iBlock);}  
   	    
 	   }

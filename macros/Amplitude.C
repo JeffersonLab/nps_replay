@@ -161,7 +161,7 @@ void Amplitude(int RunNumber) {
 
 	  // CREATE A NEW HISTOGRAM FOR THE PULSE PEDESTAL
 
-          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pulse Pedestal", iBlock),150, 50,100);
+          h_adcSampPulsePed[iBlock] = new TH1F(Form("h_adcSampPulsePed_%i", iBlock),Form("Block %i: ADC Sample Pulse Pedestal", iBlock),300, 0,300);
           h_adcSampPulsePed[iBlock]->SetFillColor(2);
 	  h_adcSampPulsePed[iBlock]->SetMarkerColor(kRed);
 	  h_adcSampPulsePed[iBlock]->SetMarkerSize(34);
