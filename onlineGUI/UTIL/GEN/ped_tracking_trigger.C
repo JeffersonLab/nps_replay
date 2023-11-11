@@ -39,6 +39,7 @@ void ped_tracking_trigger(TString golden_file="",TString trigger="", TString spe
     return;
   } 
 
+
   f1->GetObject(histname.Data(),H1_ped); 
 
   gDirectory->cd(Form("%s",protorootpath.Data()));
@@ -82,7 +83,6 @@ void ped_tracking_trigger(TString golden_file="",TString trigger="", TString spe
     H2_ped_peak = 1e+38;
   }
   
-  
   TF1 *Gaussian =  new TF1("Gaussian","[0]*exp(-0.5*((x-[1])/[2])*((x-[1])/[2]))");
   Gaussian->SetParLimits(0,0,1000);
   Gaussian->SetParLimits(2,0,2);
@@ -124,5 +124,7 @@ void ped_tracking_trigger(TString golden_file="",TString trigger="", TString spe
   TLine *Upper_Limit = new TLine(gPad->GetUxmin(),+3.5,gPad->GetUxmax(),+3.5);
   Upper_Limit->SetLineColor(kRed); Upper_Limit->SetLineWidth(3); Upper_Limit->SetLineStyle(2); Upper_Limit->Draw();
 
-  Ped_Difference->~TH1D();
+
+  delete Ped_Difference;
+  
 }

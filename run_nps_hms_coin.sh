@@ -138,6 +138,7 @@ outFileMonitor="output.txt"
   hcana -q -b "Pion_plot.C(${runNum})"
   hcana -q -b "Make_scaler_plots.C(${runNum})"
   hcana -q -b "PEDESTALS.C(${runNum})"
+  hcana -q -b "Make_pi0_plots.C(${runNum})"
   sleep 2 
   cd ../..
 

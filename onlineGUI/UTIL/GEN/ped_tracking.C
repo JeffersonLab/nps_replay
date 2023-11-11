@@ -168,5 +168,5 @@ void ped_tracking(TString golden_file="", TString detector="", TString spect="",
   TLine *Upper_Limit = new TLine(gPad->GetUxmin(),+3.5,gPad->GetUxmax(),+3.5);
   Upper_Limit->SetLineColor(kRed); Upper_Limit->SetLineWidth(3); Upper_Limit->SetLineStyle(2); Upper_Limit->Draw();
 
-  Ped_Difference->~TH1D();
+  delete Ped_Difference;
 }

@@ -15,7 +15,7 @@ void helicity( Int_t nrun=20990, Int_t nevent = -1) {
          //f= new TFile(Form("../../ROOTfiles/COIN/50k/nps_hms_coin_%i_latest.root",nrun),"UPDATE");
         //}
         //else{
-         f= new TFile(Form("../../ROOTfiles/NPS/SCALERS/nps_replay_scalers_%i_1_-1.root",nrun),"READ");
+         f= new TFile(Form("../../ROOTfiles/NPS/SCALERS/nps_replay_scalers_%i_1_50000.root",nrun),"READ");
          c = new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%i_latest.root",nrun),"UPDATE");
         //}
     t = new TChain("T");

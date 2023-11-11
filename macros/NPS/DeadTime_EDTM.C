@@ -44,7 +44,7 @@ void DeadTime_EDTM(Int_t RunNo){
     }
 
     TString FilePath = "ROOTfiles/NPS/SCALERS/";
-    TString Input_File = FilePath + Form("nps_replay_scalers_%d_1_-1.root",RunNo);
+    TString Input_File = FilePath + Form("nps_replay_scalers_%d_1_50000.root",RunNo);
     TFile *file = new TFile(Input_File , "READ");
 
     TTree *treeT = (TTree *)file->Get("T");

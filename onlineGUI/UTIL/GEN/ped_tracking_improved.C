@@ -23,6 +23,7 @@ void ped_tracking_improved(TString golden_file = "", TString detector = "",
     cout << "Enter a detector polarity (pos = 1, neg = 2): " << endl;
     cin >> polarity;
   }
+  
 
   TString histname = Form("%s%s", spect.Data(), detector.Data());
   if (histname.Contains("hodo") && histname.Contains("1x") && polarity == 1)

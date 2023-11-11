@@ -17,6 +17,9 @@ objList = ['Run #',
            'BCM1 Beam Cut Current', 'BCM2 Beam Cut Current', 'BCM4A Beam Cut Current', 'BCM4B Beam Cut Current', 'BCM4C Beam Cut Current',
            'SING FID TRACK EFFIC',  'SHMS TRIG6 Computer Live Time',
            'Plane 1', 'Plane 2', 'Plane 3', 'Plane 4', '3_of_4 EFF']
+# Hi Casey, the following was added by Yaopeng
+# The shift takers can compare the results from the replay report and the end-of-run log entry
+# 'BCM4A Beam Cut Charge', 'hTRIG1', 'hTRIG2', 'hTRIG3', 'hTRIG4', 'hTRIG5', 'hTRIG6'
 
 if (setting == 'singles') :
     psList     = ['1', '2', '3']

@@ -8,7 +8,8 @@ COIN NPS Calorimeter analysis report template
 Run Num     : {gen_run_number}
 Momentum    : {hpcentral:%.3f}
 Target AMU  : {gtargmass_amu:%.2f}
-Spec Theta  : {htheta_lab:%.4f}
+HMS Theta   : {htheta_lab:%.4f}
+SHMS Theta  : {stheta_lab:%.4f}
 Beam Energy : {gpbeam:%.3f}
 
 1 MHz Pulses : {H.1MHz.scaler}

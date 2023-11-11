@@ -1,6 +1,6 @@
 #include "MultiFileRun.h"
 
-void replay_nps_scalers_test(int RunNumber=0, int MaxEvent=-1, int FirstEvent = 1, int MaxSegment = 0, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
+void replay_nps_scalers_test(int RunNumber=0, int MaxEvent=50000, int FirstEvent = 1, int MaxSegment = 0, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
 {
 // READ HERE !!!! THIS IS HARD CODED TO ONLY REPLAY 50k events!!! Ignore the MaxEvent = -1!!!!!!!!!
   // Get RunNumber and MaxEvent if not provided.
