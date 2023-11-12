@@ -2,7 +2,8 @@
 
 void replay_production_skim_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEvent = 1, int MaxSegment = 1, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
 {
-
+  cout << "The SKIM replay is currently not set up to do segments.\n";
+  cout << "You will overwrite files if you do not heed this warning.\n";
   // Get RunNumber and MaxEvent if not provided.
   if(RunNumber == 0) {
     cout << "Enter a Run Number (-1 to exit): ";
@@ -28,15 +29,9 @@ void replay_production_skim_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   pathList.push_back("./cache");
   pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
 
+  //Only one way to replay SKIM scripts.  ALL segments, othewise they will overwite each other.
   const char* ROOTFileNamePattern;
-  if (MaxEvent == 50000 && FirstEvent == 1){
-    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_skim_%d_%d_%d.root"; // Current run_gen will have the first event = 0 so it doesnt interfere here.
-  }
-  else if (MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
-    ROOTFileNamePattern = "ROOTfiles/COIN/SKIM/nps_hms_skim_%d_%d_%d_%d.root";
-  }  else{
-    ROOTFileNamePattern = "ROOTfiles/COIN/SKIM/nps_hms_skim_%d_%d_%d.root";
-  }
+  ROOTFileNamePattern = "ROOTfiles/COIN/SKIM/nps_hms_skim_%d_%d_%d.root";
   
   
   // Add variables to global list.
@@ -234,11 +229,7 @@ void replay_production_skim_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   
   // Define the analysis parameters
   TString ROOTFileName;
-  if(MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
-    ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstSegment, FirstEvent, MaxEvent);
-  } else {
-     ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
-  }
+  ROOTFileName = Form(ROOTFileNamePattern, RunNumber, FirstEvent, MaxEvent);
 
   // Define the analysis parameters
   analyzer->SetEvent(event);
@@ -273,14 +264,8 @@ void replay_production_skim_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   // start the actual analysis
   analyzer->Process(run);     
   // Create report file from template.
-  if(MaxEvent == -1 && (FirstSegment - MaxSegment) == 0) {
-    analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
-			  Form("REPORT_OUTPUT/COIN/SKIM/skim_NPS_HMS_report_%d_%d_%d_%d.report",
-			  RunNumber, FirstSegment, FirstEvent, MaxEvent)); //FIXME:CHANGE
-  } else {
-    analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
-			  Form("REPORT_OUTPUT/COIN/SKIM/skim_NPS_HMS_report_%d_%d.report",
-			  RunNumber, MaxEvent)); //FIXME:CHANGE
-  }
+  analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
+			Form("REPORT_OUTPUT/COIN/SKIM/skim_NPS_HMS_report_%d_%d.report",
+			     RunNumber, MaxEvent)); //FIXME:CHANGE
   
 }
