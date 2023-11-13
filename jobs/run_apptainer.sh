@@ -18,15 +18,6 @@ APPTAINER_IMAGE="/xxx/xxxx/xx.sif"         # apptainer image location
 
 cd $SCRDIR
 
-# check if env vars are set properly
-# if not run the setup script
-if [ -z "$HCANA" ]
-then
-    echo "HCANA not set.."
-    echo "run the setup script.."
-    setup_farm.sh
-fi
-
 
 # ROOT output directory
 OUTDIR=${BASEDIR}/ROOTfiles

@@ -9,7 +9,7 @@ jobname=$3
 #-----------------------------------------
 jobdir=`pwd`
 script="${jobdir}/run.sh"
-outdir="/volatile/hallc/nps/sanghwa/log"
+outdir="/volatile/hallc/nps/panta/log"
 #-----------------------------------------
 
 if [ ! -d ${outdir} ]
