@@ -70,6 +70,35 @@ void pi0_script(int RunNo){
     Double_t pmissy = 0;
     Double_t pmissz = 0;    
     Double_t emiss = 0;
+
+    oldtree->SetBranchStatus("*",false);
+    oldtree->SetBranchStatus("NPS.cal.clusE", true);
+	oldtree->SetBranchStatus("NPS.cal.clusT", true);
+	oldtree->SetBranchStatus("NPS.cal.clusX", true);
+    oldtree->SetBranchStatus("NPS.cal.clusY", true);
+    oldtree->SetBranchStatus("NPS.cal.clusZ", true);
+    oldtree->SetBranchStatus("NPS.cal.clusSize", true);
+    oldtree->SetBranchStatus("NPS.cal.nclust", true);
+
+    oldtree->SetBranchStatus("H.react.ok", true);
+    oldtree->SetBranchStatus("H.react.x", true);
+	oldtree->SetBranchStatus("H.react.y", true);
+	oldtree->SetBranchStatus("H.react.z", true);
+
+	oldtree->SetBranchStatus("NPS.cal.nclust", true);
+
+    oldtree->SetBranchStatus("NPS.kin.secondary.pmiss_x", true);
+    oldtree->SetBranchStatus("NPS.kin.secondary.pmiss_y", true);
+    oldtree->SetBranchStatus("NPS.kin.secondary.pmiss_z", true);
+    oldtree->SetBranchStatus("NPS.kin.secondary.emiss", true);
+    
+    oldtree->SetBranchStatus("H.gtr.ok",true);
+    oldtree->SetBranchStatus("H.gtr.dp", true);
+
+    oldtree->SetBranchStatus("H.cal.etracknorm", true);
+    oldtree->SetBranchStatus("H.cer.npeSum", true);
+
+    
     
 	oldtree->SetBranchAddress("NPS.cal.clusE", clusE);
 	oldtree->SetBranchAddress("NPS.cal.clusT", clusT);
