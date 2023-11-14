@@ -11,7 +11,10 @@ block NPS.cal.vtpClusTime
 
 block NPS.cal.vtpClusSize
 
-; Add single Ndata branch to  get number of of hits
-block Ndata.NPS.cal.vtpClusY
+# Add single Ndata branch to  get number of of hits
+# Adding Ndata does not actually add the branches.
+# It just causes an error message.
+# The VTP Ndata branch is there anyways.
+# block Ndata.NPS.cal.vtpClusY
 
-;block NPS.cal.vtp*
+#block NPS.cal.vtp*
