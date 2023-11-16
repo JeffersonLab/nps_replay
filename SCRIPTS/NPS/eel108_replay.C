@@ -23,7 +23,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   TString datadir = gSystem->Getenv("DATA_DIR");
   vector<TString> pathList;
   if ( !datadir.IsNull() ) {
-    pathlist.push_back(datadir.Data());
+    pathList.push_back(datadir.Data());
   }
   else {
     pathList.push_back(".");
@@ -33,7 +33,7 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
     pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
   }
 
-  for( const auto& path: pathlist ) {
+  for( const auto& path: pathList ) {
     cout << "search paths = " << path << endl;
   }
   
