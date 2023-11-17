@@ -5,11 +5,11 @@
  *******************************/
 
 void NPS_AMP(){
-  TH1F* H1;
-  TH1F* H2;
+  TH2F* H1;
+  TH2F* H2;
   
-  H1 = (TH1F*) gDirectory->Get("Amplitude");
-  H2 = (TH1F*) gDirectory->Get("Amplitude_Mean");
+  H1 = (TH2F*) gDirectory->Get("Amplitude");
+  H2 = (TH2F*) gDirectory->Get("Amplitude_Mean");
 
   //Specify the canvas
 

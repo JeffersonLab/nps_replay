@@ -1,15 +1,15 @@
 /*******************************
- * NPS PED ONLINEGUI TESTING
+ * NPS AMP ONLINEGUI TESTING
  *
  * 
  *******************************/
 
-void NPS_PED(){
+void NPS_SAT(){
   TH2F* H1;
   TH2F* H2;
-  
-  H1 = (TH2F*) gDirectory->Get("Pedestal");
-  H2 = (TH2F*) gDirectory->Get("Pedestal_Mean");
+
+  H1 = (TH2F*) gDirectory->Get("h_sat");
+  H2 = (TH2F*) gDirectory->Get("h_sat_count");
 
   //Specify the canvas
 

@@ -5,11 +5,11 @@
  *******************************/
 
 void NPS_TIME(){
-  TH1F* H1;
-  TH1F* H2;
+  TH2F* H1;
+  TH2F* H2;
   
-  H1 = (TH1F*) gDirectory->Get("Time");
-  H2 = (TH1F*) gDirectory->Get("Time_Mean");
+  H1 = (TH2F*) gDirectory->Get("Time");
+  H2 = (TH2F*) gDirectory->Get("Time_Mean");
 
   //Specify the canvas
 

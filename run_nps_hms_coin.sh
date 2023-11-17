@@ -139,6 +139,7 @@ outFileMonitor="output.txt"
   hcana -q -b "Make_scaler_plots.C(${runNum})"
   hcana -q -b "PEDESTALS.C(${runNum})"
   hcana -q -b "Make_pi0_plots.C(${runNum})"
+  hcana -q -b "Saturation.C(${runNum})"
   sleep 2 
   cd ../..
 
