@@ -1,4 +1,4 @@
-void Saturation(int runnum = 2483){
+void Saturation(int runnum = 2968){
 
 	gROOT->SetBatch(kTRUE);
 
@@ -24,7 +24,7 @@ void Saturation(int runnum = 2483){
 	Double_t adcSampPulseTime[nblocks];
 	Double_t adcSampPulseInt[nblocks];
     Int_t  NdataadcCounter;
-	Double_t adcSampWaveform[200000] = {};
+	Double_t adcSampWaveform[1000000] = {};
 	Int_t NdataadcSampWaveform;
 
 	t1->SetBranchStatus("*",false);
@@ -44,7 +44,6 @@ void Saturation(int runnum = 2483){
     t1->SetBranchAddress("NPS.cal.fly.adcSampPulseTime",&adcSampPulseTime);
 	t1->SetBranchAddress("NPS.cal.fly.adcSampWaveform",&adcSampWaveform);
 	t1->SetBranchAddress("Ndata.NPS.cal.fly.adcSampWaveform",&NdataadcSampWaveform);
-
 	Int_t sintillatorcounter;
 	Double_t threshold = 800.0;
 	Int_t saturationcounter[1080] = {};
@@ -159,13 +158,13 @@ void Saturation(int runnum = 2483){
 
 	// Histogram for the block number
 	   
-    TH2F *h_sat = new TH2F("", "Counter of Amplitude > 1V, empty means good", 30, -0.5, 29.5, 36, -0.5, 35.5);
+    TH2F *h_sat = new TH2F("", "# of events with saturation in fadc waveform, empty means good", 30, -0.5, 29.5, 36, -0.5, 35.5);
     h_sat->GetXaxis()->SetTitle("Column Number");
     h_sat->GetYaxis()->SetTitle("Row Number");
 
     // Histogram for the Mean values
 
-    TH2F* h_sat_count = new TH2F("", "Counter of Amplitude > 1V, empty means good",30,-0.5,29.5,36,-0.5, 35.5);
+    TH2F* h_sat_count = new TH2F("", "# of events with saturation in fadc waveform, empty means good",30,-0.5,29.5,36,-0.5, 35.5);
     h_sat_count->GetXaxis()->SetTitle("Column Number");
     h_sat_count->GetYaxis()->SetTitle("Row Number");
 

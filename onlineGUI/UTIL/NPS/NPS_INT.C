@@ -15,11 +15,19 @@ void NPS_INT(){
 
   gStyle->SetTitleAlign(33);
   gStyle->SetTitleX(.99);
+  gPad->SetLogz(1);
 
      //Draw vertical and horizontal lines to delimit blocks
 
      
-     H2->Draw("colz");
+
+     int numcontour = 17;
+     Double_t contourlevels[17] = {0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,35,1500}; 
+     H2->SetContour(numcontour,contourlevels);
+     H2->GetZaxis()->SetTickSize(0.01);
+     H2->GetZaxis()->SetLabelOffset(-0.05);
+     H2->GetZaxis()->SetRangeUser(0,1500);
+      H2->Draw("colz,CJUST=0.0");
      H1->Draw("text,same");
      TLine *ln_Amp = new TLine();
      ln_Amp->SetLineStyle(2);

@@ -17,6 +17,7 @@ void NPS_CONFIG_PED(){
   gStyle->SetTitleX(.99);
   gStyle->SetOptStat(0);
   gStyle->SetOptFit(0);
+  H2->GetZaxis()->SetLabelOffset(-0.05);
 
      //Draw vertical and horizontal lines to delimit blocks
 

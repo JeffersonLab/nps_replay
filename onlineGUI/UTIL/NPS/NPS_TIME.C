@@ -15,6 +15,7 @@ void NPS_TIME(){
 
   gStyle->SetTitleAlign(33);
   gStyle->SetTitleX(.99);
+  H2->GetZaxis()->SetLabelOffset(-0.05);
 
      //Draw vertical and horizontal lines to delimit blocks
 
