@@ -20,13 +20,32 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   // const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
   //const char* RunFileNamePattern="nps_coin_%d.dat.0";
   const char* RunFileNamePattern="nps_%d.dat.0";
+  TString datadir = gSystem->Getenv("DATA_DIR");
   vector<TString> pathList;
-  pathList.push_back(".");
-  pathList.push_back("./raw");
-  pathList.push_back("./raw/../raw.copiedtotape");
-  pathList.push_back("./cache");
-  pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
-  const char* ROOTFileNamePattern = "ROOTfiles/nps_%d.root";
+  if ( !datadir.IsNull() ) {
+    pathList.push_back(datadir.Data());
+  }
+  else {
+    pathList.push_back(".");
+    pathList.push_back("./raw");
+    pathList.push_back("./raw/../raw.copiedtotape");
+    pathList.push_back("./cache");
+    pathList.push_back("/net/cdaq/cdaql1data/coda/data/raw");
+  }
+
+  for( const auto& path: pathList ) {
+    cout << "search paths = " << path << endl;
+  }
+  
+  TString outdir = gSystem->Getenv("OUT_DIR");
+  const char* ROOTFileNamePattern;
+  if ( !datadir.IsNull() ) {
+    ROOTFileNamePattern = Form("%s/nps_%%d.root", outdir.Data());
+  }
+  else {
+    ROOTFileNamePattern = "ROOTfiles/nps_%d.root" ;
+  }
+  
   
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber); 
@@ -90,7 +109,12 @@ void eel108_replay(Int_t RunNumber=0, Int_t MaxEvent=0)
   
   analyzer->Process(run);     // start the actual analysis
   // Create report file from template.
-  analyzer->PrintReport("TEMPLATES/NPS/NPS.template",
+  TString logdir = gSystem->Getenv("LOG_DIR");
+  if( !logdir.IsNull() ) {
+    analyzer->PrintReport("TEMPLATES/NPS/NPS.template", Form("%s/eel108_report_%d_%d.report", logdir.Data(), RunNumber, MaxEvent));
+  }
+  else{
+    analyzer->PrintReport("TEMPLATES/NPS/NPS.template",
 			Form("REPORT_OUTPUT/NPS/eel108/eel108_report_%d_%d.report", RunNumber, MaxEvent));
-  
+  }
 }
