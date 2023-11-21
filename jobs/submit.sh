@@ -5,6 +5,7 @@ nevt=$2
 jobname=$3
 
 # MODIFY THIS PART AS YOU NEED
+# to use the apptainer image replace run.sh in script path to run_apptainer.sh
 #-----------------------------------------
 jobdir=`pwd`
 script="${jobdir}/run.sh"

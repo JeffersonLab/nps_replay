@@ -7,7 +7,11 @@ def get_usage():
     return """
          To see options:
          > submit_jobs.py --help
-
+         
+         To use apptainer image change the line:
+         script = sourceDir+"/jobs/run.sh"
+         to
+         script = sourceDir+"/jobs/run_apptainer.sh"
          Examples:
          > python submit_jobs.py --runs=<run numbers, range> --nevt=<number of events to replay> --email=<your email address, optional>
          > python submit_jobs.py --runs=123,135-144,119 --nevt=1000
