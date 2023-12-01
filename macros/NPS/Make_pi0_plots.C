@@ -13,8 +13,8 @@ using namespace std;
 
 const double_t convdeg = TMath::Pi()/180.;
 const double_t MinClusSize = 3;
-const double_t clusTmax = 155.;
-const double_t clusTmin = 145.;
+const double_t clusTmax = 152.; // Changed Nov. 30 by Zheng to adopt the new Cluster T peak
+const double_t clusTmin = 140.;
 const double_t LH2_10cm_target = 1.00794*931.5/1000.;
 const double_t LD2_10cm_target = 2.014*931.5/1000./2.;
 const double_t electron_mass = 0.51099895e-3;
