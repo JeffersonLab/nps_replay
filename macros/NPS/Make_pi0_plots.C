@@ -13,8 +13,10 @@ using namespace std;
 
 const double_t convdeg = TMath::Pi()/180.;
 const double_t MinClusSize = 3;
-const double_t clusTmax = 152.; // Changed Nov. 30 by Zheng to adopt the new Cluster T peak
-const double_t clusTmin = 140.;
+// const double_t clusTmax = 152; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
+// const double_t clusTmin = 140; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
+const double_t clusTmax = 148; // Changed Dec. 09 by Yaopeng Zhang
+const double_t clusTmin = 144; // Changed Dec. 09 by Yaopeng Zhang
 const double_t LH2_10cm_target = 1.00794*931.5/1000.;
 const double_t LD2_10cm_target = 2.014*931.5/1000./2.;
 const double_t electron_mass = 0.51099895e-3;
@@ -193,6 +195,7 @@ void Make_pi0_plots(Int_t RunNo = 2834){
 
                 Double_t im2 = Q3.M2();
                 Double_t invmass = sqrt(im2);
+                Double_t fact = 0.135/invmass;
 
                 TLorentzVector beam_vect;
                 beam_vect.SetXYZM(0,0,gpbeam,electron_mass);
@@ -204,9 +207,13 @@ void Make_pi0_plots(Int_t RunNo = 2834){
                 else Targetname = LH2_10cm_target;
                 target_vect.SetXYZM(0,0,0,Targetname);
 
+                Q1.SetPxPyPzE(v_Q1[0]*fact, v_Q1[1]*fact, v_Q1[2]*fact, clusE[i]*fact);
+                Q2.SetPxPyPzE(v_Q2[0]*fact, v_Q2[1]*fact, v_Q2[2]*fact, clusE[j]*fact);
+
                 TLorentzVector X_vect;
                 X_vect = (beam_vect + target_vect - sele_vect - Q1 - Q2);
-                if (invmass < 0.1 || invmass > 0.13) continue;
+                // if (invmass < 0.1 || invmass > 0.13) continue; // Nov. 30
+                if (invmass < 0.1 || invmass > 0.15) continue; // Changed Dec. 09 by Yaopeng Zhang
                 Double_t mm2 = X_vect.M2();
                 miss_mass->Fill(mm2);
             }

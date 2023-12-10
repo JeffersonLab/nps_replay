@@ -8,7 +8,8 @@ void NPS_Pion(int opt){
 	 H3 = (TH1F*) gDirectory->Get("pi0_energy");
 
 	 if (opt == 1){
-	 TF1 * fit = new TF1("fit","gaus",0.0967,0.126);
+	//  TF1 * fit = new TF1("fit","gaus",0.0967,0.126);
+	 TF1 * fit = new TF1("fit","gaus",0.1,0.15);
 	 fit->SetParameters(1,1,1);
 	 fit->SetLineColor(6);
 	 fit->SetParNames("Normalization","Mean","Sigma");

@@ -23,8 +23,10 @@
 const double_t angle = 20.61; 
 const double_t convdeg = TMath::Pi()/180.;
 const double_t MinClusSize = 3;
-const double_t clusTmax = 152; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
-const double_t clusTmin = 140;
+// const double_t clusTmax = 152; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
+// const double_t clusTmin = 140; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
+const double_t clusTmax = 148; // Changed Dec. 09 by Yaopeng Zhang
+const double_t clusTmin = 144; // Changed Dec. 09 by Yaopeng Zhang
 
 //forward declaration;
 void GetPvect(double_t clx, double_t cly,double_t clz, double_t cle, TVector3 &vtx, TVector3 &pvect);
