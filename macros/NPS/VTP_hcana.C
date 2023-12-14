@@ -99,7 +99,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 	  h_vtp_cluster_time->SetMarkerColor(kRed);
 	  h_vtp_cluster_time->SetMarkerSize(34);
           	
-	  h_vtp_cluster_size = new TH1F("h_vtp_cluster_size"," Cluster Size",10, -0.5,30.5);
+	  h_vtp_cluster_size = new TH1F("h_vtp_cluster_size"," Cluster Size",100, 0,10);
       h_vtp_cluster_size->SetFillColor(2);
 	  h_vtp_cluster_size->SetMarkerColor(kRed);
 	  h_vtp_cluster_size->SetMarkerSize(34);
@@ -131,7 +131,7 @@ void VTP_hcana(int RunNumber, int nevent = -1) {
 
        // Fill histograms for the current event
   
-       for (Int_t i = 0; i < Ndata_NPS_cal_vtpClusE; i++) {
+       for (Int_t i = 1; i < Ndata_NPS_cal_vtpClusE; i++) {
 		    h_vtp_cluster_energy->Fill(vtp_cluster_energy[i]);
         h_vtp_cluster_y_position->Fill(vtp_cluster_y_position[i]);
 		    h_vtp_cluster_x_position->Fill(vtp_cluster_x_position[i]);
