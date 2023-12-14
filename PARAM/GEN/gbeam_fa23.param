@@ -1,7 +1,6 @@
 ;                    BPM calibration constants
 ;                    =========================
 
-
 ; average beam positions:
 ; Use the Hall C EPICS BPM values in units of cm
 ;  gbeam_x  = +0.00
@@ -12,7 +11,6 @@
 ; Add new variables for Hall C BPM A, B, and C, based on HARP calibration
 ; Updated  by Dave Gaskell, Christine Ploen, Fit to Sep 12- Oct 17, 2023 harp versus bpm scan
 ;
-
   gbpmxa_slope = -1.02   
   gbpmxa_off   = 0.16   
   gbpmxb_slope = -1.06  
@@ -52,8 +50,6 @@ gfrxa_adcpercm = -(63427-44954)/.2
 gfrxb_adcpercm = -(63841-44824)/.2
 gfrya_adcpercm = (65450-44885)/.2
 gfryb_adcpercm = (64417-45240)/.2
-
- 
  
 ; positions of FR magnets relative to target
 gfrx_dist  = 1375   ; cm

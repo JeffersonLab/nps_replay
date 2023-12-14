@@ -27,37 +27,19 @@
 ;
 ; Updated by Cameron Cotton, Values Grabbed from the target_bpm.py script 
 ;
-;  gbpmxa_slope = -0.973   
-;  gbpmxa_off   = 0.17    
-;  gbpmxb_slope = -1.096  
-;  gbpmxb_off   = -0.21   
-;  gbpmxc_slope = -0.956   
-;  gbpmxc_off   = -0.37   
-;  gbpmya_slope = 0.957   
-;  gbpmya_off   = 0.09
-;  gbpmyb_slope = 1.16   
-;  gbpmyb_off   = 0.24
-;  gbpmyc_slope = 0.855   
-;  gbpmyc_off   = 0.23
+  gbpmxa_slope = -0.973   
+  gbpmxa_off   = 0.17    
+  gbpmxb_slope = -1.096  
+  gbpmxb_off   = -0.21   
+  gbpmxc_slope = -0.956   
+  gbpmxc_off   = -0.37   
+  gbpmya_slope = 0.957   
+  gbpmya_off   = 0.09
+  gbpmyb_slope = 1.16   
+  gbpmyb_off   = 0.24
+  gbpmyc_slope = 0.855   
+  gbpmyc_off   = 0.23
 ;
-
-; Updated by Dave Gaskell, Christine Ploen in Fall 2023,
-; Fit to Sep-Oct 20223 harp vs. bpm scans
-;
-  gbpmxa_slope = -1.02   
-  gbpmxa_off   = 0.16   
-  gbpmxb_slope = -1.06  
-  gbpmxb_off   = -0.58   
-  gbpmxc_slope = -0.85   
-  gbpmxc_off   = -0.97   
-  gbpmya_slope = 0.99   
-  gbpmya_off   = -0.38
-  gbpmyb_slope = 1.18   
-  gbpmyb_off   = -0.03
-  gbpmyc_slope = 0.87   
-  gbpmyc_off   = 0 
-
-
 
 ;positions of BPMs relative to target (from target_bpm.py script)
 gbpma_zpos = 320.17 ; cm
