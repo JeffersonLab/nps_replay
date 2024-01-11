@@ -60,6 +60,15 @@ Ps4_factor = {ghconfig_ti_ps_factors[3]}
 Ps5_factor = {ghconfig_ti_ps_factors[4]}
 Ps6_factor = {ghconfig_ti_ps_factors[5]}
 
+********************
+* NPS Configuration
+********************
+
+FADC250 Sparsification		   : {gnpsconfig_fadc250_sparsification}
+VTP Cluster Trigger Threshold      : {gnpsconfig_vtp_clus_trig_thr}
+VTP Cluster Readout Threshold      : {gnpsconfig_vtp_clus_ro_thr}
+VTP Cluster Pair Trigger Threshold : {gnpsconfig_vtp_pair_trig_thr}
+
 ***********
 * Triggers
 ***********
