@@ -3,7 +3,7 @@
 #include "TH1D.h"
 
 void ped_tracking_trigger(TString golden_file="",TString trigger="", TString spect=""){
-
+  gStyle->SetOptStat(0);
   if (golden_file=="") {
     cout << "Enter golden run root file name: " << endl;
     cin >> golden_file;

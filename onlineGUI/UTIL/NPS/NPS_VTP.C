@@ -5,6 +5,7 @@
  *******************************/
 
 void NPS_VTP(int opt){
+  gStyle->SetOptStat(0);
   TH1F* H1;
   TH1F* H2;
   TH1F* H3;
@@ -35,29 +36,39 @@ void NPS_VTP(int opt){
      gStyle->SetOptStat(0);
      gStyle->SetOptFit(0);
      H1->Draw();
+     H1->SetFillColor(kRed);
+     H1->SetLineColor(kBlack);
      gPad->SetLogy();
   }
   if(opt == 2){
      gStyle->SetOptStat(0);
      gStyle->SetOptFit(0);
+     H2->SetFillColor(kRed);
+     H2->SetLineColor(kBlack);
      H2->Draw();
      gPad->SetLogy();
   }
   if(opt == 3){
      gStyle->SetOptStat(0);
      gStyle->SetOptFit(0);
+     H3->SetFillColor(kRed);
+     H3->SetLineColor(kBlack);
      H3->Draw();
      gPad->SetLogy();
   }
   if(opt == 4){
      gStyle->SetOptStat(0);
      gStyle->SetOptFit(0);
+     H4->SetFillColor(kRed);
+     H4->SetLineColor(kBlack);
      H4->Draw();
      gPad->SetLogy();
   }
   if(opt == 5){
      gStyle->SetOptStat(0);
      gStyle->SetOptFit(0);
+     H5->SetFillColor(kRed);
+     H5->SetLineColor(kBlack);
      H5->Draw();
      gPad->SetLogy();
   }

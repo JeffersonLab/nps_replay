@@ -5,6 +5,7 @@
  *******************************/
 
 void NPS_CONFIG_PED(){
+  gStyle->SetOptStat(0);
   TH1F* H1;
   TH1F* H2;
   

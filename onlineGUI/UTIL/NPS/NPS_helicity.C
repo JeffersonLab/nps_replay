@@ -9,7 +9,7 @@ void NPS_helicity(int opt){
   TH1D* H2;
   TH1D* H3;
   TH2D* H4;
-  
+  gStyle->SetOptStat(0);
   H1 = (TH1D*) gDirectory->Get("h_hel");
   H2 = (TH1D*) gDirectory->Get("h_hel_diff");
   H3 = (TH1D*) gDirectory->Get("h_hel_actual");

@@ -4,7 +4,7 @@
 
 void ped_tracking_improved(TString golden_file = "", TString detector = "",
                            TString spect = "", Double_t polarity = 0) {
-
+  gStyle->SetOptStat(0);
   if (golden_file == "") {
     cout << "Enter golden run root file name: " << endl;
     cin >> golden_file;

@@ -15,3 +15,9 @@ variable H.hTRIG2.scaler
 variable H.hTRIG3.scaler
 variable H.hTRIG4.scaler
 variable H.1MHz.scaler
+variable H.hTRIG1.scalerRate
+variable H.hTRIG2.scalerRate
+variable H.hTRIG3.scalerRate
+variable H.hTRIG4.scalerRate
+variable H.hTRIG5.scalerRate
+variable H.hTRIG6.scalerRate

@@ -5,6 +5,7 @@
  *******************************/
 
 void NPS_TIME(){
+  gStyle->SetOptStat(0);
   TH2F* H1;
   TH2F* H2;
   

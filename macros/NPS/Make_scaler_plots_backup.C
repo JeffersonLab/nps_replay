@@ -11,7 +11,6 @@ using namespace std;
 
 void Make_scaler_plots(Int_t RunNo){
     TString FilePath_PS = "../../REPORT_OUTPUT/COIN/HMSONLY/";
-    // TString FilePath_PS = "/home/cdaq/nps-2023/nps_replay/REPORT_OUTPUT/COIN/HMSONLY/";
     TString Input_File_PS = FilePath_PS + Form("scaler_report_%d.report",RunNo);
     ifstream inputFile(Input_File_PS);
     int Ps1_factor, Ps2_factor, Ps3_factor, Ps4_factor, Ps5_factor, Ps6_factor;
@@ -47,7 +46,6 @@ void Make_scaler_plots(Int_t RunNo){
     }
 
     TString FilePath = "../../ROOTfiles/NPS/SCALERS/";
-    // TString FilePath = "/home/cdaq/nps-2023/nps_replay/ROOTfiles/NPS/SCALERS/";
     TString Input_File = FilePath + Form("nps_replay_scalers_%d_1_50000.root",RunNo);
     TFile *file = new TFile(Input_File , "READ");
 
@@ -95,21 +93,11 @@ void Make_scaler_plots(Int_t RunNo){
     Double_t time, time_diff; //s
 
     vector<double> TT, L1ACCP_rate, BCM4A_rate, TI_livetime;
-    vector<double> hTRIG1_rate, hTRIG2_rate, hTRIG3_rate, hTRIG4_rate, hTRIG5_rate, hTRIG6_rate;
     Double_t L1ACCP_rate_max, L1ACCP_rate_min, L1ACCP_rate_i, BCM4A_rate_max, livetime;
-    Double_t hTRIG1_rate_i, hTRIG2_rate_i, hTRIG3_rate_i, hTRIG4_rate_i, hTRIG5_rate_i, hTRIG6_rate_i;
-    Double_t hTRIG1_rate_max, hTRIG2_rate_max, hTRIG3_rate_max, hTRIG4_rate_max, hTRIG5_rate_max, hTRIG6_rate_max;
     Double_t current;
-    Double_t hTRIG_all_rate_max;
     L1ACCP_rate_max = 0.;
     BCM4A_rate_max = 0.;
-    hTRIG1_rate_max = 0.;
-    hTRIG2_rate_max = 0.;
-    hTRIG3_rate_max = 0.;
-    hTRIG4_rate_max = 0.;
-    hTRIG5_rate_max = 0.;
-    hTRIG6_rate_max = 0.;
-    hTRIG_all_rate_max = 0.;
+    
 
     treeT->GetEntry(0);
     H_hL1ACCP_scaler_last = H_hL1ACCP_scaler;
@@ -131,23 +119,10 @@ void Make_scaler_plots(Int_t RunNo){
             time_diff = (H_1MHz_scaler-H_1MHz_scaler_last)/1000000.;
             L1ACCP_rate_i = (H_hL1ACCP_scaler-H_hL1ACCP_scaler_last)/time_diff;
             current = ((H_BCM4A_scaler-H_BCM4A_scaler_last)/time_diff+1605.)/9570.;
-            hTRIG1_rate_i = (H_hTRIG1_scaler-H_hTRIG1_scaler_last)/time_diff;
-            hTRIG2_rate_i = (H_hTRIG2_scaler-H_hTRIG2_scaler_last)/time_diff;
-            hTRIG3_rate_i = (H_hTRIG3_scaler-H_hTRIG3_scaler_last)/time_diff;
-            hTRIG4_rate_i = (H_hTRIG4_scaler-H_hTRIG4_scaler_last)/time_diff;
-            hTRIG5_rate_i = (H_hTRIG5_scaler-H_hTRIG5_scaler_last)/time_diff;
-            hTRIG6_rate_i = (H_hTRIG6_scaler-H_hTRIG6_scaler_last)/time_diff;
 
             TT.push_back(time/60.);
             L1ACCP_rate.push_back(L1ACCP_rate_i);
             BCM4A_rate.push_back(current);
-            hTRIG1_rate.push_back(hTRIG1_rate_i);
-            hTRIG2_rate.push_back(hTRIG2_rate_i);
-            hTRIG3_rate.push_back(hTRIG3_rate_i);
-            hTRIG4_rate.push_back(hTRIG4_rate_i);
-            hTRIG5_rate.push_back(hTRIG5_rate_i);
-            hTRIG6_rate.push_back(hTRIG6_rate_i);
-
             if(ps[5]!=-1){
                 if(H_hTRIG6_scaler-H_hTRIG6_scaler_last>0.) livetime = (H_hL1ACCP_scaler-H_hL1ACCP_scaler_last)/(H_hTRIG6_scaler-H_hTRIG6_scaler_last)*ps[5];
                 else livetime = 1.;
@@ -177,12 +152,6 @@ void Make_scaler_plots(Int_t RunNo){
 
             if(L1ACCP_rate_i > L1ACCP_rate_max && time/60.>1) L1ACCP_rate_max = L1ACCP_rate_i;
             if(current > BCM4A_rate_max) BCM4A_rate_max = current;
-            if(hTRIG1_rate_i > hTRIG1_rate_max && time/60.>1) hTRIG1_rate_max = hTRIG1_rate_i;
-            if(hTRIG2_rate_i > hTRIG2_rate_max && time/60.>1) hTRIG2_rate_max = hTRIG2_rate_i;
-            if(hTRIG3_rate_i > hTRIG3_rate_max && time/60.>1) hTRIG3_rate_max = hTRIG3_rate_i;
-            if(hTRIG4_rate_i > hTRIG4_rate_max && time/60.>1) hTRIG4_rate_max = hTRIG4_rate_i;
-            if(hTRIG5_rate_i > hTRIG5_rate_max && time/60.>1) hTRIG5_rate_max = hTRIG5_rate_i;
-            if(hTRIG6_rate_i > hTRIG6_rate_max && time/60.>1) hTRIG6_rate_max = hTRIG6_rate_i;
             
         }
 
@@ -270,62 +239,6 @@ void Make_scaler_plots(Int_t RunNo){
     h_BCM4A_rate->SetMarkerStyle(29);
     for(int i=0;i<TT.size();i++) h_BCM4A_rate->Fill(TT[i],BCM4A_rate[i]);
 
-    TH2D* h_hTRIG1_rate = new TH2D("h_hTRIG1_rate","hTRIG1 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG1_rate_max*1.1);
-    h_hTRIG1_rate->SetDrawOption("SCAT");
-    h_hTRIG1_rate->SetStats(0);
-    h_hTRIG1_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG1_rate->Fill(TT[i],hTRIG1_rate[i]);
-
-    TH2D* h_hTRIG2_rate = new TH2D("h_hTRIG2_rate","hTRIG2 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG2_rate_max*1.1);
-    h_hTRIG2_rate->SetDrawOption("SCAT");
-    h_hTRIG2_rate->SetStats(0);
-    h_hTRIG2_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG2_rate->Fill(TT[i],hTRIG2_rate[i]);
-
-    TH2D* h_hTRIG3_rate = new TH2D("h_hTRIG3_rate","hTRIG3 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG3_rate_max*1.1);
-    h_hTRIG3_rate->SetDrawOption("SCAT");
-    h_hTRIG3_rate->SetStats(0);
-    h_hTRIG3_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG3_rate->Fill(TT[i],hTRIG3_rate[i]);
-
-    TH2D* h_hTRIG4_rate = new TH2D("h_hTRIG4_rate","hTRIG4 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG4_rate_max*1.1);
-    h_hTRIG4_rate->SetDrawOption("SCAT");
-    h_hTRIG4_rate->SetStats(0);
-    h_hTRIG4_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG4_rate->Fill(TT[i],hTRIG4_rate[i]);
-
-    TH2D* h_hTRIG5_rate = new TH2D("h_hTRIG5_rate","hTRIG5 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG5_rate_max*1.1);
-    h_hTRIG5_rate->SetDrawOption("SCAT");
-    h_hTRIG5_rate->SetStats(0);
-    h_hTRIG5_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG5_rate->Fill(TT[i],hTRIG5_rate[i]);
-
-    TH2D* h_hTRIG6_rate = new TH2D("h_hTRIG6_rate","hTRIG6 Rate;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG6_rate_max*1.1);
-    h_hTRIG6_rate->SetDrawOption("SCAT");
-    h_hTRIG6_rate->SetStats(0);
-    h_hTRIG6_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++) h_hTRIG6_rate->Fill(TT[i],hTRIG6_rate[i]);
-
-    // if(hTRIG1_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG1_rate_max;
-    // if(hTRIG2_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG2_rate_max;
-    if(hTRIG3_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG3_rate_max;
-    if(hTRIG4_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG4_rate_max;
-    if(hTRIG5_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG5_rate_max;
-    if(hTRIG6_rate_max > hTRIG_all_rate_max) hTRIG_all_rate_max = hTRIG6_rate_max;
-
-    TH2D* h_hTRIG_all_rate = new TH2D("h_hTRIG_all_rate","hTRIG[3-6] Rates;Time / min;Rate / Hz",100,0,time/60.,100,0,hTRIG_all_rate_max*1.1);
-    h_hTRIG_all_rate->SetDrawOption("SCAT");
-    h_hTRIG_all_rate->SetStats(0);
-    h_hTRIG_all_rate->SetMarkerStyle(29);
-    for(int i=0;i<TT.size();i++){
-        // h_hTRIG_all_rate->Fill(TT[i],hTRIG1_rate[i]);
-        // h_hTRIG_all_rate->Fill(TT[i],hTRIG2_rate[i]);
-        h_hTRIG_all_rate->Fill(TT[i],hTRIG3_rate[i]);
-        h_hTRIG_all_rate->Fill(TT[i],hTRIG4_rate[i]);
-        h_hTRIG_all_rate->Fill(TT[i],hTRIG5_rate[i]);
-        h_hTRIG_all_rate->Fill(TT[i],hTRIG6_rate[i]);
-    }
-
     TH2D* h_TI_Livetime;
     if(ps[5]!=-1){
         h_TI_Livetime = new TH2D("h_TI_Livetime","TI Livetime (L1ACCP/TRIG6*PS6);Time / min;Live Time",100,0,time/60.,100,0,1.1);
@@ -352,7 +265,6 @@ void Make_scaler_plots(Int_t RunNo){
     for(int i=0;i<TT.size();i++) h_TI_Livetime->Fill(TT[i],TI_livetime[i]);
 
     TH1D* h_Charge_Asymmetry = new TH1D("h_Charge_Asymmetry","Charge Asymmetry Hall C BCM4A;Charge Asymmetry / ppm;Counts",1000,-Asymmetry_max*1.1,Asymmetry_max*1.1);
-    h_Charge_Asymmetry->SetStats(1);
     for(int i=0;i<Charge_Asymmetry.size();i++) h_Charge_Asymmetry->Fill(Charge_Asymmetry[i]);
 
     // TCanvas* c1 = new TCanvas("c1","c1",1200,800);
@@ -363,31 +275,17 @@ void Make_scaler_plots(Int_t RunNo){
     // h_Charge_Asymmetry->Draw();
     // c1->SaveAs("macros/NPS/L1ACCP_Rate.pdf");
 
+    // TFile *rootFile = new TFile("macros/NPS/output.root", "RECREATE");
     TFile *rootFile = new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_latest.root",RunNo), "UPDATE");
-    // TFile *rootFile = new TFile("output_scaler.root", "RECREATE");
     
     h_L1ACCP_rate->SetOption("SCAT");
     h_BCM4A_rate->SetOption("SCAT");
     h_TI_Livetime->SetOption("SCAT");
-    h_hTRIG1_rate->SetOption("SCAT");
-    h_hTRIG2_rate->SetOption("SCAT");
-    h_hTRIG3_rate->SetOption("SCAT");
-    h_hTRIG4_rate->SetOption("SCAT");
-    h_hTRIG5_rate->SetOption("SCAT");
-    h_hTRIG6_rate->SetOption("SCAT");
-    h_hTRIG_all_rate->SetOption("SCAT");
 
     h_L1ACCP_rate->Write("L1ACCP_Rate");
     h_BCM4A_rate->Write("BCM4A_rate");
     h_TI_Livetime->Write("TI_Livetime");
     h_Charge_Asymmetry->Write("Charge_Asymmetry");
-    h_hTRIG1_rate->Write("hTRIG1_Rate");
-    // h_hTRIG2_rate->Write("hTRIG2_Rate");
-    h_hTRIG3_rate->Write("hTRIG3_Rate");
-    h_hTRIG4_rate->Write("hTRIG4_Rate");
-    h_hTRIG5_rate->Write("hTRIG5_Rate");
-    h_hTRIG6_rate->Write("hTRIG6_Rate");
-    h_hTRIG_all_rate->Write("hTRIG_all_Rate");
     rootFile->Close();
     delete rootFile;
 

@@ -5,6 +5,7 @@
  *******************************/
 
 void NPS_NEWPLOTS(int opt){
+  gStyle->SetOptStat(0);
   TH2D* H1;
   TH2D* H2;
   TH2D* H3;
