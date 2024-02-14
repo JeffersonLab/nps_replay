@@ -26052,3 +26052,12 @@ stheta_lab = 33.81
 nps_theta_offset= -16.3
 hpartmass = 0.000511
 
+4412 - 4412
+gpbeam = 10.538508047500564
+gtargmass_amu = 0.0
+htheta_lab = -19.35
+hpcentral = 5.038
+stheta_lab = 38.0
+nps_theta_offset= -16.3
+hpartmass = 0.000511
+
