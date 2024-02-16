@@ -195,6 +195,11 @@ void replay_production_skim_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   THcConfigEvtHandler* ev125 = new THcConfigEvtHandler("HC", "Config Event type 125");
   gHaEvtHandlers->Add(ev125);
 
+  THcNPSConfigEvtHandler* npsconfig = new THcNPSConfigEvtHandler("npsconfig", "NPS configuration event handler");
+  // Four parameters are added by default (see THcNPSConfigEvtHandler::Init) 
+  // To add more parameters, one can use: npsconfig->AddParameter("parameter name", "key name")
+  // e.g: npsconfig->AddParameter("fadc250_nsa", "FADC250_NSA");
+  gHaEvtHandlers->Add(npsconfig);
 
   // Set up the analyzer - we use the standard one,
   // but this could be an experiment-specific one as well.
