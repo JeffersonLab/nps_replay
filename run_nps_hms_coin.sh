@@ -124,6 +124,7 @@ outFileMonitor="output.txt"
   echo ":=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:="
   
   hcana -q "SCRIPTS/NPS/SCALERS/replay_nps_scalers_test.C(${runNum})"
+  hcana -q "macros/NPS/Write_RunNo.C(${runNum})"
 
   sleep 2
 
@@ -135,7 +136,7 @@ outFileMonitor="output.txt"
   hcana -q "NEWPLOTS.C(${runNum},${numEventsk})"
   hcana -q "VTP_hcana.C(${runNum},${numEventsk})"
   hcana -q "helicity.C(${runNum},${numEventsk})"
-  hcana -q -b "Pion_plot.C(${runNum})"
+  # hcana -q -b "Pion_plot.C(${runNum})"
   hcana -q -b "Make_scaler_plots.C(${runNum})"
   hcana -q -b "PEDESTALS.C(${runNum})"
   hcana -q -b "Make_pi0_plots.C(${runNum})"

@@ -3,7 +3,7 @@ void NPS_Pion(int opt){
 	TH1F* H2;
 	TH1F* H3;
 	
-	 H1 = (TH1F*) gDirectory->Get("Pion_Invariant_Mass");
+	 H1 = (TH1F*) gDirectory->Get("Invariant_Mass");
 	 H2 = (TH1F*) gDirectory->Get("missing_mass_square");
 	 H3 = (TH1F*) gDirectory->Get("pi0_energy");
 
@@ -24,7 +24,7 @@ void NPS_Pion(int opt){
 		H2->Draw();
 	 }
 	 if(opt == 3){
-	   gStyle->SetOptStat(0);
+	   gStyle->SetOptStat(1);
 		H3->Draw();
 	 }
 

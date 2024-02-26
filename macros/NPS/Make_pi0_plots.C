@@ -17,8 +17,10 @@ const double_t MinClusSize = 3;
 // const double_t clusTmin = 140; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
 // const double_t clusTmax = 148; // Changed Dec. 09 by Yaopeng Zhang
 // const double_t clusTmin = 144; // Changed Dec. 09 by Yaopeng Zhang
-const double_t clusTmax = 155; // Changed Feb. 06 by Yaopeng Zhang
-const double_t clusTmin = 145; // Changed Feb. 06 by Yaopeng Zhang
+//const double_t clusTmax = 155; // Changed Feb. 06 by Yaopeng Zhang
+//const double_t clusTmin = 145; // Changed Feb. 06 by Yaopeng Zhang
+const double_t clusTmax = 161; // Changed Feb. 25 by S.Park
+const double_t clusTmin = 151; // Changed Feb. 25 by S.Park
 const double_t LH2_10cm_target = 1.00794*931.5/1000.;
 const double_t LD2_10cm_target = 2.014*931.5/1000./2.;
 const double_t electron_mass = 0.51099895e-3;
@@ -153,6 +155,9 @@ void Make_pi0_plots(Int_t RunNo = 2834){
     treeT->SetBranchAddress("H.cal.etracknorm", &etracknorm);
     treeT->SetBranchAddress("H.cer.npeSum", &npesum);
 
+    TH1F* inv_mass = new TH1F("invmass","#pi_{0} Invariant Mass",100,0,0.3);
+    inv_mass->GetXaxis()->SetTitle("Invariant mass (GeV)");
+
     TH1F* miss_mass = new TH1F("missingmass2","#pi_{0} Missing mass square",200,0,5);
     miss_mass->GetXaxis()->SetTitle("Missing mass square(GeV^{2})");
 
@@ -199,6 +204,8 @@ void Make_pi0_plots(Int_t RunNo = 2834){
                 Double_t invmass = sqrt(im2);
                 Double_t fact = 0.135/invmass;
 
+                inv_mass->Fill(invmass);
+
                 TLorentzVector beam_vect;
                 beam_vect.SetXYZM(0,0,gpbeam,electron_mass);
 
@@ -225,6 +232,7 @@ void Make_pi0_plots(Int_t RunNo = 2834){
     // TFile *rootFile = new TFile("macros/NPS/output.root", "UPDATE");
     file->WriteTObject(miss_mass,"missing_mass_square");
     file->WriteTObject(pi0_energy,"pi0_energy");
+    file->WriteTObject(inv_mass,"Invariant_Mass");
     file->Close();
 
 }
