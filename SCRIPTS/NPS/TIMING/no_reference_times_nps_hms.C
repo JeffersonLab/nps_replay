@@ -1,4 +1,6 @@
-void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
+#include "MultiFileRun.h"
+
+void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0, int FirstEvent = 1, int MaxSegment = 2, int FirstSegment = 0, const char* fname_prefix = "nps_coin")
 {
 
   // Get RunNumber and MaxEvent if not provided.
@@ -18,10 +20,12 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
 
   // Create file name patterns.
   //  const char* RunFileNamePattern="NPS_3crate_%d.evio.0";
-  const char* RunFileNamePattern="nps_coin_%d.dat.0";
+ // const char* RunFileNamePattern="nps_coin_%d.dat.0";
   //const char* RunFileNamePattern="hms_all_%d.dat.0"; 
   //const char* RunFileNamePattern="nps_%d.dat.0"; 
-  vector<TString> pathList;
+  
+  const char* RunFileNamePattern="%s_%d.dat.%u";
+  vector<string> pathList;
   pathList.push_back(".");
   pathList.push_back("./raw");
   pathList.push_back("./raw/../raw.copiedtotape");
@@ -30,10 +34,10 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
 
   const char* ROOTFileNamePattern;
   if (MaxEvent == 50000){
-    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_coin_%d_%d.root";
+    ROOTFileNamePattern = "ROOTfiles/NPS/50k/nps_hms_noReferenceTime_%d_%d.root";
   }
   else{
-    ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_%d.root";
+    ROOTFileNamePattern = "ROOTfiles/NPS/TIMING/nps_hms_noReferenceTime_%d_%d.root";
   }
   
   
@@ -52,6 +56,20 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
   //gHcParms->Load("PARAM/HMS/GEN/hpcentral_function_sp18.param");
   // Load fadc debug parameters
   gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug_sp18.param");
+
+  //===================================
+
+  //Overwrite the existing reference times with
+  //the default values specified in hallc_replay.  
+  gHcParms->AddString("g_ctp_no_reference_times_filename", "PARAM/HMS/GEN/h_no_reference_times.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_reference_times_filename"));
+
+  //Now remove all Timing Windows and revert to 
+  //the default values specifid in hallc_replay
+  gHcParms->AddString("g_ctp_no_timing_windows_filename", "PARAM/HMS/GEN/hdet_cuts_no_timing_windows.param");
+  gHcParms->Load(gHcParms->GetString("g_ctp_no_timing_windows_filename"));
+
+  //===================================
 
   // Load params for COIN trigger configuration
   //gHcParms->Load("PARAM/TRIG/thms_fa22.param"); //FIXME: I modified here to see if we can get waveforms from HODO ADCs.
@@ -213,8 +231,15 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
   THaEvent* event = new THaEvent;
 
   //Define the run(s) that we want to analyze.
-  THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
-  
+ // THcRun* run = new THcRun( pathList, Form(RunFileNamePattern, RunNumber) );
+  vector<string> fileNames = {};
+  for(Int_t iseg = FirstSegment; iseg <= MaxSegment; iseg++){
+	  TString codafilename;
+	  codafilename.Form(RunFileNamePattern, fname_prefix, RunNumber, iseg);
+	  cout << "codafilename = " << codafilename << endl;
+	  fileNames.emplace_back(codafilename.Data());
+  }
+  auto* run = new Podd::MultiFileRun( pathList, fileNames);
   // Set to read in Hall C run database parameters
   run->SetRunParamClass("THcRunParameters");
   run->SetEventRange(1, MaxEvent);    
@@ -240,13 +265,13 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0)
   // Define crate map
   analyzer->SetCrateMapFileName("MAPS/NPS/CRATE/db_cratemap_coin.dat") ; //FIXME: CHANGE
   // Define DEF-file+
-  analyzer->SetOdefFile("DEF-files/NPS/NPS_coin.def"); //FIXME: CHANGE
+  analyzer->SetOdefFile("DEF-files/HMS/TIMING/no_reference_times.def"); //FIXME: CHANGE
   // Define cuts file
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts_coin.def"); //FIXME: CHANGE
   // File to record accounting information for cuts
   //analyzer->SetSummaryFile(Form("REPORT_OUTPUT/COIN/PRODUCTION/summary_production_%d_%d.report", RunNumber, MaxEvent));  // optional //FIXME: CHANGE
   // start the actual analysis
-  analyzer->Process(run);     
+  analyzer->Process(run);  
   // Create report file from template.
   analyzer->PrintReport("TEMPLATES/NPS/NPS_coin.template",
 			Form("REPORT_OUTPUT/COIN/coin_NPS_HMS_report_%d_%d.report", RunNumber, MaxEvent)); //FIXME:CHANGE
