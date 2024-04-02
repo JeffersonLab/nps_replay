@@ -37,6 +37,7 @@ void setupParms(Int_t RunNumber) {
 
   gHcParms->Load(gHcParms->GetString("g_ctp_det_calib_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_bcm_calib_filename"));
+  gHcParms->Load(gHcParms->GetString("g_ctp_bpm_calib_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_optics_filename"));
   // Load parameters for SHMS trigger configuration
   gHcParms->Load(gHcParms->GetString("g_ctp_trig_config_filename"));
