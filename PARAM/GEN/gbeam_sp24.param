@@ -1,7 +1,6 @@
 ;                    BPM calibration constants
 ;                    =========================
 
-
 ; average beam positions:
 ; Use the Hall C EPICS BPM values in units of cm
 ;  gbeam_x  = +0.00
@@ -10,35 +9,23 @@
 ;  gbeam_yp = +0.00
 
 ; Add new variables for Hall C BPM A, B, and C, based on HARP calibration
-; Updated  by Mark Jones , Fit to Dec 8 2019 harp versus bpm scan
-;
-;  gbpmxa_slope = -0.957023
-;  gbpmxa_off   = 0.141521
-;  gbpmxb_slope = -1.08737
-;  gbpmxb_off   = 0.216443
-;  gbpmxc_slope = -0.963681
-;  gbpmxc_off   = -1.12796
-;  gbpmya_slope = 0.948114
-;  gbpmya_off   = -0.0623243
-;  gbpmyb_slope = 1.15675
-;  gbpmyb_off   = -0.292128
-;  gbpmyc_slope = 0.854674
-;  gbpmyc_off   = -0.77972
-;
-; Updated by Cameron Cotton, Values Grabbed from the target_bpm.py script 
-;
-  gbpmxa_slope = -0.973   
-  gbpmxa_off   = 0.17    
-  gbpmxb_slope = -1.096  
-  gbpmxb_off   = -0.21   
-  gbpmxc_slope = -0.956   
-  gbpmxc_off   = -0.37   
-  gbpmya_slope = 0.957   
-  gbpmya_off   = 0.09
-  gbpmyb_slope = 1.16   
-  gbpmyb_off   = 0.24
-  gbpmyc_slope = 0.855   
-  gbpmyc_off   = 0.23
+; Updated  by Dave Gaskell, Christine Ploen, Fit to Sep 12- Oct 17, 2023 harp versus bpm scan
+; Updated 3H07B offsets after cable tightening/replacement on Feb. 20, 2024. 
+; Used harp scan from Feb. 21.
+  gbpmxa_slope = -1.02   
+  gbpmxa_off   = 0.16   
+  gbpmxb_slope = -1.06  
+;  gbpmxb_off   = -0.58   
+  gbpmxb_off   = -0.81   
+  gbpmxc_slope = -0.85   
+  gbpmxc_off   = -0.97   
+  gbpmya_slope = 0.99   
+  gbpmya_off   = -0.38
+  gbpmyb_slope = 1.18   
+;  gbpmyb_off   = -0.03
+  gbpmyb_off   = -0.49
+  gbpmyc_slope = 0.87   
+  gbpmyc_off   = 0
 ;
 
 ;positions of BPMs relative to target (from target_bpm.py script)
@@ -66,8 +53,6 @@ gfrxa_adcpercm = -(63427-44954)/.2
 gfrxb_adcpercm = -(63841-44824)/.2
 gfrya_adcpercm = (65450-44885)/.2
 gfryb_adcpercm = (64417-45240)/.2
-
- 
  
 ; positions of FR magnets relative to target
 gfrx_dist  = 1375   ; cm
