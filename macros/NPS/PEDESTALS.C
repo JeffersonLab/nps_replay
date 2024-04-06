@@ -112,47 +112,39 @@ h_adcSampPulsePed[iBlock]->SetMarkerSize(34);}
 
            // Histogram for the block number
 
-           TH2F *h_Ped = new TH2F("", "Peds(Data) - Peds(Configuration) ", 30, -0.5, 29.5, 36, -0.5, 35.5);
+           TH2F *h_Ped = new TH2F("", "Peds(Data) - Peds(Configuration) in ADC counts", 30, -0.5, 29.5, 36, -0.5, 35.5);
            h_Ped->GetXaxis()->SetTitle("Column Number");
            h_Ped->GetYaxis()->SetTitle("Row Number");
 
            // Histogram for the difference 
 
-           TH2D* h_Mean_Ped = new TH2D("", "Peds(data) - Peds(configuration) ",30,-0.5,29.5,36,-0.5, 35.5);
+           TH2D* h_Mean_Ped = new TH2D("", "Peds(data) - Peds(configuration) in ADC counts",30,-0.5,29.5,36,-0.5, 35.5);
            h_Mean_Ped->GetXaxis()->SetTitle("Column Number");
            h_Mean_Ped->GetYaxis()->SetTitle("Row Number");
          
            // PARAMETERS
 
-          Double_t  difference[1080];
-	  // Double_t  values[1080]; 
+            Double_t difference[1080];
+            ifstream fileene3;
+            Double_t coeff1[nblocks];
+            fileene3.open("OVERALL_PEDS.txt");
+            for(Int_t i=0;i<nblocks;i++){fileene3>>coeff1[i];}
+            fileene3.close();
+            Double_t mean[nblocks];
 
-
-           
-            std::vector<double> values(1080);
-            std::ifstream inputFile("OVERALL_PEDS.txt");
-            for (int i = 0; i < 1079; i++) {
-            if (inputFile >> values[i]) {
-            
-            } else {
-           
-            std::cerr << "Error: Insufficient values in the file." << std::endl;
-            
-            }
-            }
-            for (int iBlock = 0; iBlock < 1079; iBlock++) {
+            for (int iBlock = 0; iBlock < 1080; iBlock++) {
               int col = iBlock % 30; // column number
               int row = iBlock / 30; // row number
-	      
-	        Mean_Ped[iBlock] = h_adcSampPulsePed[iBlock]->GetMean();
-                if (Mean_Ped[iBlock] > 0){
-               difference[iBlock] = static_cast<int>((Mean_Ped[iBlock] * (4096. / 1000.)) - values[iBlock]);
+	       Mean_Ped[iBlock] = h_adcSampPulsePed[iBlock]->GetMean();
+	       mean[iBlock]= Mean_Ped[iBlock] *4.096;
+               difference[iBlock] =static_cast<int>(mean[iBlock]- coeff1[iBlock]);
+	       // cout<<difference[iBlock]<<"  = "<< mean[iBlock] << " - "<< coeff1[iBlock] << endl;
 
-		// cout<<"Block Number  = "<< iBlock<<  "    Pedestal  = "<<Mean_Ped[iBlock]<<endl;
-                h_Mean_Ped->Fill(29-col,row,difference[iBlock]);
-                h_Ped->Fill(29-col,row,difference[iBlock]);
-		}
-	    }
+		    if(Mean_Ped[iBlock]>0){ 
+                     h_Mean_Ped->Fill(29-col,row,difference[iBlock]);
+                     h_Ped->Fill(29-col,row,difference[iBlock]);
+	     	     }
+	            }
 
          // Set bin labels for the Pedestal histogram
 

@@ -24,8 +24,10 @@ const double_t convdeg = TMath::Pi()/180.;
 const double_t MinClusSize = 3;
 // const double_t clusTmax = 152; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
 // const double_t clusTmin = 140; // Changed Nov. 30 by Zheng to adopt new Cluster T Peak
-const double_t clusTmax = 155; // Changed Dec. 09 by Yaopeng Zhang //(changed by Wassim Hamdi in 6 Feb) 
-const double_t clusTmin = 145; // Changed Dec. 09 by Yaopeng Zhang // (changed by Wassim Hamdi in 6 Feb) 
+// const double_t clusTmax = 155; // Changed Dec. 09 by Yaopeng Zhang //(changed by Wassim Hamdi in 6 Feb) 
+// const double_t clusTmin = 145; // Changed Dec. 09 by Yaopeng Zhang // (changed by Wassim Hamdi in 6 Feb) 
+const double_t clusTmax = 161; // Changed Feb. 25 by S.Park
+const double_t clusTmin = 151; // Changed Feb. 25 by S.Park
 
 //forward declaration;
 void GetPvect(double_t clx, double_t cly,double_t clz, double_t cle, TVector3 &vtx, TVector3 &pvect, double_t angle);
@@ -63,13 +65,12 @@ void pi0_script(int RunNo){
     Int_t nentries = (Int_t)oldtree-> GetEntries();
         
     double_t nclust;
-    // increase size to be 40, in run 2253 observed nclust > 20 caused the script to fail.
-    double_t clusX[40];
-    double_t clusY[40];
-    double_t clusZ[40];
-    double_t clusT[40];
-    double_t clusE[40];
-    double_t clusSize[40];
+    double_t clusX[100];
+    double_t clusY[100];
+    double_t clusZ[100];
+    double_t clusT[100];
+    double_t clusE[100];
+    double_t clusSize[100];
 
     // Vertex Position
     double_t vtx_ok;

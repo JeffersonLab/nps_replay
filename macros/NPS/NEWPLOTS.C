@@ -45,7 +45,7 @@ void NEWPLOTS( Int_t nrun=20990, Int_t nevent = 50000) {
     Int_t binnumber = 120;
     
     //Histogram------------------------------------------------------------------------
-    TH1D *TotalHit = new TH1D("TotalHit","TotalHit_Above_4mV",100,0,100); // X = # of blocks
+    TH1D *TotalHit = new TH1D("TotalHit","TotalHit_Above_4mV",200,0,200); // X = # of blocks
     TH2D *TimeBlock = new TH2D("TimeBlock","Time_vs_Block",1080,0,1080,binnumber,0,binnumber * 4); // X = Block number, Y = Timing
     TH1D *TotalGoodHit = new TH1D("TotalGoodHit","Good Hit",100,0,100); // X = # of blocks
     TH1D *GoodHitPerBlock = new TH1D("GoodHitPerBlock","GoodHitPerBlock",1080,0,1080); // X = Block number

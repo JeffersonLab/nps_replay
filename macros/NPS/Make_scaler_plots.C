@@ -366,6 +366,17 @@ void Make_scaler_plots(Int_t RunNo){
     TFile *rootFile = new TFile(Form("../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_latest.root",RunNo), "UPDATE");
     // TFile *rootFile = new TFile("output_scaler.root", "RECREATE");
     
+    h_L1ACCP_rate->SetMaximum(1000);
+    h_BCM4A_rate->SetMaximum(1000);
+    h_TI_Livetime->SetMaximum(1000);
+    h_hTRIG1_rate->SetMaximum(1000);
+    h_hTRIG2_rate->SetMaximum(1000);
+    h_hTRIG3_rate->SetMaximum(1000);
+    h_hTRIG4_rate->SetMaximum(1000);
+    h_hTRIG5_rate->SetMaximum(1000);
+    h_hTRIG6_rate->SetMaximum(1000);
+    h_hTRIG_all_rate->SetMaximum(1000);
+
     h_L1ACCP_rate->SetOption("SCAT");
     h_BCM4A_rate->SetOption("SCAT");
     h_TI_Livetime->SetOption("SCAT");
