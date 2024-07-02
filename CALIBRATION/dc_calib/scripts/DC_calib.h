@@ -58,7 +58,7 @@ class DC_calib
   
   TString SPECTROMETER;
   TString spectre;
-  string spec;
+  TString spec;  // changed string spec to TString spec
   TString DETECTOR;
   TString plane_names[NPLANES];
   string planes[NPLANES];

@@ -174,7 +174,8 @@ void DC_calib::setup_Directory()
   if (spec == "HMS")
     {
      
-      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      //dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.Data(), mode.c_str(), run_NUM);
 
       //Check if directory exists
       if (system(dir_log) != 0) 
@@ -189,7 +190,8 @@ void DC_calib::setup_Directory()
   else if (spec == "SHMS")
     {
       
-      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      //dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.Data(), mode.c_str(), run_NUM);
 
       //Check if directory exists
       if (system(dir_log) != 0) 
@@ -558,7 +560,7 @@ void DC_calib::CreateHistoNames()
       
       //Set-Up plane drift time histo labels
       plane_dt_name  = plane_names[ip]+"_time"; 
-      plane_dt_title = spec + " DC, Plane "+plane_names[ip]+" Drift Time";
+      plane_dt_title = spec + " DC, Plane " + plane_names[ip] + " Drift Time";
       
       plane_dt[ip].SetName(plane_dt_name);
       plane_dt[ip].SetTitle(plane_dt_title);
@@ -1583,7 +1585,8 @@ void DC_calib::Calculate_tZero()
 //__________________________________________________________________________
 void DC_calib::WriteTZeroParam()
 {
-  otxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+spectre+"dc_tzero_per_wire_"+std::to_string(run_NUM)+".param";
+  //otxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+spectre+"dc_tzero_per_wire_"+std::to_string(run_NUM)+".param";
+  otxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM).c_str() +"/"+spectre+"dc_tzero_per_wire_"+std::to_string(run_NUM).c_str()+".param";
   out_txtFILE.open(otxtfile_name);
   
   for (int ip=0; ip<NPLANES; ip++) { 
@@ -1620,7 +1623,7 @@ void DC_calib::WriteTZeroParam()
 //_________________________________________________________________________________
 void DC_calib::WriteLookUpTable()
 {
-  otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM)+"/"+spectre+"dc_calib_"+std::to_string(run_NUM)+".param";
+  otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM).c_str()+"/"+spectre+"dc_calib_"+std::to_string(run_NUM).c_str()+".param";
   out_txtFILE.open(otxtfile_name);
   Double_t t_offset_firstbin = 0.0;
   //Set headers for subsequent columns of data
@@ -1702,7 +1705,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 
   
   //create output ROOT file to write UnCALIB./CALIB. histos
-  ofile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM) +"/"+spec+"_DC_driftimes.root";
+  ofile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM).c_str() +"/"+spec+"_DC_driftimes.root";
   out_file   = new TFile(ofile_name, "RECREATE"); 
 
   
@@ -1807,7 +1810,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
     for (int ip = 0; ip < NPLANES; ip++) 
       {
 
-	otxtfile_name = Form("./%s_DC_%sLog_%d/t_zero_values_%s.dat", spec.c_str(), mode.c_str(), run_NUM, planes[ip].c_str());
+	otxtfile_name = Form("./%s_DC_%sLog_%d/t_zero_values_%s.dat", spec.Data(), mode.c_str(), run_NUM, planes[ip].c_str());
 	out_txtFILE.open(otxtfile_name);
 	out_txtFILE << "#Plane_" + plane_names[ip] << endl;
 	out_txtFILE << "#Wire " << setw(12) << "tzero " << setw(12) << "t_zero_err " << setw(12) << "entries" << endl;
@@ -1833,7 +1836,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 	gr1_canv = new TCanvas("gr1", "", 2000, 500);
 	gr1_canv->SetGrid();
 	//write TGraph: tzero v. wire number to root file
-	itxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+"t_zero_values_"+plane_names[ip]+".dat";
+	itxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM).c_str() +"/"+"t_zero_values_"+plane_names[ip]+".dat";
 	graph = new TGraphErrors(itxtfile_name, "%lg %lg %lg");
 	graph->SetName("graph");
 	
@@ -1931,7 +1934,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 	  
 	  for (int ip = 0; ip < NPLANES; ip++) 
 	    {
-	      otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+"t_zeroCARD_values_"+plane_names[ip]+".dat";
+	      otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM).c_str() +"/"+"t_zeroCARD_values_"+plane_names[ip]+".dat";
 	      out_txtFILE.open(otxtfile_name);
 	      out_txtFILE << "#Plane_" + plane_names[ip] << endl;
 	      out_txtFILE << "#Card " << setw(12) << "tzero " << setw(12) << "t_zero_err " << setw(12) << "entries" << endl;
