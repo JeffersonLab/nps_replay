@@ -262,7 +262,7 @@ void run_hms_reference_time_setup(TString infile, int RunNumber, TString outfile
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber);
   if(spec.CompareTo("hms",TString::kIgnoreCase)==0) {
-    gHcParms->AddString("g_ctp_database_filename", "DBASE/HMS/standard.database");
+    gHcParms->AddString("g_ctp_database_filename", "DBASE/NPS/standard_coin.database"); //changed HMS/standard.database to NPS/standard_coin.database
     gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
     gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
     gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
