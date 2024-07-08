@@ -53,7 +53,7 @@ void fitHodoCalib(TString filename,Int_t runNUM,Bool_t cosmic_flag=kFALSE)
   TString spec = "H";
   TString det = "hod";
   string pl_names[4] = {"1x", "1y", "2x", "2y"};
-  string side_names[2] = {"GoodPos", "GoodNeg"};
+  TString side_names[2] = {"GoodPos", "GoodNeg"};
   string nsign[2] = {"+", "-"};
   Int_t maxPMT[4] = {16, 10, 16, 10};
   Int_t refPad[4] = {0, 16, 26, 42};              //use as reference when counting bars up to 52 
@@ -298,7 +298,7 @@ void fitHodoCalib(TString filename,Int_t runNUM,Bool_t cosmic_flag=kFALSE)
 	       
 	       
 	       //----Define TTree Leaf Names-----
-	       base = spec + "." + det + "." + pl_names[npl];
+	       base = spec + "." + det + "." + pl_names[npl].c_str();
 	       
 	       nTdcTimeUnCorr = base + "." + side_names[side] + "TdcTimeUnCorr";
 	       nTdcTimeTWCorr = base + "." + side_names[side] + "TdcTimeWalkCorr";
@@ -521,8 +521,8 @@ void fitHodoCalib(TString filename,Int_t runNUM,Bool_t cosmic_flag=kFALSE)
       for (Int_t side = 0; side < SIDES; side++)
 	{	  
 	  //Create Canvas
-	  TWUnCorr_canv[npl][side] = new TCanvas(Form("TWUnCorrCanv%d%d", npl, side), Form("plane %s_%s", pl_names[npl].c_str(), side_names[side].c_str()),  1000, 700);
-	  TWCorr_canv[npl][side] = new TCanvas(Form("TWCorrCanv%d%d", npl, side), Form("plane %s_%s", pl_names[npl].c_str(), side_names[side].c_str()),  1000, 700);
+	  TWUnCorr_canv[npl][side] = new TCanvas(Form("TWUnCorrCanv%d%d", npl, side), Form("plane %s_%s", pl_names[npl].c_str(), side_names[side].Data()),  1000, 700);
+	  TWCorr_canv[npl][side] = new TCanvas(Form("TWCorrCanv%d%d", npl, side), Form("plane %s_%s", pl_names[npl].c_str(), side_names[side].Data()),  1000, 700);
 
 	  //Divide Canvas
 	  if (npl==0 || npl==2) {
