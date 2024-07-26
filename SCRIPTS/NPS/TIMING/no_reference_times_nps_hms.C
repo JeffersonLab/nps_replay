@@ -34,10 +34,10 @@ void no_reference_times_nps_hms(int RunNumber=0, int MaxEvent=0, int FirstEvent 
 
   const char* ROOTFileNamePattern;
   if (MaxEvent == 50000){
-    ROOTFileNamePattern = "ROOTfiles/NPS/50k/nps_hms_noReferenceTime_%d_%d.root";
+    ROOTFileNamePattern = "ROOTfiles/COIN/50k/nps_hms_noReferenceTime_%d_%d.root";
   }
   else{
-    ROOTFileNamePattern = "ROOTfiles/NPS/TIMING/nps_hms_noReferenceTime_%d_%d.root";
+    ROOTFileNamePattern = "ROOTfiles/COIN/PRODUCTION/nps_hms_noReferenceTime_%d_%d.root";
   }
   
   
