@@ -97,7 +97,7 @@ void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, 
   // Add variables to global list.
   gHcParms->Define("gen_run_number", "Run Number", RunNumber);
   if(spec.CompareTo("hms",TString::kIgnoreCase)==0) {
-    gHcParms->AddString("g_ctp_database_filename", "DBASE/HMS/standard.database");
+    gHcParms->AddString("g_ctp_database_filename", "DBASE/NPS/standard_coin.database");
     gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
     gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
     gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
@@ -106,7 +106,7 @@ void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, 
     // Load fadc debug parameters
     gHcParms->Load("PARAM/HMS/GEN/h_fadc_debug.param");
   } else if (spec.CompareTo("coin",TString::kIgnoreCase)==0) {
-    gHcParms->AddString("g_ctp_database_filename", "DBASE/COIN/standard.database");
+    gHcParms->AddString("g_ctp_database_filename", "DBASE/NPS/standard_coin.database");
     gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
     gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
     gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
@@ -141,6 +141,10 @@ void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, 
   Double_t* fCerAdcTimeWindowMin = new Double_t [fCer];
   Double_t* fCerAdcTimeWindowMax = new Double_t [fCer];
 
+  UInt_t fDC = 12;
+  Double_t* fDCAdcTimeWindowMin = new Double_t [fDC];
+  Double_t* fDCAdcTimeWindowMax = new Double_t [fDC];
+
   DBRequest windowList[] = {
     {"hodo_PosAdcTimeWindowMin", fHodoPosAdcTimeWindowMin, kDouble, fHodoScin, 1},
     {"hodo_PosAdcTimeWindowMax", fHodoPosAdcTimeWindowMax, kDouble, fHodoScin, 1},
@@ -152,6 +156,8 @@ void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, 
     {"cal_neg_AdcTimeWindowMax", fCaloNegAdcTimeWindowMax, kDouble, fShwr, 1},
     {"cer_adcTimeWindowMin",     fCerAdcTimeWindowMin    , kDouble, fCer, 1},
     {"cer_adcTimeWindowMax",     fCerAdcTimeWindowMax    , kDouble, fCer, 1},
+    {"dc_tdc_min_win",     fDCAdcTimeWindowMin    , kDouble, fDC, 1},
+    {"dc_tdc_max_win",     fDCAdcTimeWindowMax    , kDouble, fDC, 1},
     {0},
   };
 
@@ -171,6 +177,7 @@ void run_hms_timing_windows(TString file_name, TString out_file, int RunNumber, 
   calc_timing_windows(file_name,out_file,"cal_hD","h",1,fCaloPosAdcTimeWindowMin,fCaloPosAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"cal_hA","h",2,fCaloNegAdcTimeWindowMin,fCaloNegAdcTimeWindowMax,newWindows,width);
   calc_timing_windows(file_name,out_file,"cal_hB","h",2,fCaloNegAdcTimeWindowMin,fCaloNegAdcTimeWindowMax,newWindows,width);
+  calc_timing_windows(file_name,out_file,"dc","h",0,fDCAdcTimeWindowMin,fDCAdcTimeWindowMax,newWindows,width);
 
 }
 
@@ -182,6 +189,10 @@ void run_coin_timing_windows(TString file_name, TString out_file, int RunNumber,
 void calc_timing_windows(TString golden_file = "", TString out_file = "",
 			 TString detector = "", TString spect = "", Double_t polarity = -1,
 			 Double_t *minArr = 0, Double_t *maxArr = 0, bool newWindows=false, double width=40.) {
+
+  // 0 means no multiplicity cut for calorimeter plots, 1 means multiplicity=1 for calorimeter plots
+  int cal_multiplicity_1=1; 
+
   if (golden_file == "") {
     cout << "Enter golden run root file name: " << endl;
     cin >> golden_file;
@@ -256,28 +267,94 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
   if (histname.Contains("_shwr"))
     histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt");
   if (histname.Contains("hcal") && histname.Contains("hA") && polarity == 1) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_pos");
     offset = 0;
   }
   if (histname.Contains("hcal") && histname.Contains("hB") && polarity == 1) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_pos");
     offset = 13;
   }
   if (histname.Contains("hcal") && histname.Contains("hC") && polarity == 1) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_pos");
     offset = 26;
   }
   if (histname.Contains("hcal") && histname.Contains("hD") && polarity == 1) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_pos");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_pos");
     offset = 39;
   }
   if (histname.Contains("hcal") && histname.Contains("hA") && polarity == 2) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_neg");
     offset = 0;
   }
   if (histname.Contains("hcal") && histname.Contains("hB") && polarity == 2) {
-    histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
+    if(cal_multiplicity_1==0) histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_vs_pmt_neg");
+    else histname = Form("%s%s", histname.Data(), "_good_adctdc_diff_time_mult1_vs_pmt_neg");
     offset = 13;
+  }
+  if (histname.Contains("hdc")){ // created by Yaopeng Zhang (July 26, 2024)
+    const Int_t NofDCPlanes = 12;
+    TString plane_list[NofDCPlanes]={"1u1", "1u2", "1x1", "1x2", "1v1", "1v2", "2u1", "2u2", "2x1", "2x2", "2v1", "2v2"};
+
+    TFile* f1 = new TFile(golden_file, "READ");
+    if (f1->IsZombie()) {
+      cout << "Cannot find : " << golden_file << endl;
+      return;
+    }
+
+    TString canvasName = "hdc_rawtdc";
+    TCanvas* canvas = new TCanvas(canvasName,canvasName);
+    canvas->Divide(3, 4);
+
+    for(int j=0;j<NofDCPlanes;j++){
+      TString hist_name = "hdc_" + plane_list[j] + "_rawtdc_nhit1";
+      TString hist_name_2 = "hdc_" + plane_list[j] + "_rawtdc_nhit2";
+      TH1F *hist = (TH1F*)f1->Get(hist_name);
+      TH1F *hist_2 = (TH1F*)f1->Get(hist_name_2);
+      if (!hist||!hist_2) {
+          std::cerr << "Error getting DC histograms" << std::endl;
+          f1->Close();
+          return;
+      }
+      canvas->cd(j+1);
+      gPad->SetLogy(1);
+
+      hist->GetXaxis()->SetRangeUser(-14000,-10000);
+      hist_2->GetXaxis()->SetRangeUser(-14000,-10000);
+      
+      hist->Draw();
+      hist_2->SetLineColor(kRed);
+      hist_2->Draw("Same");
+
+      double yMin = hist->GetMinimum();
+      double yMax = hist->GetMaximum();
+      TLine *line1 = new TLine(minArr[j], yMin, minArr[j], yMax);
+      TLine *line2 = new TLine(maxArr[j], yMin, maxArr[j], yMax);
+      cout<<minArr[j]<<"\t"<<maxArr[j]<<endl;
+      
+      line1->SetLineColor(kGreen);
+      line2->SetLineColor(kGreen);
+
+      line1->Draw("same");
+      line2->Draw("same");
+    }
+
+    canvas->Update();
+
+    TFile* f2 = new TFile(out_file, "Update");
+    if (f2->IsZombie()) {
+      cout << "Cannot find : " << out_file << endl;
+      return;
+    }
+    f2->cd();
+    canvas->Write();
+    f2->Close();
+    f1->Close();
+    return;
   }
 
   TH2F* H1_adctdc_diff_time_vs_pmt;
