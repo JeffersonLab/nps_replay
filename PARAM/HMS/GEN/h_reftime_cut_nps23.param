@@ -10,10 +10,10 @@
 ;
 ; NOTE: These are integers, not floats
 
-;Determined from 4402, 4405, 4406
-;HMS p=-4.0GeV/c, theta=20 degrees
+;Determined from the runs listed in runlist located at /u/group/nps/singhav/nps_analysis/det_calibrations/runlists/setreftimes_runlist.txt
+
 ; cut variable = hDCREF2
-hdc_tdcrefcut=-14000
+hdc_tdcrefcut=-14400
 ; cut variable = hT2
 hhodo_tdcrefcut=-1700
 ; cut variable = hFADC_TREF_ROC1
