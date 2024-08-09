@@ -25,9 +25,9 @@
 ;
 
 ;positions of BPMs relative to target (from target_bpm.py script)
-gbpma_zpos = 320.17 ; cm
-gbpmb_zpos = 224.81 ; cm
-gbpmc_zpos = 129.38 ; cm
+gbpma_zpos = 320.22 ; cm
+gbpmb_zpos = 224.62 ; cm
+gbpmc_zpos = 124.36 ; cm
 
 
 ;             Fast Raster calibration constants
