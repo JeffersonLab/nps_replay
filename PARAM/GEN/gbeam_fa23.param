@@ -14,14 +14,14 @@
   gbpmxa_off   = 0.16   
   gbpmxb_slope = -1.06  
   gbpmxb_off   = -0.58   
-  gbpmxc_slope = -0.85   
-  gbpmxc_off   = -0.97   
+  gbpmxc_slope = -0.86   
+  gbpmxc_off   = -0.98   
   gbpmya_slope = 0.99   
   gbpmya_off   = -0.38
   gbpmyb_slope = 1.18   
   gbpmyb_off   = -0.03
   gbpmyc_slope = 0.87   
-  gbpmyc_off   = 0
+  gbpmyc_off   = -0.01
 ;
 
 ;positions of BPMs relative to target (from target_bpm.py script)
