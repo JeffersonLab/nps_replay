@@ -25,7 +25,7 @@ hcer_npe_thresh = 0.5
 ; ADC time window cut values used to select "good" ADC events
 hcer_adc_tdc_offset= 0.
 
-; fall 2023 -spring 2024 NPS run period
+; fall 2019 -spring 2020 analysis A1n, d2n
 ; cut variable is H.cer.goodAdcTdcDiffTime
-hcer_adcTimeWindowMin =   100.,  100.
-hcer_adcTimeWindowMax =  190., 190.
+hcer_adcTimeWindowMin =   117.,  139.
+hcer_adcTimeWindowMax =  170., 179.
