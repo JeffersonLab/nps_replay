@@ -255,6 +255,7 @@ void no_timing_windows_nps_hms_coin(int RunNumber=0, int MaxEvent=0, int FirstEv
   analyzer->SetOutFile(ROOTFileName.Data());
   // Define DEF-file
   analyzer->SetOdefFile("DEF-files/HMS/TIMING/no_timing_windows.def");
+  // analyzer->SetOdefFile("DEF-files/HMS/TIMING/no_timing_windows_yaopeng.def"); // Add T tree and some relevant branches for calo multiple peaks check
   // Define cuts file
   analyzer->SetCutFile("DEF-files/NPS/NPS_cuts_coin.def");  // optional
   // File to record accounting information for cuts

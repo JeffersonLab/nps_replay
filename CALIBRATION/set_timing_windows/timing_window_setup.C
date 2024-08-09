@@ -334,7 +334,7 @@ void calc_timing_windows(TString golden_file = "", TString out_file = "",
       double yMax = hist->GetMaximum();
       TLine *line1 = new TLine(minArr[j], yMin, minArr[j], yMax);
       TLine *line2 = new TLine(maxArr[j], yMin, maxArr[j], yMax);
-      cout<<minArr[j]<<"\t"<<maxArr[j]<<endl;
+      // cout<<minArr[j]<<"\t"<<maxArr[j]<<endl;
       
       line1->SetLineColor(kGreen);
       line2->SetLineColor(kGreen);
