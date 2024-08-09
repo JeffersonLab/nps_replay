@@ -62,10 +62,10 @@ static const Double_t hodoPulseAmpCutLow     = 25.0;   // Units of mV
 static const Double_t hodoPulseAmpCutHigh    = 1000.0; // Units of mV
 static const Double_t refAdcPulseAmpCutLow   = 50.0;   // Units of mV
 static const Double_t refAdcPulseAmpCutHigh  = 60.0;   // Units of mV
-static const Double_t refAdcPulseTimeCutLow  = 210.0;  // Units of ns
-static const Double_t refAdcPulseTimeCutHigh = 225.0;  // Units of ns
-static const Double_t adcTdcTimeDiffCutLow   = -100.0; // Units of ns
-static const Double_t adcTdcTimeDiffCutHigh  = 100.0;  // Units of ns
+static const Double_t refAdcPulseTimeCutLow  = 0.0;  // Units of ns
+static const Double_t refAdcPulseTimeCutHigh = 2250.0;  // Units of ns
+static const Double_t adcTdcTimeDiffCutLow   = -1000.0; // Units of ns
+static const Double_t adcTdcTimeDiffCutHigh  = 1000.0;  // Units of ns
 static const Double_t calEtotCutVal          = 0.100;  // Units of GeV
 static const Double_t cerNpeSumCutVal        = 1.5;    // Units of NPE
 // static const Double_t adcTdcTimeDiffCutLow   = -6000.0;  // Units of ns
@@ -193,7 +193,7 @@ void generatePlots(UInt_t iplane, UInt_t iside, UInt_t ipaddle) {
   if (!adcTdcTimeDiffWalkDir[iplane][iside]) {adcTdcTimeDiffWalkDir[iplane][iside] = sideUncalibDir[iplane][iside]->mkdir("adcTdcTimeDiffWalk"); adcTdcTimeDiffWalkDir[iplane][iside]->cd();}
   else (outFile->cd("hodoUncalib/"+planeNames[iplane]+"/"+sideNames[iside]+"/adcTdcTimeDiffWalk"));
   // Book histos
-  if (!h2_adcTdcTimeDiffWalk[iplane][iside][ipaddle]) h2_adcTdcTimeDiffWalk[iplane][iside][ipaddle] = new TH2F(Form("h2_adcTdcTimeDiffWalk_paddle_%d", ipaddle+1), "TDC-ADC Time vs. Pulse Amp Plane "+planeNames[iplane]+" Side "+sideNames[iside]+Form(" Paddle %d", ipaddle+1)+"; Pulse Amplitude (mV) / 1 mV;  TDC-ADC Time (ns) / 100 ps", 1000, 0, 1000, 150, -20, 20);
+  if (!h2_adcTdcTimeDiffWalk[iplane][iside][ipaddle]) h2_adcTdcTimeDiffWalk[iplane][iside][ipaddle] = new TH2F(Form("h2_adcTdcTimeDiffWalk_paddle_%d", ipaddle+1), "TDC-ADC Time vs. Pulse Amp Plane "+planeNames[iplane]+" Side "+sideNames[iside]+Form(" Paddle %d", ipaddle+1)+"; Pulse Amplitude (mV) / 1 mV;  TDC-ADC Time (ns) / 100 ps", 1000, 0, 1000, 300, -40, 40);
   
 } // generatePlots()
 
