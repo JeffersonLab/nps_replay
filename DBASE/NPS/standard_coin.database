@@ -18,3 +18,5 @@ g_ctp_optics_filename      = "PARAM/HMS/GEN/hcana_fa22.param"
 g_ctp_map_filename         = "MAPS/HMS/DETEC/STACK/hms_stack_nps.map"
 g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
 
+1703-2019
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_1753.param"
