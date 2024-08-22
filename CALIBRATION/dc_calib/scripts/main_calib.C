@@ -5,7 +5,7 @@
 #include <ctime>
 using namespace std;
 
-int main_calib()
+int main_calib(Int_t RunNo, Long64_t NofEvents=500000, TString PID_Flag="pid_kFALSE", string Method="card")
 {
 
   //prevent root from displaying graphs while executing
@@ -16,21 +16,24 @@ int main_calib()
   clock_t cl;
   cl = clock();
                                                                                                   
-                                                                                                        //pid_elec,  pid_kFALSE (no PID cuts) 
-                                                                                                        // |
-                                                                                                        // v
+  //pid_elec,  pid_kFALSE (no PID cuts) 
+  // |
+  // v
   //  DC_calib obj("HMS", "../../../ROOTfiles/hms_replay_production_all_1856_hodtrefcut1000_-1.root", 1856,-1, "pid_elec", "card");
-  //DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_2774_-1.root", 2774, -1, "pid_elec"); 
+  //  DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_2774_-1.root", 2774, -1, "pid_elec"); 
   //  DC_calib obj("SHMS", "~/abishek/hallc_replay/ROOTfiles/shms_replay_production_all_1791_-1.root", 1791, 10000000, "pid_elec", "card");
+
+  DC_calib obj("HMS",Form("../../../ROOTfiles/COIN/PRODUCTION/nps_hms_coin_%d_1_500000.root",RunNo), RunNo, NofEvents, PID_Flag, Method);
+  // DC_calib obj("HMS",Form("../../../ROOTfiles/COIN/50k/nps_hms_coin_%d_1_50000.root",RunNo), RunNo, NofEvents, PID_Flag, Method);
     
-  DC_calib obj("HMS", "../../../ROOTfiles/hms_replay_production_all_2369_500000.root", 2369, 500000, "pid_elec", "card");                                                                                                        
-  //DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_7110_500000.root", 7110, 500000, "pid_elec", "card");                                                                                                        
+  // DC_calib obj("HMS", "../../../ROOTfiles/hms_replay_production_all_2369_500000.root", 2369, 500000, "pid_elec", "card");                                                                                                        
+  // DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_7110_500000.root", 7110, 500000, "pid_elec", "card");                                                                                                        
 
 
-    //DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_7109_500000.root", 7109, 500000, "pid_elec", "card");                                                                                                        
+  //DC_calib obj("SHMS", "../../../ROOTfiles/shms_replay_production_all_7109_500000.root", 7109, 500000, "pid_elec", "card");                                                                                                        
 
 
-    // DC_calib obj("HMS", "../../../ROOTfiles/hms_coin_replay_production_1866_1000000.root", 1866, 1000, "pid_kFALSE");
+  // DC_calib obj("HMS", "../../../ROOTfiles/hms_coin_replay_production_1866_1000000.root", 1866, 1000, "pid_kFALSE");
   
   obj.setup_Directory();
   obj.SetPlaneNames();
