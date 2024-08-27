@@ -174,7 +174,7 @@ void DC_calib::setup_Directory()
   if (spec == "HMS")
     {
      
-      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.Data(), mode.c_str(), run_NUM);
 
       //Check if directory exists
       if (system(dir_log) != 0) 
@@ -189,7 +189,7 @@ void DC_calib::setup_Directory()
   else if (spec == "SHMS")
     {
       
-      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.c_str(), mode.c_str(), run_NUM);
+      dir_log = Form("mkdir -p ./%s_DC_%sLog_%d/", spec.Data(), mode.c_str(), run_NUM);
 
       //Check if directory exists
       if (system(dir_log) != 0) 
@@ -565,7 +565,7 @@ void DC_calib::CreateHistoNames()
       
       //Set-Up plane drift time histo labels
       plane_dt_name  = plane_names[ip]+"_time"; 
-      plane_dt_title = Form("%s DC, Plane %s Drift Time",spec.c_str(),plane_names[ip].Data());
+      plane_dt_title = Form("%s DC, Plane %s Drift Time",spec.Data(),plane_names[ip].Data());
       
       plane_dt[ip].SetName(plane_dt_name);
       plane_dt[ip].SetTitle(plane_dt_title);
@@ -575,7 +575,7 @@ void DC_calib::CreateHistoNames()
 
       
       plane_dt_name_corr  = plane_names[ip]+"corrected_time"; 
-      plane_dt_title_corr = Form("%s DC, Plane %s Corrected Drift Time",spec.c_str(),plane_names[ip].Data());
+      plane_dt_title_corr = Form("%s DC, Plane %s Corrected Drift Time",spec.Data(),plane_names[ip].Data());
       
       plane_dt_corr[ip].SetName(plane_dt_name_corr);
       plane_dt_corr[ip].SetTitle(plane_dt_title_corr);
@@ -587,7 +587,7 @@ void DC_calib::CreateHistoNames()
       
       //Set-Up Drift Time vs. Wire Number Histos labels
       dt_vs_wire_name  = "dt_vs_wire_plane_"+plane_names[ip]; 
-      dt_vs_wire_title = Form("%s Drift Time vs. Wire: Plane %s",spec.c_str(),plane_names[ip].Data());
+      dt_vs_wire_title = Form("%s Drift Time vs. Wire: Plane %s",spec.Data(),plane_names[ip].Data());
       
       dt_vs_wire[ip].SetName(dt_vs_wire_name);
       dt_vs_wire[ip].SetTitle(dt_vs_wire_title);
@@ -605,7 +605,7 @@ void DC_calib::CreateHistoNames()
       for (wire = 0; wire < nwires[ip]; wire++)
 	{
 	  cell_dt_name  = Form("Wire_%d", wire+1); 
-	  cell_dt_title = Form("%s DC Plane %s: Wire_%d",spec.c_str(),plane_names[ip].Data(),wire+1);
+	  cell_dt_title = Form("%s DC Plane %s: Wire_%d",spec.Data(),plane_names[ip].Data(),wire+1);
 	  cell_dt[ip][wire].SetName(cell_dt_name);
 	  cell_dt[ip][wire].SetTitle(cell_dt_title);
 	  cell_dt[ip][wire].SetBins(NBINS, MINBIN, MAXBIN);
@@ -613,7 +613,7 @@ void DC_calib::CreateHistoNames()
 	  cell_dt[ip][wire].SetYTitle("Number of Entries / 1 ns");	       
 
 	  fitted_cell_dt_name  = Form("Wire_%d", wire+1); 
-	  fitted_cell_dt_title = Form("%s DC Plane %s: Wire_%d",spec.c_str(),plane_names[ip].Data(),wire+1);
+	  fitted_cell_dt_title = Form("%s DC Plane %s: Wire_%d",spec.Data(),plane_names[ip].Data(),wire+1);
 	  fitted_cell_dt[ip][wire].SetName(fitted_cell_dt_name);
 	  fitted_cell_dt[ip][wire].SetTitle(fitted_cell_dt_title);
 	  fitted_cell_dt[ip][wire].SetBins(200, MINBIN, MAXBIN);
@@ -636,7 +636,7 @@ void DC_calib::CreateHistoNames()
 	    {
 	      
 	      card_hist_name = Form("UnCorr_Card_%d", card+1); 
-	      card_hist_title = Form("%s DC Plane %s: Uncorrected Card_%d",spec.c_str(),plane_names[ip].Data(),card+1);
+	      card_hist_title = Form("%s DC Plane %s: Uncorrected Card_%d",spec.Data(),plane_names[ip].Data(),card+1);
 	      
 	      card_hist[ip][card].SetName(card_hist_name);
 	      card_hist[ip][card].SetTitle(card_hist_title);
@@ -645,7 +645,7 @@ void DC_calib::CreateHistoNames()
 	      card_hist[ip][card].SetYTitle("Number of Entries / 1 ns");
 	      
 	      fitted_card_hist_name = Form("Fitted_Card_%d", card+1); 
-	      fitted_card_hist_title = Form("%s DC Plane %s: Fitted Card_%d",spec.c_str(),plane_names[ip].Data(),card+1);
+	      fitted_card_hist_title = Form("%s DC Plane %s: Fitted Card_%d",spec.Data(),plane_names[ip].Data(),card+1);
 	      
 	      fitted_card_hist[ip][card].SetName(fitted_card_hist_name);
 	      fitted_card_hist[ip][card].SetTitle(fitted_card_hist_title);
@@ -655,7 +655,7 @@ void DC_calib::CreateHistoNames()
 	      
 	      
 	      corr_card_hist_name = Form("Corr_Card_%d", card+1); 
-	      corr_card_hist_title = Form("%s DC Plane %s: Corrected Card_%d",spec.c_str(),plane_names[ip].Data(),card+1);
+	      corr_card_hist_title = Form("%s DC Plane %s: Corrected Card_%d",spec.Data(),plane_names[ip].Data(),card+1);
 	      
 	      
 	      corr_card_hist[ip][card].SetName(corr_card_hist_name);
@@ -983,7 +983,8 @@ void DC_calib::EventLoop(string option="")
 	    {
 	      // cout << "PLANE: " << ip << endl;
 
-   	  if (good_event&&ndata_time[ip]==1)
+   	  // if (good_event&&ndata_time[ip]==1)
+      if (good_event)
         	{
 		
 	      
@@ -1588,7 +1589,7 @@ void DC_calib::Calculate_tZero()
 void DC_calib::WriteTZeroParam()
 {
   //otxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+spectre+"dc_tzero_per_wire_"+std::to_string(run_NUM)+".param";
-  otxtfile_name = Form("./%s_DC_%sLog_%s/%sdc_tzero_per_wire_%s.param",spec.c_str(),mode.c_str(),std::to_string(run_NUM).c_str(),spectre.Data(),std::to_string(run_NUM).c_str());
+  otxtfile_name = Form("./%s_DC_%sLog_%s/%sdc_tzero_per_wire_%s.param",spec.Data(),mode.c_str(),std::to_string(run_NUM).c_str(),spectre.Data(),std::to_string(run_NUM).c_str());
   out_txtFILE.open(otxtfile_name);
   
   for (int ip=0; ip<NPLANES; ip++) { 
@@ -1626,7 +1627,7 @@ void DC_calib::WriteTZeroParam()
 void DC_calib::WriteLookUpTable()
 {
   //otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM)+"/"+spectre+"dc_calib_"+std::to_string(run_NUM)+".param";
-  otxtfile_name	= Form("./%s_DC_%sLog_%s/%sdc_calib_%s.param",spec.c_str(),mode.c_str(),std::to_string(run_NUM).c_str(),spectre.Data(),std::to_string(run_NUM).c_str());
+  otxtfile_name	= Form("./%s_DC_%sLog_%s/%sdc_calib_%s.param",spec.Data(),mode.c_str(),std::to_string(run_NUM).c_str(),spectre.Data(),std::to_string(run_NUM).c_str());
   out_txtFILE.open(otxtfile_name);
   Double_t t_offset_firstbin = 0.0;
   //Set headers for subsequent columns of data
@@ -1708,7 +1709,8 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 
   
   //create output ROOT file to write UnCALIB./CALIB. histos
-  ofile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM) +"/"+spec+"_DC_driftimes.root";
+  // ofile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+std::to_string(run_NUM) +"/"+spec+"_DC_driftimes.root";
+  ofile_name = Form("./%s_DC_%sLog_%d/%s_DC_driftimes.root",spec.Data(),mode.c_str(),run_NUM,spec.Data());
   out_file   = new TFile(ofile_name, "RECREATE"); 
 
   
@@ -1813,7 +1815,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
     for (int ip = 0; ip < NPLANES; ip++) 
       {
 
-	otxtfile_name = Form("./%s_DC_%sLog_%d/t_zero_values_%s.dat", spec.c_str(), mode.c_str(), run_NUM, planes[ip].c_str());
+	otxtfile_name = Form("./%s_DC_%sLog_%d/t_zero_values_%s.dat", spec.Data(), mode.c_str(), run_NUM, planes[ip].c_str());
 	out_txtFILE.open(otxtfile_name);
 	out_txtFILE << "#Plane_" + plane_names[ip] << endl;
 	out_txtFILE << "#Wire " << setw(12) << "tzero " << setw(12) << "t_zero_err " << setw(12) << "entries" << endl;
@@ -1840,7 +1842,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 	gr1_canv->SetGrid();
 	//write TGraph: tzero v. wire number to root file
 	//itxtfile_name =  "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+"t_zero_values_"+plane_names[ip]+".dat";
-	itxtfile_name = Form("./%s_DC_%sLog_%s/t_zero_values_%s.dat",spec.c_str(),mode.c_str(),std::to_string(run_NUM).c_str(),plane_names[ip].Data());
+	itxtfile_name = Form("./%s_DC_%sLog_%s/t_zero_values_%s.dat",spec.Data(),mode.c_str(),std::to_string(run_NUM).c_str(),plane_names[ip].Data());
 	graph = new TGraphErrors(itxtfile_name, "%lg %lg %lg");
 	graph->SetName("graph");
 	
@@ -1939,7 +1941,7 @@ void DC_calib::WriteToFile(Int_t debug = 0)
 	  for (int ip = 0; ip < NPLANES; ip++) 
 	    {
 	      //otxtfile_name = "./"+spec+"_DC_"+mode.c_str()+"Log_"+ std::to_string(run_NUM) +"/"+"t_zeroCARD_values_"+plane_names[ip]+".dat";
-	      otxtfile_name = Form("./%s_DC_%sLog_%s/t_zeroCARD_values_%s.dat",spec.c_str(),mode.c_str(),std::to_string(run_NUM).c_str(),plane_names[ip].Data());
+	      otxtfile_name = Form("./%s_DC_%sLog_%s/t_zeroCARD_values_%s.dat",spec.Data(),mode.c_str(),std::to_string(run_NUM).c_str(),plane_names[ip].Data());
 	      out_txtFILE.open(otxtfile_name);
 	      out_txtFILE << "#Plane_" + plane_names[ip] << endl;
 	      out_txtFILE << "#Card " << setw(12) << "tzero " << setw(12) << "t_zero_err " << setw(12) << "entries" << endl;

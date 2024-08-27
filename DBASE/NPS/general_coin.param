@@ -40,4 +40,5 @@ cminch=2.54
 #include "PARAM/HMS/AERO/haero_cuts_fa22.param"
 #include "PARAM/HMS/CAL/hcal_cuts_nps23.param"
 
-
+; HMS default cut parameter files
+#include "DBASE/HMS/default_det_calib_nps23.param"
