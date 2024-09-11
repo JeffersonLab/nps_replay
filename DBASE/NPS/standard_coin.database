@@ -20,3 +20,33 @@ g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
 
 1703-2019
 g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_1753.param"
+
+2767-2854
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_2767.param"
+
+3367-3667
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3389.param"
+
+4047-4215
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4064.param"
+
+4224-4568
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4226.param"
+
+4966-5182
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4972.param"
+
+5524-5895
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5526.param"
+
+5900-5975
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5904.param"
+
+6146-6403
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6185.param"
+
+6570-6740
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6570.param"
+
+6881-7012
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6905.param"
