@@ -5,7 +5,7 @@
 #include <ctime>
 using namespace std;
 
-int main_calib(Int_t RunNo, Long64_t NofEvents=500000, TString PID_Flag="pid_kFALSE", string Method="card")
+int main_calib(Int_t RunNo, Long64_t NofEvents=500000, TString PID_Flag="pid_elec", string Method="card")
 {
 
   //prevent root from displaying graphs while executing
