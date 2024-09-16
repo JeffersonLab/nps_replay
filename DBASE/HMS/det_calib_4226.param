@@ -1,0 +1,3 @@
+; HMS NPS23 calibration parameter files for runs 4224-4568 (KinC_x60_4a and KinC_x60_4b)
+#include "PARAM/HMS/DC/hdc_calib_4226.param"
+#include "PARAM/HMS/DC/hdc_tzero_per_wire_4226.param"
