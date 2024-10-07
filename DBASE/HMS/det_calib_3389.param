@@ -1,3 +1,4 @@
 ; HMS NPS23 calibration parameter files for runs 3367-3667 (KinC_x60_2 and KinC_x60_2')
 #include "PARAM/HMS/DC/hdc_calib_3389.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_3389.param"
+#include "PARAM/HMS/CAL/hcal_calib_3389.param"
