@@ -1,5 +1,5 @@
 ; HMS NPS23 calibration parameter files 
-#include "PARAM/HMS/CER/hcer_calib_fa22.param"
+#include "PARAM/HMS/CER/hcer_calib_nps23.param"
 #include "PARAM/HMS/DC/hdc_calib_nps23.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_nps23.param"
 #include "PARAM/HMS/HODO/hhodo_calib_fa22.param"
