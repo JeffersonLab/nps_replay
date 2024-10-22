@@ -1,0 +1,3 @@
+; HMS NPS23 DC calibration for KinC_x36_5' runs 3990 - 4045
+#include "PARAM/HMS/DC/hdc_calib_4015.param"
+#include "PARAM/HMS/DC/hdc_tzero_per_wire_4015.param"
