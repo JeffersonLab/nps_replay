@@ -1,22 +1,24 @@
 0-4517
-g_ctp_parm_filename       = "DBASE/NPS/general_coin.param"
-g_ctp_kinematics_filename = "DBASE/NPS/standard_coin.kinematics"
+g_ctp_parm_filename        = "DBASE/NPS/general_coin.param"
+g_ctp_kinematics_filename  = "DBASE/NPS/standard_coin.kinematics"
 g_ctp_det_calib_filename   = "DBASE/HMS/default_det_calib_nps23.param"
-g_ctp_bcm_calib_filename  = "PARAM/GEN/gscalers.param"
-g_ctp_bpm_calib_filename  = "PARAM/GEN/gbeam_fa23.param"
+g_ctp_bcm_calib_filename   = "PARAM/GEN/gscalers.param"
+g_ctp_bpm_calib_filename   = "PARAM/GEN/gbeam_fa23.param"
 g_ctp_optics_filename      = "PARAM/HMS/GEN/hcana_fa22.param"
 g_ctp_map_filename         = "MAPS/HMS/DETEC/STACK/hms_stack_nps.map"
 g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
+g_ctp_nps_calib_filename   = "PARAM/NPS/CAL/nps_calib_pi0.param"
 
 4518-99999
-g_ctp_parm_filename       = "DBASE/NPS/general_coin.param"
-g_ctp_kinematics_filename = "DBASE/NPS/standard_coin.kinematics"
+g_ctp_parm_filename        = "DBASE/NPS/general_coin.param"
+g_ctp_kinematics_filename  = "DBASE/NPS/standard_coin.kinematics"
 g_ctp_det_calib_filename   = "DBASE/HMS/default_det_calib_nps23.param"
-g_ctp_bcm_calib_filename  = "PARAM/GEN/gscalers.param"
-g_ctp_bpm_calib_filename  = "PARAM/GEN/gbeam_sp24.param"
+g_ctp_bcm_calib_filename   = "PARAM/GEN/gscalers.param"
+g_ctp_bpm_calib_filename   = "PARAM/GEN/gbeam_sp24.param"
 g_ctp_optics_filename      = "PARAM/HMS/GEN/hcana_fa22.param"
 g_ctp_map_filename         = "MAPS/HMS/DETEC/STACK/hms_stack_nps.map"
 g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
+g_ctp_nps_calib_filename   = "PARAM/NPS/CAL/nps_calib_pi0.param"
 
 1703-2019
 g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_1753.param"
@@ -50,3 +52,58 @@ g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6570.param"
 
 6881-7012
 g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6905.param"
+
+5976 - 6142
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5992.param"
+
+6724 - 6827
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6794.param"
+
+3013 - 3062
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3017.param"
+
+2184 - 2324
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_2195.param"
+
+1960 - 2183
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_2057.param"
+
+6986 - 7002
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6991.param"
+
+3990 - 4045
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4015.param"
+
+4588 - 4965
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4668.param"
+
+6404 - 6569
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6428.param"
+
+2973 - 3113
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_2990.param"
+
+3063 - 3105
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3098.param"
+
+1572 - 1752
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_1692.param"
+
+5423 - 5463
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5428.param"
+
+6710 - 6863
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6861.param"
+
+5237 - 5422
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5244.param"
+
+5280 - 5383
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_5286.param"
+
+2325 - 2731
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_2411.param"
+
+6698 - 6873
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_6873.param"
+
