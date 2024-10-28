@@ -1,3 +1,4 @@
 ; HMS NPS23 DC calibration for KinC_x36_2 runs 3013 - 3062
 #include "PARAM/HMS/DC/hdc_calib_3017.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_3017.param"
+#include "PARAM/HMS/CAL/hcal_calib_3017.param"

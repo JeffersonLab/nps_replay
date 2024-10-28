@@ -1,2 +1,3 @@
 #include "PARAM/HMS/DC/hdc_calib_5255.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_5255.param"
+#include "PARAM/HMS/CAL/hcal_calib_5255.param"
