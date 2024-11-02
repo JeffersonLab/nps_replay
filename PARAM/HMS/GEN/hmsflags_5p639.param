@@ -19,7 +19,7 @@
 ;
 
 ;saturation correction flag
-  hsatcorr = 2000 ; 
+;  hsatcorr = 2000 ; 
                           ; a correction to hsdelta event by event
                           ; for a problem in setting Q3 current.
                           ; There was an unknown zero offset in the Q3 current.
