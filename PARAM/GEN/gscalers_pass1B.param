@@ -1,0 +1,19 @@
+; cploen: preliminary pass1 values for Fall 2023 NPS run, based on BCM calibration runs 1422, 3346, 3588, 4710, 6145, 6813 taken starting Sept 25, 2023.  
+; BCM4C had step change in gain twice throughout run period, at runs 2982 and 5524; the 3 calibration files reflect this
+; the other bcms did not demonstrate drifts corresponding to temperature/season.
+; The Unser gain is determined from the wire calibration in Run 911. See https://hallcweb.jlab.org/doc-private/ShowDocument?docid=1235 
+; We hope to achieve +-1% uncertainty at high currents where the error is usually dominated by long term temperature drifts in the RF cables. (Winter is coming lol.)
+; At low beam currents, the offset uncertainty of O(0.1) muA will dominate the error. Precision cross sections below 5 muA become difficult. 
+; The BCM current threshold is essential since the accelerator is trippy and unphysical current offsets could be integrated. But this can interfere with the analysis of low current production data. 
+; Note this parameter set includes a small but highly significant saturation correction for BCM1 and BCM2 that turns on above 50 muA (reaching ~1% at 70 muA).
+;
+gNumBCMs    = 6
+gBCM_Names  = " BCM1      BCM2      Unser	BCM4A    BCM4B   BCM4C"
+gBCM_Gain =            5741.,     5707.,     400.6,      9597.,    43080.,    1546.
+gBCM_Offset =           1108.,   249300.,  359700.,      -1839.,   -8962.,     163.6.
+gBCM_SatOffset =         50.,       50.,    1000.,       1000.,     1000.,    1000. 
+gBCM_SatQuadratic =  0.00175,     0.002,       0.,       0.,     0.0,    0.0 
+
+gBCM_Current_threshold = 2.0
+; index = 0 to gNumBCMs-1
+gBCM_Current_threshold_index = 3
