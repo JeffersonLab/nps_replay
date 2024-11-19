@@ -185,7 +185,7 @@ g_ctp_map_filename         = "MAPS/HMS/DETEC/STACK/hms_stack_nps.map"
 g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
 g_ctp_nps_calib_filename   = "PARAM/NPS/CAL/nps_calib_pi0.param"
 
-1960-1966
+1960-1967
 g_ctp_parm_filename        = "DBASE/NPS/general_coin.param"
 g_ctp_kinematics_filename  = "DBASE/NPS/standard_coin.kinematics"
 g_ctp_det_calib_filename   = "DBASE/HMS/default_det_calib_nps23.param"
@@ -196,7 +196,7 @@ g_ctp_map_filename         = "MAPS/HMS/DETEC/STACK/hms_stack_nps.map"
 g_ctp_trig_config_filename = "PARAM/TRIG/thms_nps23.param"
 g_ctp_nps_calib_filename   = "PARAM/NPS/CAL/nps_calib_pi0.param"
 
-1967-1982
+1968-1982
 g_ctp_parm_filename        = "DBASE/NPS/general_coin.param"
 g_ctp_kinematics_filename  = "DBASE/NPS/standard_coin.kinematics"
 g_ctp_det_calib_filename   = "DBASE/HMS/default_det_calib_nps23.param"
