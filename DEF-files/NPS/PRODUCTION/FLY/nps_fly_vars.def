@@ -6,6 +6,7 @@
 block NPS.cal.fly.e : NPS.cal.fly.e
 block NPS.cal.fly.block_clusterID
 block NPS.cal.fly.goodAdcTdcDiffTime
+block NPS.cal.fly.adcCounter
 
 # Cumulative (small size in file)
 block NPS.cal.fly.earray
