@@ -1,4 +1,5 @@
-; HMS NPS23 calibration parameter files for runs 4224-4568 (KinC_x60_4a and KinC_x60_4b)
+; HMS NPS23 calibration parameter files for PASS1 runs 4224-4568 (KinC_x60_4a and KinC_x60_4b)
+; After PASS1, we added four sets of DC calibrations for KinC_x60_4a/b, "hdc_*_4226.param" are only applied to 4224-4246
 #include "PARAM/HMS/DC/hdc_calib_4226.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_4226.param"
 #include "PARAM/HMS/CAL/hcal_calib_4230.param"
