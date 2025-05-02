@@ -45,6 +45,8 @@ void replay_production_coin_NPS_HMS(int RunNumber=0, int MaxEvent=0, int FirstEv
   gHcParms->Load(gHcParms->GetString("g_ctp_database_filename"), RunNumber);
   gHcParms->Load(gHcParms->GetString("g_ctp_parm_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_kinematics_filename"), RunNumber);
+  gHcParms->Load(gHcParms->GetString("g_ctp_nps_calib_filename"), RunNumber); // NPS calib. coef by Hao
+  gHcParms->Load(gHcParms->GetString("g_ctp_nps_offsets_filename"), RunNumber); // NPS timeoffsets. coef by Mark  UNCOMENT/CHANGE THIS FOR PASS2
   gHcParms->Load(gHcParms->GetString("g_ctp_det_calib_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_bcm_calib_filename"));
   gHcParms->Load(gHcParms->GetString("g_ctp_bpm_calib_filename"));

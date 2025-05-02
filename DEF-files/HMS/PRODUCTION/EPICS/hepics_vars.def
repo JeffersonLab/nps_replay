@@ -1,157 +1,538 @@
+
 #******************
 # EPICS VARIABLES *
 #******************
 
 begin epics
 
-IBC3H00CRCUR4
-hac_bcm_average
-ibcm1
-ibcm2
-iunser
-itov3out
-itov4out
+#Event 183
 
-#Spectrometer Settings
-ecHMS_Angle
-ecP_HMS
+C1068_QDAC01                                # Pockels Cell POS HV
+C1068_QDAC07                                # IA Cell Setpoint  Hall A DAC 07 A0
+C1068_QDAC08                                # IA Cell Setpoint  Hall A DAC 08 A1
+C1068_QDAC09                                # IA Cell Setpoint  Hall A DAC 09 A2
+C1068_QDAC10                                # IA Cell Setpoint  Hall A DAC 10 A3
+C1068_QDAC11                                # IA Cell Setpoint  Hall C DAC 11 A0
+C1068_QDAC12                                # IA Cell Setpoint  Hall C DAC 12 A1
+C1068_QDAC13                                # IA Cell Setpoint  Hall C DAC 13 A2
+C1068_QDAC14                                # IA Cell Setpoint  Hall C DAC 14 A3
+CFI60DLP                                    # dirty flowrate at ESR (warm return) g/s
+CFI6711C                                    # 4k flow, g/s
+CFI6731C                                    # 15k Flow g/s
+COLPOS1                                     # Collimator Block 1
+COLPOS2                                     # Collimator Block 2
+COLPOS3                                     # Collimator Block 3
+COLPOS4                                     # Collimator Block 4
+COLPOS5                                     # Collimator Block 5
+COLPOS6                                     # Collimator Block 6
+COLPOS7                                     # Collimator Block 7
+CPI671SC                                    # 4K Supply pressure at ESR atm
+CPI672                                      # 5K return pressure at ESR atm
+CPI673                                      # 15K Supply pressure at ESR atm
+CPI9541                                     # 20K return pressure at ESR atm
+CTD6614                                     # Hall A 15K supply temp K
+CTD671SC                                    # 4K Supply temp at ESR K
+CTD672                                      # 5K return temp at ESR K
+CTD673                                      # 15K Supply temp at ESR K
+CTD9541                                     # 20K return temp at ESR K
+EHCFR_A_IXPEAK                              # measure I for FR-XA
+EHCFR_A_IYPEAK                              # measure I for FR-YA
+EHCFR_B_IXPEAK                              # measure I for FR-XB
+EHCFR_B_IYPEAK                              # measure I for FR-YB
+EHCFR_ENERGY                                # fast raster beam energy used to set raster (present)
+EHCFR_LIXWidth                              # fast raster set X width
+EHCFR_LIYWidth                              # fast raster set Y width
+FB_A:FB_On                                  # Position FB status for Hall A
+FB_A:pause                                  # 'run'='not paused FFB may run if it is enabled
+FB_A:status:mbbi2.B7                        # -
+FB_A:use_RF                                 # RF/Energy FB status for Hall A
+FB_C:CORR:C1_value.B                        # -
+FB_C:CORR:C2_value.B                        # -
+FB_C:CORR:C3_value.B                        # -
+FB_C:CORR:C4_value.B                        # -
+FB_C:FB_On                                  # Position FB status for Hall C
+FB_C:pause                                  # 'run'='not paused FFB may run if it is enabled
+FB_C:status:mbbi2.B7                        # -
+FB_C:use_RF                                 # RF/Energy FB status for Hall C
+HALLA:p                                     # Tiefenback energy for Hall A
+HALLC:p                                     # Tiefenback energy for Hall C
+HCCO:HMS:POSRB                              # HMS Collimator position  (-497...=all_out, -317...=Sieve, -143...=Pion, 0=Home, 488...=Large)
+HCCO:SHMS:POSRB                             # SHMS Collimator position (-315...=Shift_sieve, -114...=Cent_Sieve, 0=Home, 860...=Coll.)
+HCHMS_Q1_LS450:FLD_DATA                     # HMS Q1 Hall Probe
+HCHMS_Q2_LS450:FLD_DATA                     # HMS Q2 Hall Probe
+HCHMS_Q3_LS450:FLD_DATA                     # HMS Q3 Hall Probe
+HELCLOCKd                      		    # Helicity Clock Read
+HELCLOCKs                                   # Helicity Clock Set
+HELDELAYd                                   # Helicity Delay Read
+HELDELAYs                                   # Helicity Delay Set
+HELFREQ                                     # Helicity Frequency
+HELPATTERNd                                 # Helicity Pattern Read
+HELPATTERNs                                 # Helicity Pattern Set
+HELTSETTLEd                                 # Helicity Settle Read
+HELTSTABLEd                                 # Helicity Stable Read
+HMSPi:GasCherenkov:Pressure                 # HMS Gas Cherenkov pressure [psi abs.]
+HMSPi:GasCherenkov:Temp                     # HMS Gas Cherenkov temp [C]
+HWienAngle                                  # Horizontal Wien Angle
+IBC1H04CRCUR2                               # Hall A MPS BCM Current uA
+IBC3H00CRCUR4                               # Hall C MPS BCM Current uA
+IFY0I06I                                    # PolCup position: FC1 (is/is not) inserted
+IFY0I06R                                    # PolCup position: FC1 (is/is not) retracted
+IFY0L03I                                    # PolCup position: FC2 (is/is not) inserted
+IFY0L03R                                    # PolCup position: FC2 (is/is not) retracted
+IFY1I07I                                    # PolCup position: PolCup (is/is not) inserted
+IFY1I07R                                      # PolCup position: PolCup (is/is not) retracted
+IGL1I00AI17                                 # Dummy Helicity Pockels Cell Voltage V
+IGL1I00AI22                                 # G0 X PZT Voltage V
+IGL1I00AI23                                 # G0 Y PZT Voltage V
+IGL1I00AI24                                 # IA Voltage V
+IGL1I00AI25                                 # Hall A X PZT Voltage V
+IGL1I00AI26                                 # Hall A Y PZT Voltage  V
+IGL1I00AI27                                 # Hall A IA Voltage  V
+IGL1I00AI7                                  # Gun 2 PITA Voltage Positive V
+IGL1I00AI8                                  # Gun 2 PITA Voltage Negative V
+IGL1I00DAC2                                 # Hall B Control Level
+IGL1I00DAC3                                 # Hall B Seed Level
+IGL1I00DAC5                                 # Horizontal Wien Electrode Voltage
+IGL1I00DAC6                                 # Vertical Wien Electrode Voltage
+IGL1I00DI24_24M                             # Beam Half-wave plate Read(off=out) () --
+IGL1I00DIOFLRD                              # Carlini insertable waveplate state (1
+IGL1I00DIOHWTB.B2                           # Carlini insertable waveplate state (0=in,1=out)
+IGL1I00OD16_16                              # Beam Half-wave plate Set(off=out)
+IGL1I00OD16_4                               # Vertical Wien HV Polarity
+IGL1I00OD16_8                               # Pockels Cell ON/OFF
+IGL1I00OD16_9                               # Horizontal Wien HV Polarity
+IGL1I00PStrans                              # Injector transmission
+IHA3H07AIR                                  # monitor
+IHA3H07BIR                                  # monitor
+IPM2C24A.IENG                               # Hall B Beam Current (2C24A)
+IPM3C00.XPOS                                # stripline bpm x position ,  BPM POSITION
+IPM3C00.YPOS                                # stripline bpm x position
+IPM3C01.XPOS                                # 
+IPM3C01.YPOS                                # 
+IPM3C02.XPOS                                # 
+IPM3C02.YPOS                                # 
+IPM3C03.XPOS                                # 
+IPM3C03.YPOS                                # 
+IPM3C04.XPOS                                # 
+IPM3C04.YPOS                                # 
+IPM3C05.XPOS                                # 
+IPM3C05.YPOS                                # 
+IPM3C06.XPOS                                # 
+IPM3C06.YPOS                                # 
+IPM3C07.XPOS                                # 
+IPM3C07.YPOS                                # 
+IPM3C07A.XPOS                               # 
+IPM3C07A.YPOS                               # 
+IPM3C08.XPOS                                # 
+IPM3C08.YPOS                                # 
+IPM3C10.XPOS                                # 
+IPM3C10.YPOS                                # 
+IPM3C11.XPOS                                # 
+IPM3C11.YPOS                                # 
+IPM3C12.XPOS                                # 
+IPM3C12.YPOS                                # 
+IPM3C14.XPOS                                # 
+IPM3C14.YPOS                                # 
+IPM3C16.XPOS                                # 
+IPM3C16.YPOS                                # 
+IPM3C17.XIFG                                # stripline bpm x position auto-gain, BPM Position Auto-Gain
+IPM3C17.XPOS                                # 
+IPM3C17.XSOF                                # stripline bpm x position offset, BPM Position OffSet
+IPM3C17.YIFG                                # stripline bpm y position auto-gain
+IPM3C17.YPOS                                # 
+IPM3C17.YSOF                                # stripline bpm y position offset
+IPM3C18.XIFG                                # 
+IPM3C18.XPOS                                # 
+IPM3C18.XSOF                                # 
+IPM3C18.YIFG                                # 
+IPM3C18.YPOS                                # 
+IPM3C18.YSOF                                # 
+IPM3C19.XIFG                                # 
+IPM3C19.XPOS                                # 
+IPM3C19.XSOF                                # 
+IPM3C19.YIFG                                # 
+IPM3C19.YPOS                                # 
+IPM3C19.YSOF                                # 
+IPM3C20.XIFG                                # 
+IPM3C20.XPOS                                # 
+IPM3C20.XSOF                                # 
+IPM3C20.YIFG                                # 
+IPM3C20.YPOS                                # 
+IPM3C20.YSOF                                # 
+IPM3C21.XIFG                                # 
+IPM3C21.XPOS                                # 
+IPM3C21.XSOF                                # 
+IPM3C21.YIFG                                # 
+IPM3C21.YPOS                                # 
+IPM3C21.YSOF                                # 
+IPM3H02.XIFG                                # 
+IPM3H02.XPOS                                # 
+IPM3H02.XSOF                                # 
+IPM3H02.YIFG                                # 
+IPM3H02.YPOS                                # 
+IPM3H02.YSOF                                # 
+IPM3H04.XIFG                                # 
+IPM3H04.XPOS                                # 
+IPM3H04.XSOF                                # 
+IPM3H04.YIFG                                # 
+IPM3H04.YPOS                                # 
+IPM3H04.YSOF                                # 
+IPM3H07A.FSUM                               # X+ wire
+IPM3H07A.RSUM                               # Y- wire
+IPM3H07A.SSUM                               # Y+ wire
+IPM3H07A.TSUM                               # X- wire
+IPM3H07A.XIFG                               # 
+IPM3H07A.XPOF                               # BPM offset
 
-#Magnet Currents
-ecQ1_Set_Current
-ecQ2_I_True
-ecQ2_Set_Current
-ecQ2_I_True
-ecQ3_Set_Current
-ecQ3_I_True
-ecDI_B_Set_NMR
-ecDI_B_True_NMR
-IPM3H07A.XRAW
-IPM3H07A.YRAW
-IPM3H07B.XRAW
-IPM3H07B.YRAW
-IPM3H07C.XRAW
-IPM3H07C.YRAW
+# Event 184
 
-#NPS temp
-hcnps_intlk_cz_t_back_1
-hcnps_intlk_cz_t_back_2
-hcnps_intlk_cz_t_back_3
-hcnps_intlk_cz_t_back_4
-hcnps_intlk_cz_t_back_5
-hcnps_intlk_cz_t_back_6
-hcnps_intlk_cz_t_back_7
-hcnps_intlk_cz_t_back_8
-hcnps_intlk_cz_t_back_9
-hcnps_intlk_cz_t_back_10
-hcnps_intlk_cz_t_back_11
-hcnps_intlk_cz_t_back_12
-hcnps_intlk_cz_t_back_13
-hcnps_intlk_cz_t_back_14
-hcnps_intlk_cz_t_back_15
-hcnps_intlk_cz_t_back_16
-hcnps_intlk_cz_t_back_17
-hcnps_intlk_cz_t_back_18
-hcnps_intlk_cz_t_back_19
-hcnps_intlk_cz_t_back_20
-hcnps_intlk_cz_t_back_21
-hcnps_intlk_cz_t_back_22
-hcnps_intlk_cz_t_back_23
-hcnps_intlk_cz_t_back_24
-hcnps_intlk_cz_t_back_25
-hcnps_intlk_cz_t_back_26
-hcnps_intlk_cz_t_back_27
-hcnps_intlk_cz_t_back_28
-hcnps_intlk_cz_t_back_29
-hcnps_intlk_cz_t_back_30
-hcnps_intlk_cz_t_back_31
-hcnps_intlk_cz_t_back_32
-hcnps_intlk_cz_t_back_33
-hcnps_intlk_cz_t_back_34
-hcnps_intlk_cz_t_back_35
-hcnps_intlk_cz_t_back_36
-hcnps_intlk_cz_t_back_37
-hcnps_intlk_cz_t_back_38
-hcnps_intlk_cz_t_back_39
-hcnps_intlk_cz_t_back_40
-hcnps_intlk_cz_t_back_41
-hcnps_intlk_cz_t_back_42
-hcnps_intlk_cz_t_back_43
-hcnps_intlk_cz_t_back_44
-hcnps_intlk_cz_t_back_45
-hcnps_intlk_cz_t_back_46
-hcnps_intlk_cz_t_back_47
-hcnps_intlk_cz_t_back_48
-hcnps_intlk_cz_t_back_49
-hcnps_intlk_cz_t_back_50
-hcnps_intlk_cz_t_back_51
-hcnps_intlk_cz_t_back_52
-hcnps_intlk_cz_t_back_53
-hcnps_intlk_cz_t_back_54
-hcnps_intlk_cz_t_back_55
-hcnps_intlk_cz_t_back_56
+IPM3H07A.XRAW                               # BPM RAW
+IPM3H07A.XSOF                               # 
+IPM3H07A.YIFG                               # 
+IPM3H07A.YPOF                               # 
+IPM3H07A.YPOS                               # 
+IPM3H07A.YRAW                               # 
+IPM3H07A.YSOF                               # 
+IPM3H07B.FSUM                               # X+ wire
+IPM3H07B.RSUM                               # Y- wire
+IPM3H07B.SSUM                               # Y+ wire
+IPM3H07B.TSUM                               # X- wire
+IPM3H07B.XIFG                               # 
+IPM3H07B.XPOF                               # 
+IPM3H07B.XPOS                               # 
+IPM3H07B.XRAW                               # 
+IPM3H07B.XSOF                               # 
+IPM3H07B.YIFG                               # 
+IPM3H07B.YPOF                               # 
+IPM3H07B.YPOS                               # 
+IPM3H07B.YRAW                               # 
+IPM3H07B.YSOF                               # 
+IPM3H07C.FSUM                               # X+ wire
+IPM3H07C.RSUM                               # Y- wire
+IPM3H07C.SSUM                               # Y+ wire
+IPM3H07C.TSUM                               # X- wire
+IPM3H07C.XIFG                               # 
+IPM3H07C.XPOF                               # 
+IPM3H07C.XPOS                               # 
+IPM3H07C.XRAW                               # 
+IPM3H07C.XSOF                               # 
+IPM3H07C.YIFG                               # 
+IPM3H07C.YPOF                               # 
+IPM3H07C.YPOS                               # 
+IPM3H07C.YRAW                               # 
+IPM3H07C.YSOF                               # 
+IPM3H08.FSUM                                # X+ wire
+IPM3H08.RSUM                                # Y- wire
+IPM3H08.SSUM                                # Y+ wire
+IPM3H08.TSUM                                # X- wire
+IPM3H08.XPOF                                # big BPM at downstream
+IPM3H08.XPOS                                # big BPM at downstream
+IPM3H08.XRAW                                # big BPM at downstream
+IPM3H08.XROT                                # X rotation
+IPM3H08.XSOF                                # big BPM at downstream
+IPM3H08.YPOF                                # big BPM at downstream
+IPM3H08.YPOS                                # big BPM at downstream
+IPM3H08.YRAW                                # big BPM at downstream
+IPM3H08.YROT                                # Y rotation
+IPM3H08.YSOF                                # big BPM at downstream
+IPM3H09.FSUM                                # X+ wire
+IPM3H09.RSUM                                # Y- wire
+IPM3H09.SSUM                                # Y+ wire
+IPM3H09.TSUM                                # X- wire
+IPM3H09.XIFG                                # big BPM at downstream
+IPM3H09.XPOF                                # big BPM at downstream
+IPM3H09.XPOS                                # big BPM at downstream
+IPM3H09.XRAW                                # big BPM at downstream
+IPM3H09.XROT                                # X rotation
+IPM3H09.XSOF                                # big BPM at downstream
+IPM3H09.YIFG                                # big BPM at downstream
+IPM3H09.YPOF                                # big BPM at downstream
+IPM3H09.YPOS                                # big BPM at downstream
+IPM3H09.YRAW                                # big BPM at downstream
+IPM3H09.YROT                                # Y rotation
+IPM3H09.YSOF                                # big BPM at downstream
+IPM3P02A.XIFG                               # Compton
+IPM3P02A.XPOS                               # Hall-C Compton Control,
+IPM3P02A.XSOF                               # Compton
+IPM3P02A.YIFG                               # Compton
+IPM3P02A.YPOS                               # Hall-C Compton Control,
+IPM3P02A.YSOF                               # Compton
+IPM3P02B.XIFG                               # 
+IPM3P02B.XPOS                               # Hall-C Compton Control,
+IPM3P02B.XSOF                               # Compton
+IPM3P02B.YIFG                               # 
+IPM3P02B.YPOS                               # Hall-C Compton Control,
+IPM3P02B.YSOF                               # Compton
+ISL0I04DT                                   # Master Slit Setting
+IWF1I04:polSet                              # Vertical Wien Angle Polarity
+IWF1I06:polSet                              # Horizontal Wien Angle Polarity
+MBE3H05                                     # Beamline and Moller magnets
+MBE3H05.BDL                                 # Beamline and Moller magnets
+MBE3H05M                                    # Beamline and Moller magnets
+MBE3H07                                     # Beamline and Moller magnets
+MBE3H07.BDL                                 # Beamline and Moller magnets
+MBE3H07M                                    # Beamline and Moller magnets
+MBSY3C                                      # Beamline and Moller magnets
+MBSY3C.BDL                                  # Beamline and Moller magnets
+MBSY3CM                                     # Beamline and Moller magnets
+MFG1I04A.BDL                                # First Solenoid BDL (G-cm)
+MFG1I04B.BDL                                # Second Solenoid BDL (G-cm)
+MFGANGLE                                    # Solenoids Angle (MFGANGLE)
+MNPSSWEEP                                   # measured NPS sweeper current
+MNPSSWEEP.S                                 # set NPS sweeper current
+MOFC1DELTA                                  # Difference between Machine Frequency - 499MHz (in Hz)
+MOFC1FREQ                                   # Machine Frequency (MHz)
+MQE3M03                                     # Beamline and Moller magnets
+MQE3M03.BDL                                 # Beamline and Moller magnets
+MQE3M03M                                    # Beamline and Moller magnets
+MQF3M01                                     # Beamline and Moller magnets
+MQF3M01.BDL                                 # Beamline and Moller magnets
+MQF3M01M                                    # Beamline and Moller magnets
+MWF0I02.BDL                                 # Horizontal Wien BDL (G-cm)
+MWF1I04.BDL                                 # Vertical Wien BDL (G-cm)
+MWF1I06.BDL                                 # Horizontal Wien BDL (G-cm)
+NPScorrDS:measCurr                          # NPScorrDS:measCurr
+NPScorrDS:setCurr                           # NPScorrDS:setCurr
+NPScorrUS:measCurr                          # NPScorrUS:measCurr
+NPScorrUS:setCurr                           # NPScorrUS:setCurr
+OXSS_MGFD                                   # Persistent Field (T)
+OXSS_RDF                                    # Leads Field
+PWF1I04:spinCalc                            # Vertical Wien Angle
+PWF1I04N:enabled                            # Vertical Wien Negative Voltage Supply (V)
+PWF1I04N:readVoltSet                        # Vertical Wien Negative Voltage Supply (V)
+PWF1I04P:enabled                            # Vertical Wien Positive Voltage Supply (V)
+PWF1I04P:readVoltSet                        # Vertical Wien Positive Voltage Supply (V)
+PWF1I06:spinCalc                            # Horizontal Wien Angle
+PWF1I06N:enabled                            # Horizontal Wien Negative Voltage Supply (V)
+PWF1I06N:readVoltSet                        # Horizontal Wien Negative Voltage Supply (V)
+PWF1I06P:enabled                            # Horizontal Wien Positive Voltage Supply (V)
+PWF1I06P:readVoltSet                        # Horizontal Wien Positive Voltage Supply (V)
+Phi_FG                                      # Solenoids Angle (Phi_FG)
+R00PGSET                                    # Prebuncher Setting
+RTPAPOSUCNT                                 # RTP Cell V APOS U
+RTPAPOSVCNT                                 # RTP Cell V APOS V
+RTPDPOSUCNT                                 # RTP Cell V DPOS U
+RTPDPOSVCNT                                 # RTP Cell V DPOS V
+RTPPITA1CNT                                 # RTP Cell V PITA 1
+RTPPITA2CNT                                 # RTP Cell V PITA 2
+RTPQW1CNT                                   # RTP Cell V L/4 1
+RTPQW2CNT                                   # RTP Cell V L/4 2
+SHMSGasCherenkov:Pressure                   # SHMS Heavy Gas Cherenkov pressure [psig]
+SHMSGasCherenkov:Temperature                # SHMS Heavy Gas Cherenkov temp [C]
+SMRPOSA                                     # Hall A Slit Position (Hall A Chopper Slit Readback) --
+SMRPOSB                                     # Hall B Chopper Slit Position Readback
+SMRPOSC                                     # Hall C Chopper Slit Position Readback
+TARGPOS                                     # Target position X
+VWienAngle                                  # Vertical Wien Angle
+WienAngle                                   # Wien Filter Angle Setting  degrees
+cdipc_xpos                                  # Pockels Cell X Stage
+cdipc_ypos                                  # Pockels Cell Y Stage
+ecDI_B_Set_NMR                              # HMS dipole NMR setpoint
+ecDI_B_True_NMR                             # HMS dipole NMR readback
+ecDI_I_True                                 # HMS magnet rs232 readback current
+ecDI_I_coarse                               # HMS magnet analog readback current
+ecDI_Set_Current                            # HMS magnet set current
+ecHMS_Angle                                 # HMS Angle Readback
+ecP_HMS                                     # HMS dipole momentum setting
+ecQ1_I_True                                 # HMS magnet rs232 readback current
+ecQ1_I_coarse                               # HMS magnet analog readback current
+ecQ1_Set_Current                            # HMS magnet set current
+ecQ2_I_True                                 # HMS magnet rs232 readback current
+ecQ2_I_coarse                               # HMS magnet analog readback current
+ecQ2_Set_Current                            # HMS magnet set current
+ecQ3_I_True                                 # HMS magnet rs232 readback current
+ecQ3_I_coarse                               # HMS magnet analog readback current
+ecQ3_Set_Current                            # HMS magnet set current
+ecSDI_B_Set_NMR                             # SHMS dipole NMR setpoint
+ecSDI_B_True_NMR                            # SHMS dipole NMR readback
+ecSDI_I_coarse                              # SHMS analog current readback
+ecSDI_Set_Current                           # SHMS current setpoints
+ecSHB_HP                                    # SHMS HB raw Hall probe value
+ecSHB_HallP                                 # SHMS Hall probes HB (corrected)
+ecSHB_I_True                                # SHMS RS232 current readback
+ecSHB_I_coarse                              # SHMS analog current readback
+ecSHB_Set_Current                           # SHMS current setpoints
+ecSHMS_Angle                                # SHMS Angle Readback
+ecSP_SHMS                                   # SHMS momentum setpoint
+ecSQ1_HP                                    # SHMS Q1 raw Hall probe value
+ecSQ1_HallP                                 # SHMS Hall probes Q1 (corrected)
+ecSQ1_I_True                                # SHMS RS232 current readback
+ecSQ1_I_coarse                              # SHMS analog current readback
+ecSQ1_Set_Current                           # SHMS current setpoints
+ecSQ2_HP                                    # SHMS Q2 raw Hall probe value
+ecSQ2_HallP                                 # SHMS Hall probes Q2 (corrected)
+ecSQ2_I_True                                # SHMS RS232 current readback
+ecSQ2_I_coarse                              # SHMS analog current readback
+ecSQ2_Set_Current                           # SHMS current setpoints
+ecSQ3_HP                                    # SHMS Q3 raw Hall probe value
+ecSQ3_HallP                                 # SHMS Hall probes Q3 (corrected)
+ecSQ3_I_True                                # SHMS RS232 current readback
+ecSQ3_I_coarse                              # SHMS analog current readback
+ecSQ3_Set_Current                           # SHMS current setpoints
+ecS_Shutter_status                          # SHMS Shutter Readback (1=open, 0=unknown/assumed closed)
+hac_bcm_average                             # Hall A BCM Current uA
+halla_photocurrent                          # Hall A photocurrent uA
 
+#Event 185
 
-hcnps_intlk_cz_t_front_1
-hcnps_intlk_cz_t_front_2
-hcnps_intlk_cz_t_front_3
-hcnps_intlk_cz_t_front_4
-hcnps_intlk_cz_t_front_5
-hcnps_intlk_cz_t_front_6
-hcnps_intlk_cz_t_front_7
-hcnps_intlk_cz_t_front_8
-hcnps_intlk_cz_t_front_9
-hcnps_intlk_cz_t_front_10
-hcnps_intlk_cz_t_front_11
-hcnps_intlk_cz_t_front_12
-hcnps_intlk_cz_t_front_13
-hcnps_intlk_cz_t_front_14
-hcnps_intlk_cz_t_front_15
-hcnps_intlk_cz_t_front_16
-hcnps_intlk_cz_t_front_17
-hcnps_intlk_cz_t_front_18
-hcnps_intlk_cz_t_front_19
-hcnps_intlk_cz_t_front_20
-hcnps_intlk_cz_t_front_21
-hcnps_intlk_cz_t_front_22
-hcnps_intlk_cz_t_front_23
-hcnps_intlk_cz_t_front_24
-hcnps_intlk_cz_t_front_25
-hcnps_intlk_cz_t_front_26
-hcnps_intlk_cz_t_front_27
-hcnps_intlk_cz_t_front_28
-hcnps_intlk_cz_t_front_29
-hcnps_intlk_cz_t_front_30
-hcnps_intlk_cz_t_front_31
-hcnps_intlk_cz_t_front_32
-hcnps_intlk_cz_t_front_33
-hcnps_intlk_cz_t_front_34
-hcnps_intlk_cz_t_front_35
-hcnps_intlk_cz_t_front_36
-hcnps_intlk_cz_t_front_37
-hcnps_intlk_cz_t_front_38
-hcnps_intlk_cz_t_front_39
-hcnps_intlk_cz_t_front_40
-hcnps_intlk_cz_t_front_41
-hcnps_intlk_cz_t_front_42
-hcnps_intlk_cz_t_front_43
-hcnps_intlk_cz_t_front_44
-hcnps_intlk_cz_t_front_45
-hcnps_intlk_cz_t_front_46
-hcnps_intlk_cz_t_front_47
-hcnps_intlk_cz_t_front_48
-hcnps_intlk_cz_t_front_49
-hcnps_intlk_cz_t_front_50
-hcnps_intlk_cz_t_front_51
-hcnps_intlk_cz_t_front_52
-hcnps_intlk_cz_t_front_53
-hcnps_intlk_cz_t_front_54
-hcnps_intlk_cz_t_front_55
-hcnps_intlk_cz_t_front_56
-hcnps_intlk_chiller_CZ_set_temp
-hcnps_intlk_chiller_EZ_set_temp
-hcnps_intlk_chiller_CZ_read_chiller_temp
-hcnps_intlk_chiller_EZ_read_chiller_temp
-hcnps_intlk_chiller_CZ_read_set_temp
-hcnps_intlk_chiller_EZ_read_set_temp
+halla_transmission                          # Hall A Independent Transmission %
+hallb_transmission                          # Hall B Independent Transmission %
+hallc_photocurrent                          # Hall C photocurrent  uA
+hcBDSPOS                                    # Target type
+hcNGC:bgaOut1                               # SHMS NGC Neon Fraction [%]
+hcnps_intlk_chiller_CZ_read_chiller_temp    # NPS Temperature of Crystals
+hcnps_intlk_chiller_CZ_read_set_temp        # NPS Temperature of Crystals
+hcnps_intlk_chiller_CZ_set_temp             # NPS Temperature of Crystals
+hcnps_intlk_chiller_EZ_read_chiller_temp    # NPS Temperature of Crystals
+hcnps_intlk_chiller_EZ_read_set_temp        # NPS Temperature of Crystals
+hcnps_intlk_chiller_EZ_set_temp             # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_1                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_10                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_11                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_12                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_13                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_14                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_15                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_16                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_17                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_18                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_19                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_2                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_20                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_21                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_22                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_23                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_24                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_25                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_26                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_27                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_28                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_29                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_3                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_30                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_31                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_32                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_33                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_34                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_35                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_36                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_37                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_38                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_39                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_4                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_40                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_41                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_42                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_43                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_44                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_45                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_46                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_47                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_48                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_49                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_5                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_50                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_51                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_52                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_53                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_54                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_55                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_56                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_6                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_7                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_8                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_back_9                     # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_1                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_10                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_11                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_12                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_13                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_14                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_15                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_16                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_17                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_18                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_19                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_2                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_20                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_21                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_22                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_23                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_24                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_25                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_26                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_27                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_28                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_29                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_3                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_30                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_31                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_32                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_33                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_34                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_35                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_36                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_37                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_38                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_39                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_4                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_40                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_41                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_42                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_43                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_44                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_45                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_46                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_47                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_48                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_49                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_5                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_50                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_51                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_52                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_53                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_54                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_55                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_56                   # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_6                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_7                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_8                    # NPS Temperature of Crystals
+hcnps_intlk_cz_t_front_9                    # NPS Temperature of Crystals
+hel_even_1                                  # MHE0L01V Even Setpoint
+hel_even_2                                  # MHE0L02H Even Setpoint
+hel_even_3                                  # MHE0L03V Even Setpoint
+hel_even_4                                  # MHE0L04H Even Setpoint
+hel_mag_status.D                            # Hel State Asymmetry
+hel_odd_1                                   # MHE0L01V Even Setpoint
+hel_odd_2                                   # MHE0L02H Even Setpoint
+hel_odd_3                                   # MHE0L03V Even Setpoint
+hel_odd_4                                   # MHE0L04H Even Setpoint
+ibcm1                                       # Hall C Beam Current (monitor # 1): careful, this is also in target epics
+ibcm2                                       # Hall C Beam Current (monitor # 2): careful, this is also in target epics
+ibcm3H04A                                   # Hall C Beam Current (BCM5) hclog 3466072
+ibcm3H04B                                   # Hall C Beam Current (monitor # 3): careful, this is also in target epics
+ibcm3H04C                                   # Hall C Beam Current (BCM7) hclog 3466072
+itov1out                                    # A1 Slit Current
+itov2out                                    # A2 Slit Current
+itov3out                                    # Master Slit Current
+itov4out                                    # INJ Faraday cup (PCup, FC1, FC2, Dump) Current
+itov5out                                    # A3 Slit Current
+itov7out                                    # A4 Slit Current
+iunser                                      # Hall C Beam Current (unser)
+laser_a_wavelength                          # Hall A laser wavelength nm
+laser_b_wavelength                          # Hall B laser wavelength nm
+laser_c_wavelength                          # Hall C laser wavelength nm
+pgunFreqDiv:A:frequency                     # Hall A Laser Frequency:  0: 500 MHz, 1: 250 MHz
+pgunFreqDiv:C:frequency                     # Hall C Laser Frequency:  0: 500 MHz, 1: 250 MHz
+psub_aa_pos                                 # Hall A Laser Attenuator (Hall A Laser Attenuator Setting) --
+psub_ab_pos                                 # Hall B Laser Attenuator Setting
+psub_ac_pos                                 # Hall C Laser Attenuator Setting
+psub_cx_pos                                 # Wafer X Stage         (X laser position on cathode) --
+psub_cy_pos                                 # Wafer Y Stage         (Y laser position on cathode) --
+psub_pl_pos                                 # Rotating waveplate (Rotatable Half Wave Plate Setting) --
+qe_halla                                    # Hall A Quantum Efficiency %
+qe_hallb                                    # Hall B Quantum Efficiency %
+qe_hallc                                    # Hall C Quantum Efficiency %
+scaler_calc1                                # Hall B Beam Current (Faraday Cup) nA
 
 end epics
