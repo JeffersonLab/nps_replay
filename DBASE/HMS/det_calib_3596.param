@@ -1,0 +1,5 @@
+; HMS NPS23 calibration parameter files for runs 3570-3667 (KinC_x60_2 and KinC_x60_2')
+; After PASS1, we added one set of DC calibration for KinC_x60_2/2', "hdc_*_3596.param" are the new set of calibration
+#include "PARAM/HMS/DC/hdc_calib_3596.param"
+#include "PARAM/HMS/DC/hdc_tzero_per_wire_3596.param"
+#include "PARAM/HMS/CAL/hcal_calib_3389.param"

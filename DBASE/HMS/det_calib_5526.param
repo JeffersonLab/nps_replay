@@ -1,4 +1,5 @@
-; HMS NPS23 calibration parameter files for runs 5524-5895 (KinC_x60_1)
+; HMS NPS23 calibration parameter files for PASS1 runs 5524-5895 (KinC_x60_1)
+; After PASS1, we added two sets of DC calibrations for KinC_x60_1, "hdc_*_5526.param" are only applied to 5524-5599
 #include "PARAM/HMS/DC/hdc_calib_5526.param"
 #include "PARAM/HMS/DC/hdc_tzero_per_wire_5526.param"
 #include "PARAM/HMS/CAL/hcal_calib_5524.param"
