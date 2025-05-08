@@ -74,6 +74,7 @@ nps_cal_arr_gain_cor = 0.0145532, 0.0127153, 0.0126527, 0.0119854, 0.0122522, 0.
 
 ; tdc offsets in nsec from Peter Bosted's analysis 10/13/23
 ; average correction is 0.
+nps_cal_arr_adc_tdc_offset_all = 337
 nps_cal_arr_adc_tdc_offset=
  1.37, 0.00, 0.00, 0.00, 1.59,-0.25, 1.50, 0.72, 0.94,-0.29,
 -0.27, 1.01, 0.94,-0.62, 0.48, 0.73, 0.30, 0.03,-0.40,-0.19,
