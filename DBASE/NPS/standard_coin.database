@@ -519,6 +519,9 @@ g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3389.param"
 3570-3667
 g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3596.param"
 
+3728-3782
+g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_3728.param"
+
 4047-4169
 g_ctp_det_calib_filename   = "DBASE/HMS/det_calib_4064.param"
 
